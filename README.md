@@ -9,13 +9,12 @@ EMMA simulates elections using diffferent voting methods to quantitatively compa
 How to Contribute
 -----------------
 
-At this stage, the most helpful way to contribute at this stage
-would be to
+At this stage, the most helpful way to contribute at this stage would be to
 
-1. Star this project. (It lets Me know Others find this project
-   useful and provides extra motivation.)
-1. Provide descriptions of election/voting methods You would
-   like to see added.
+1. Star this project. (It lets Me know Others find this project useful and provides extra motivation.)
+1. Provide descriptions of election/voting methods You would like to see added.
+
+Meanwhile, I am working on the [to-do list](to-do.md).
 
 License
 -------
