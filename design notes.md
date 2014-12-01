@@ -7,6 +7,10 @@ The purpose of this document is to provide an overview of how the election metho
 
 Overview
 --------
+The application has three phases:
+  1. Election simulation
+  1. Bayesian Regret analysis
+  1. Output of analysis results
 
 System Architecture
 -------------------
