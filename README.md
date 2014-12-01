@@ -4,7 +4,7 @@ emma
 Election Method Mathematics Application
 ---------------------------------------
 
-EMMA simulates elections using diffferent voting methods to quantitatively compare different election methods using the “Bayesian Regret” methodology.
+EMMA simulates elections using different voting methods to quantitatively compare different election methods using the “Bayesian Regret” methodology.
 
 How to Contribute
 -----------------
