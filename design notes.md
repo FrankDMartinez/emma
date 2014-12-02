@@ -7,9 +7,28 @@ The purpose of this document is to provide an overview of how the election metho
 
 Overview
 --------
-The application has three phases:
-  1. Election simulation
-  1. Bayesian Regret analysis
+The application has three phases with various numbers of sub-phases and nested sub-phases:
+  1. Analysis
+    1. Election simulations
+      1. Utility generation
+        1. Actual utility generation
+        1. Perceived utility generation
+      1. Determining which Voters are honest and which are "strategic"
+      1. Vote casting according to the various election methods and/or honesty/strategy
+    1. Bayesian Regret analysis
+      1. Bayesian Regret determinations for each election method
+        1. Individual Bayesian Regret determination
+        1. Collective Bayesian Regret determination
+      1. Bayesian Regret based determinations for each election method
+        1. Arithmetic mean of Individual Bayesian Regrets determination
+        1. Standard deviation of Individual Bayesian Regrets determination
+        1. Geometric mean of Individual Bayesian Regrets determination
+        1. Geometric standard deviation of Individual Bayesian Regrets determination
+        1. Collective Bayesian Regret per Voter determination
+    1. Condorcet analysis
+      1. Agreement with Condorcet election
+      1. Agreement with "True Condorcet" election
+  1. Sorting analysis by selected criteria
   1. Output of analysis results
 
 System Architecture
@@ -37,5 +56,5 @@ According to the Center for Range Voting, "Bayesian Regret" is defined as "the '
 1. Voters cast votes based both on these personal "utility values" and, if They are so-called "strategic" Voters, on a particular strategy.
 1. The election system elects a Candidate.
 1. The sum over All Voters of Their "utility values" for the elected Candidate is the "achieved societal utility."
-1. The sum over All Voters of Their "utility values", maximized over All Candidates, is the "optimum societal utility" which would have been achieved if the election system had magically chosen the societally best Candidate.
+1. The sum over All Voters of Their "utility values", maximized over All Candidates, is the "optimum societal utility" which would have been achieved if the election system had magically chosen the societally best Candidate. In other words, find the "utility value" of the Candidate which has the highest summed "utility value" across Voters; that value is the "optimum societal utility".
 1. The difference between the "optimum societal utility" and the "achieved societal utility" is the "Bayesian Regret" of the election system in this experiment. If the election method chooses the societally best Candidate, this value will be zero; otherwise, it will be positive because the elected Candidate and the societally best Candidate will differ.
