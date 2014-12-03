@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>10</y>
+      <w>250</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Bayesian Regret Statistics
+--
+{innerclass
+Traditional Bayesian Regret
+--
+Bayesian Regret
+Bayesian Regret per Voter
+innerclass}
+{innerclass
+Individualized Bayesian Regret
+--
+Individual Bayesian Regret (IBR)
+Arithmetic mean of IBR
+Standard deviation of IBR
+Geometric mean of IBR
+Standard geometric mean of IBR
+Least IBR percentage
+innerclass}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

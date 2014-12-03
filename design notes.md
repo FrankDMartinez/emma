@@ -26,7 +26,7 @@ Bayesian Regret based data will be created for each voting method. This data inc
 1. The standard deviation of the Individual Bayesian Regret
 1. The geometric mean of the Individual Bayesian Regret
 1. The standard geometric mean of the Individual Bayesian Regret
-1. The percentage of Voters for Whom the voting method resulted in the least Individual Bayesian Regret
+1. The percentage of Voters for Whom the voting method resulted in the least Individual Bayesian Regret, called the "least IBR percentage".
 
 ######Condorcet related data######
 Condorcet related data will be created for each voting method. This data includes:
