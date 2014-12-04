@@ -1,49 +1,34 @@
-Design Notes
+Design Notes for the Election Method Mathematics Application (`EMMA`)
 ============
 
-Introduction
-------------
-The purpose of this document is to provide an overview of how the election method mathematics application (a.k.a., `emma`) is intended to work and preliminary guidelines for implementation. `emma` simulates elections using differenerent voting methods to quantitaties compare different elections using the "Bayesian Regret" methodology as described in the appendix, enabling One to use such results in whatever fashion One sees fit.
-
 Overview
---------
-The application at this point has three phases:
-  1. Analysis, in which elections are simulated under various conditions
-  1. Sorting, in which the various election methods are ordered by specified criteria
-  1. Output of the sort analysis
-
-System Architecture
--------------------
-####Analysis Component####
-The analysis component simulates the various elections with various conditions, such as the number of Voters, number of Candidates, method of creating utility values, levels of Voter ignorance, and degree of honesty amongst Voters. A certain number of elections are simulated for each combination of these conditions. Each simulated election is in turn analyzed multiple times, once for each election method, in order to ascertain various Bayesian Regret based data and Condorcet related data.
-
-######Bayesian Regret Based Data######
-Bayesian Regret based data will be created for each voting method. This data includes:
-1. Bayesian Regret as defined in the appendix
-1. Bayesian Regret per Voter
-1. Individual Bayesian Regret as defined in the appendix
-1. The arithmetic mean of the Individual Bayesian Regret
-1. The standard deviation of the Individual Bayesian Regret
-1. The geometric mean of the Individual Bayesian Regret
-1. The standard geometric mean of the Individual Bayesian Regret
-1. The percentage of Voters for Whom the voting method resulted in the least Individual Bayesian Regret, called the "least IBR percentage".
-
-######Condorcet related data######
-Condorcet related data will be created for each voting method. This data includes:
-1. Whether the voting method elected the Condorcet Candidate
-1. Whether the voting method elected the true Condorcet Candidate as defined in the appendix
-
-Data Design
------------
-
-Component Design
-----------------
-
-Interface Design
-----------------
+------------
+The purpose of this program is to simulate elections using different voting methods to quantitatively compare the voting methods using the "Bayesian Regret" and "Individual Bayesian Regret" methodology as described in the appendix, enabling One to use such results in whatever fashion One sees fit.
 
 Requirements
 ------------
+1. The program should simulate elections.
+1. The program should vary the number of Candidates in each election.
+1. The program should vary the number of Voters in each election.
+1. The program should simulate a Candidate's actual utility to Each Voter if that Candidate is elected.
+1. The program should vary the way the determination is made of a Candidate's actual utility to Each Voter.
+1. The program should simulate Voter ignorance, resulting in a Candidate's utility as perceived by Each Voter before casting votes.
+1. The program should vary the fraction of Voters voting honestly versus voting strategically.
+1. The program should determine the elected Candidate of a particular election using different voting methods with each method being used on the same 5-dimensional matrix of Candidate count, Voter count, utility determination method, degree of Voter ignorance, and Voter honesty fraction.
+1. The program should calculate the Bayesian Regret of each member of the 6-dimensional matrix described in requirement #8.
+1. The program should calculate the Bayesian regret per Voter of each member of the 6-dimensional matrix described in requirement #8.
+1. The program should calculate the Bayesian Regret of each member of the 6-dimensional matrix described in requirement #8.
+1. The program should calculate the Bayesian regret per Voter of each member of the 6-dimensional matrix described in requirement #8.
+
+
+Architectural Design
+-------------------
+####Concept of Execution####
+####Abstrat Data Types####
+####Code Outline####
+
+Detailed Design
+----------------
 
 Appendix
 ----------
