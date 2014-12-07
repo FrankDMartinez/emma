@@ -21,7 +21,7 @@ Requirements
   1. The arithmetic mean of the IBRs
   1. The standard deviation of the IBRs
   1. The fraction of Voters for Whom the particular voting method resulted in the least IBR
-  1. Whether the voting method elects the Condorcet Candidate
+  1. Whether the voting method elects the Condorcet Candidate as defined in the appendix
   1. Whether the voting method elects the True Condorcet Candidate as defined in the appendix
 1. For each voting method, the program should calculate:
   1. The fraction of elections the particular method:
@@ -35,8 +35,6 @@ Requirements
     1. The Bayesian Regret per Voter
     1. The IBR of Each Voter
   1. The fraction of Voters for Whom the particular voting method resulted in the least IBR
-  1. The fraction of elections thie particular method elects the Condorcet Candidate
-  1. The fraction of elections thie particular method elects the True Condorcet Candidate
 
 Architectural Design
 -------------------
@@ -47,12 +45,46 @@ This program will be a simple command line application with a text only interfac
 ####Abstrat Data Types####
 
 Each simulated election will be represented by an object indicating:
-* the number of Candidates in the election
-* the number of Voters in the election
-* the way the actual utility of Each Candidate to Each Voter
-* the degree of Voter ignorance
-* the fraction of Voters voting honestly versus voting strategically
-* a collection of statistics for each voting method with respect to this simulated election
+* The number of Candidates in the election
+* The number of Voters in the election
+* The way the actual utility of Each Candidate to Each Voter
+* The degree of Voter ignorance
+* The fraction of Voters voting honestly versus voting strategically
+* A collection of statistics for each voting method with respect to this simulated election
+
+Each voting method, with respect to a particular election, will be represented by an object indicating:
+* The Candidate elected by that method in that election
+* A collection of Bayesian Regret statistics
+* A collection of IBR statistics
+* Whether the voting method elects the Condorcet Candidate
+* Whether the voting method elects the True Condorcet Candidate
+
+Each collection of Bayesian Regret statistics for a particular voting method in a particular election will consist of:
+* The method's Bayesian Regret for the particular election
+* The method's Bayesian Regret per Voter for the particular election
+
+Each collection of IBR statistics for a particular voting method in a particular election will consist of:
+* The IBR of Each Voter produced by the method for the particular election
+* The arithmetic mean of the IBRs produced by the method for the particular election
+* The standard deviation of the IBRs produced by the method for the particular election
+* The fraction of Voters for Whom the particular voting method resulted in the least IBR for the particular election
+
+Each voting method, separately from the representation with respect to a particular election, will be represented by an object indicating:
+* A collection of simulation-wide Bayesian Regret statistics
+* A collection of simulation-wide IBR statistics
+* The fraction of elections the particular method:
+  - Elects the Condorcet Candidate
+  - Elects the True Condorcet Candidate
+
+Each collection of simulation-wide Bayesian Regret statistics for a particular voting method will be represented by an object indicating:
+* The arithmetic mean of Bayesian Regret per Voter from all elections
+* The standard deviation of the Bayesian Regret per Voter from all elections
+
+Each collection of simulation-wide IBR statistics for a particular voting method will be represented by an object indicating:
+* The arithmetic mean of the IBR of Each Voter from all elections
+* The standard deviation of the IBR of Each Voter
+* The fraction of elections the particular method results in the least IBR for the largest fraction of Voters
+* The fraction of Voters for Whom the particular voting method resulted in the least IBR
 
 ####Code Outline####
 
