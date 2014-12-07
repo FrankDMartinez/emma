@@ -7,27 +7,36 @@ The purpose of this program is to simulate elections using different voting meth
 
 Requirements
 ------------
-1. The program should simulate elections.
-1. The program should vary the number of Candidates in each election.
-1. The program should vary the number of Voters in each election.
-1. The program should simulate a Candidate's actual utility to Each Voter if that Candidate is elected.
-1. The program should vary the way the determination is made of a Candidate's actual utility to Each Voter.
-1. The program should simulate Voter ignorance, resulting in a Candidate's utility as perceived by Each Voter before casting votes.
-1. The program should vary the fraction of Voters voting honestly versus voting strategically.
-1. The program should determine the elected Candidate of a particular election using different voting methods with each method being used on the same 5-dimensional matrix of Candidate count, Voter count, utility determination method, degree of Voter ignorance, and Voter honesty fraction, resulting in a 6-dimensional matrix ("6DM").
-1. The program should calculate the Bayesian Regret of each member of the 6DM.
-1. The program should calculate the Bayesian regret per Voter of each member of  the 6DM.
-1. The program should calculate the IBR of Each Voter in each member of the 6DM.
-1. The program should calculate the arithmetic mean of the IBRs of each member of the 6DM.
-1. The program should calculate the standard deviation of the IBRs of each member of the 6DM.
-1. The program should calculate the geometric mean of the IBRs of each member of the 6DM.
-1. The program should calculate the standard geometric deviation of the IBRs of each member of the 6DM.
-1. The program should, for each member of the 5-dimensional matrix, calculate the fraction of Voters for Whom each voting method resulted in the least IBR.
-1. The program should, for each member of the 5-dimensional matrix, determine which voting method(s) elect(s) the Condorcet Candidate.
-1. The program should, for each member of the 5-dimensional matrix, determine which voting method(s) elect(s) the true Condorcet Candidate as defined in the appendix.
-1. The program should, for each voting method, calculate the fraction of simulations the particular method results in the least IBR for the largest fraction of Voters.
-1. The program should, for each voting method, calculate the fraction of simulations the particular method elects the Condorcet Candidate.
-1. The program should, for each voting method, calculate the fraction of simulations the particular method elects the true Condorcet Candidate.
+1. The program should simulate elections, each consisting of a combination of:
+  1. A certain number of Candidates
+  1. A certain number of Voters
+  1. A certain way to determine a Candidate's actual utility to Each Voter if that Candidate is elected
+  1. A certain degree of Voter ignorance, resulting in simulating a Candidate's utility as perceived by Each Voter before casting votes
+  1. A certain fraction of Voters voting honestly versus voting strategically
+1. The program should determine the elected Candidate(s) of each election using different voting methods with each method being used on the same election combination described above, creating an election/results pair ("E/R") for each election.
+1. For each method in an E/R, the program should determine:
+  1. The Bayesian Regret
+  1. The Bayesian Regret per Voter
+  1. The IBR of Each Voter
+  1. The arithmetic mean of the IBRs
+  1. The standard deviation of the IBRs
+  1. The fraction of Voters for Whom the particular voting method resulted in the least IBR
+  1. Whether the voting method elects the Condorcet Candidate
+  1. Whether the voting method elects the True Condorcet Candidate as defined in the appendix
+1. For each voting method, the program should calculate:
+  1. The fraction of elections the particular method:
+    1. Results in the least IBR for the largest fraction of Voters
+    1. Elects the Condorcet Candidate
+    1. Elects the True Condorcet Candidate
+  1. The arithmetic means of:
+    1. The Bayesian Regret per Voter from all elections
+    1. The IBR of Each Voter from all elections
+  1. The standard deviations of:
+    1. The Bayesian Regret per Voter
+    1. The IBR of Each Voter
+  1. The fraction of Voters for Whom the particular voting method resulted in the least IBR
+  1. The fraction of elections thie particular method elects the Condorcet Candidate
+  1. The fraction of elections thie particular method elects the True Condorcet Candidate
 
 Architectural Design
 -------------------
@@ -43,7 +52,7 @@ Each simulated election will be represented by an object indicating:
 * the way the actual utility of Each Candidate to Each Voter
 * the degree of Voter ignorance
 * the fraction of Voters voting honestly versus voting strategically
-* a collection of statistics for each voting method
+* a collection of statistics for each voting method with respect to this simulated election
 
 ####Code Outline####
 
