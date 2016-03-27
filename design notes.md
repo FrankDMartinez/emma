@@ -38,38 +38,43 @@ Requirements
 
 Architectural Design
 -------------------
-####Concept of Execution####
+####Application Concept####
 
-This program will be a simple command line application with a text only interface. When started, the application will display the title and license information of the application. The application will enter its main execution loop and begin the simulations. Once simulations are complete, the data gathered from the simulations will be analyzed and the results of that analysis sent to the standard output location. If the application is given `--test` as the first argument on the command line, the application will produce test data and results to help verify all processes work as expected.
+This program will be a simple command line application with a text only interface. When started, the application will display the title and license information of the application. The application will enter its main loop and begin the simulations. Once simulations are complete, the data gathered from the simulations will be analyzed and the results of that analysis sent to the standard output location. The application will also have a mode in which it will produce test data and results to help verify all processes work as expected.
 
 ####Abstrat Data Types####
 
 Each simulated election will be represented by an object indicating:
+
 * The number of Candidates in the election
 * The number of Voters in the election
-* The way the actual utility of Each Candidate to Each Voter
+* The actual utility of Each Candidate to Each Voter
 * The degree of Voter ignorance
 * The fraction of Voters voting honestly versus voting strategically
 * A collection of statistics for each voting method with respect to this simulated election
+* The Condorcet Candidate in that election
+* The True Condorcet Candidate in that election
 
 Each voting method, with respect to a particular election, will be represented by an object indicating:
+
 * The Candidate elected by that method in that election
 * A collection of Bayesian Regret statistics
 * A collection of IBR statistics
-* Whether the voting method elects the Condorcet Candidate
-* Whether the voting method elects the True Condorcet Candidate
 
 Each collection of Bayesian Regret statistics for a particular voting method in a particular election will consist of:
+
 * The method's Bayesian Regret for the particular election
 * The method's Bayesian Regret per Voter for the particular election
 
 Each collection of IBR statistics for a particular voting method in a particular election will consist of:
+
 * The IBR of Each Voter produced by the method for the particular election
 * The arithmetic mean of the IBRs produced by the method for the particular election
 * The standard deviation of the IBRs produced by the method for the particular election
 * The fraction of Voters for Whom the particular voting method resulted in the least IBR for the particular election
 
 Each voting method, separately from the representation with respect to a particular election, will be represented by an object indicating:
+
 * A collection of simulation-wide Bayesian Regret statistics
 * A collection of simulation-wide IBR statistics
 * The fraction of elections the particular method:
@@ -77,19 +82,50 @@ Each voting method, separately from the representation with respect to a particu
   - Elects the True Condorcet Candidate
 
 Each collection of simulation-wide Bayesian Regret statistics for a particular voting method will be represented by an object indicating:
+
 * The arithmetic mean of Bayesian Regret per Voter from all elections
 * The standard deviation of the Bayesian Regret per Voter from all elections
 
 Each collection of simulation-wide IBR statistics for a particular voting method will be represented by an object indicating:
+
 * The arithmetic mean of the IBR of Each Voter from all elections
 * The standard deviation of the IBR of Each Voter
 * The fraction of elections the particular method results in the least IBR for the largest fraction of Voters
 * The fraction of Voters for Whom the particular voting method resulted in the least IBR
 
-####Code Outline####
-
-Detailed Design
+Application Algorithm Outline
 ----------------
+
+1. Display the title and license information.
+1. Run simulations:
+	1. Determine the number of elections to run.
+	1. For each election:
+		1. Prepare the election scenario:
+			1. Determine the number of Candidates.
+			1. Determine the number of Voters.
+			1. Determine the actual utility of Each Candidate to Each Voter.
+			1. Determine the degree of Voter ignorance.
+			1. Determine the *perceived* utility of Each Candidate to Each Voter.
+			1. Determine the Condorcet Candidate.
+			1. Determine the True Condorcet Candidate.
+			1. Determine the fraction of Voters voting honestly versus voting strategically.
+		1. For each voting method:
+			1. Determine the Candidate elected by this method in this election.
+1. Collect statistics:
+	1. For each election:
+		1. For each voting method:
+			1. Collect Bayesian Regret statistics:
+				1. Collect the method’s Bayesian Regret for the particular election.
+				1. Collect the method’s Bayesian Regret per Voter for the particular election.
+			1. Collect IBR statistics:
+				1. Collect the IBR of Each Voter produced by this method for this election.
+				1. Collect the arithmetic mean of the IBRs produced by this method for this election.
+				1. Collect the standard deviation of the IBRs produced by this method for this election.
+				1. Collect the fraction of Voters for Whom this method resulted in the least IBR for this election.
+			1. Collect Condorcet agreements:
+				1. Collect Condorecet Candidate agreement of this method for this election.
+				1. Collect True Condorecet Candidate agreement of this method for this election.
+1. Analyze results
 
 Appendix
 ----------
