@@ -55,11 +55,11 @@ When run in either test mode, all data the program can create is generated.
 
 Each simulated election will be represented by an object indicating:
 
-* The number of Candidates in the election
-* The number of Voters in the election
-* The actual utility of Each Candidate to Each Voter
-* The degree of Voter ignorance
-* The fraction of Voters voting honestly versus voting strategically
+* The number of Candidates in the election, an integer
+* The number of Voters in the election, an integer
+* The actual utility of Each Candidate to Each Voter, a floating point value ranging from -1 to 1
+* The degree of Voter ignorance, a floating point value ranging from 0 to 1
+* The fraction of Voters voting honestly versus voting strategically, a floating point value ranging from 0 to 1
 * A collection of statistics for each voting method with respect to this simulated election
 * The Condorcet Candidate in that election
 * The True Condorcet Candidate in that election
@@ -72,15 +72,15 @@ Each voting method, with respect to a particular election, will be represented b
 
 Each collection of Bayesian Regret statistics for a particular voting method in a particular election will consist of:
 
-* The method's Bayesian Regret for the particular election
-* The method's Bayesian Regret per Voter for the particular election
+* The method's Bayesian Regret for the particular election, a floating point value
+* The method's Bayesian Regret per Voter for the particular election, a floating point value
 
 Each collection of IBR statistics for a particular voting method in a particular election will consist of:
 
-* The IBR of Each Voter produced by the method for the particular election
-* The arithmetic mean of the IBRs produced by the method for the particular election
-* The standard deviation of the IBRs produced by the method for the particular election
-* The fraction of Voters for Whom the particular voting method resulted in the least IBR for the particular election
+* The IBR of Each Voter produced by the method for the particular election, a collection floating point values
+* The arithmetic mean of the IBRs produced by the method for the particular election, a floating point value
+* The standard deviation of the IBRs produced by the method for the particular election, a flaoting point value
+* The fraction of Voters for Whom the particular voting method resulted in the least IBR for the particular election, a floating point value
 
 Each voting method, separately from the representation with respect to a particular election, will be represented by an object indicating:
 
@@ -92,15 +92,15 @@ Each voting method, separately from the representation with respect to a particu
 
 Each collection of simulation-wide Bayesian Regret statistics for a particular voting method will be represented by an object indicating:
 
-* The arithmetic mean of Bayesian Regret per Voter from all elections
-* The standard deviation of the Bayesian Regret per Voter from all elections
+* The arithmetic mean of Bayesian Regret per Voter from all elections, a floating point value
+* The standard deviation of the Bayesian Regret per Voter from all elections, a floating point value
 
 Each collection of simulation-wide IBR statistics for a particular voting method will be represented by an object indicating:
 
-* The arithmetic mean of the IBR of Each Voter from all elections
-* The standard deviation of the IBR of Each Voter
-* The fraction of elections the particular method results in the least IBR for the largest fraction of Voters
-* The fraction of Voters for Whom the particular voting method resulted in the least IBR
+* The arithmetic mean of the IBR of Each Voter from all elections, a floating point value
+* The standard deviation of the IBR of Each Voter, a floating point value
+* The fraction of elections the particular method results in the least IBR for the largest fraction of Voters, a floating point value
+* The fraction of Voters for Whom the particular voting method resulted in the least IBR, a floating point value
 
 Application Algorithm Outline
 ----------------
