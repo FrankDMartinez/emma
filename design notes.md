@@ -111,56 +111,69 @@ Application Algorithm Outline
 	1. Determine the mode to run in based on such parsing.
 	1. Determine what statistics to collect based on such parsing.
 1. Load serialized data if required.
-1. Run simulations:
-	1. Determine the number of elections to run.
-	1. For each election:
-		1. Prepare the election scenario:
-			1. Determine the number of Candidates.
-			1. Determine the number of Voters.
-			1. Determine the actual utility of Each Candidate to Each Voter.
-			1. Determine the degree of Voter ignorance.
-			1. Determine the *perceived* utility of Each Candidate to Each Voter.
-			1. Determine Condorcet Candidates if required:
-				1. Determine the Condorcet Candidate.
-				1. Determine the True Condorcet Candidate.
-			1. Determine the fraction of Voters voting honestly versus voting strategically.
-			1. Verify election scenario data matches serialized data if required.
+1. Generate data:
+	1. Run simulations:
+		1. Determine the number of elections to run.
+		1. For each election:
+			1. Prepare the election scenario:
+				1. Determine the number of Candidates.
+				1. Determine the number of Voters.
+				1. Determine the actual utility of Each Candidate to Each Voter.
+				1. Determine the degree of Voter ignorance.
+				1. Determine the *perceived* utility of Each Candidate to Each Voter.
+				1. Determine Condorcet Candidates if required:
+					1. Determine the Condorcet Candidate.
+					1. Determine the True Condorcet Candidate.
+				1. Determine the fraction of Voters voting honestly versus voting strategically.
+			1. For each voting method:
+				1. Determine the Candidate elected by this method in this election.
+	1. Collect statistics from each simulation if required:
+		1. For each election:
+			1. For each voting method:
+				1. Collect required Bayesian Regret statistics:
+					1. Collect the method’s Bayesian Regret for the particular election if required.
+					1. Collect the method’s Bayesian Regret per Voter for the particular election if required.
+				1. Collect required IBR statistics:
+					1. Collect the IBR of Each Voter produced by this method for this election if required.
+					1. Collect the arithmetic mean of the IBRs produced by this method for this election if required.
+					1. Collect the standard deviation of the IBRs produced by this method for this election if required.
+					1. Collect the fraction of Voters for Whom this method resulted in the least IBR for this election if required.
+				1. Collect required Condorcet agreements:
+					1. Collect Condorecet Candidate agreement of this method for this election if required.
+					1. Collect True Condorecet Candidate agreement of this method for this election if required.
+	1. Analyze collected statistics if required:
 		1. For each voting method:
-			1. Determine the Candidate elected by this method in this election.
-			1. Verify election data matches serialized data if required.
-1. Collect statistics from each simulation if required:
-	1. For each election:
+			1. Collect Bayesian Regret statistics for this method from all elections if required.
+			1. Collect IBR statistics for this method from all elections if required.
+			1. Collect Condorcet agreement rates for this method from all elections if required:
+				1. Collect the fraction of elections in which this method elects the Condorcet Candidate if required.
+				1. Collect the fraction of elections in which this method elects the True Condorcet Candidate if required.
+1. Compare generated data with serialized data if required.
+	1. Compare simulation data.
+		1. For each election:
+			1. Compare each election scenario's data.
+			1. Compare each voting method's information.
+	1. Compare statistical data.
+		1. For each election:
+			1. For each voting method:
+				1. Compare Bayesian Regret statistics:
+					1. Compare the method’s Bayesian Regret for the particular election.
+					1. Compare the method’s Bayesian Regret per Voter for the particular election.
+				1. Compare IBR statistics:
+					1. Compare the IBR of Each Voter produced by this method for this election.
+					1. Compare the arithmetic mean of the IBRs produced by this method for this election.
+					1. Compare the standard deviation of the IBRs produced by this method for this election.
+					1. Compare the fraction of Voters for Whom this method resulted in the least IBR for this election.
+				1. Compare Condorcet agreements:
+					1. Compare Condorecet Candidate agreement of this method for this election.
+					1. Compare True Condorecet Candidate agreement of this method for this election.
+	1. Compare analysis statistics:
 		1. For each voting method:
-			1. Collect required Bayesian Regret statistics:
-				1. Collect the method’s Bayesian Regret for the particular election if required.
-				1. Verify the Bayesian Regret matches serialized data if required.
-				1. Collect the method’s Bayesian Regret per Voter for the particular election if required.
-				1. Verify the Bayesian Regret per Voter matches serialized data if required.
-			1. Collect required IBR statistics:
-				1. Collect the IBR of Each Voter produced by this method for this election if required.
-				1. Verify the IBR of Each Voter matches serialized data if required.
-				1. Collect the arithmetic mean of the IBRs produced by this method for this election if required.
-				1. Verify the arithmetic mean of the IBRs matches serialized data if required.
-				1. Collect the standard deviation of the IBRs produced by this method for this election if required.
-				1. Verify the standard deviation of the IBRs matches serialized data if required.
-				1. Collect the fraction of Voters for Whom this method resulted in the least IBR for this election if required.
-				1. Verify the fraction of Voters matches serialized data if required.
-			1. Collect required Condorcet agreements:
-				1. Collect Condorecet Candidate agreement of this method for this election if required.
-				1. Verify the Bayesian Regret per Voter matches serialized data if required.
-				1. Collect True Condorecet Candidate agreement of this method for this election if required.
-				1. Verify the Bayesian Regret per Voter matches serialized data if required.
-1. Analyze collected statistics if required:
-	1. For each voting method:
-		1. Collect Bayesian Regret statistics for this method from all elections if required.
-		1. Verify the Bayesian Regret statistics matches serialized data if required.
-		1. Collect IBR statistics for this method from all elections if required.
-		1. Verify the IBR statistics matches serialized data if required.
-		1. Collect Condorcet agreement rates for this method from all elections if required:
-			1. Collect the fraction of elections in which this method elects the Condorcet Candidate if required.
-			1. Verify the fraction matches serialized data if required.
-			1. Collect the fraction of elections in which this method elects the True Condorcet Candidate if required.
-			1. Verify the fraction matches serialized data if required.
+			1. Compare Bayesian Regret statistics for this method from all elections.
+			1. Compare IBR statistics for this method from all elections.
+			1. Compare Condorcet agreement rates for this method from all elections:
+				1. Compare the fraction of elections in which this method elects the Condorcet Candidate.
+				1. Compare the fraction of elections in which this method elects the True Condorcet Candidate.
 1. Serialize data if required.
 1. Output requested results:
 	1. Collect requested results from the simulation(s) and/or associated statistics.
