@@ -118,9 +118,13 @@ Application Algorithm Outline
 			1. Prepare the election scenario:
 				1. Determine the number of Candidates.
 				1. Determine the number of Voters.
-				1. Determine the actual utility of Each Candidate to Each Voter.
+				1. For Each Voter:
+					1. For Each Candidate:
+						1. Determine the actual utility of the Candidate to the Voter.
 				1. Determine the degree of Voter ignorance.
-				1. Determine the *perceived* utility of Each Candidate to Each Voter.
+				1. For Each Voter:
+					1. For Each Candidate:
+						1. Determine the *perceived* utility of the Candidate to the Voter based on the degree of Voter ignorance.
 				1. Determine Condorcet Candidates if required:
 					1. Determine the Condorcet Candidate.
 					1. Determine the True Condorcet Candidate.
@@ -134,7 +138,8 @@ Application Algorithm Outline
 					1. Collect the method’s Bayesian Regret for the particular election if required.
 					1. Collect the method’s Bayesian Regret per Voter for the particular election if required.
 				1. Collect required IBR statistics:
-					1. Collect the IBR of Each Voter produced by this method for this election if required.
+					1. For Each Voter:
+						1. Collect the IBR produced by this method for this election if required.
 					1. Collect the arithmetic mean of the IBRs produced by this method for this election if required.
 					1. Collect the standard deviation of the IBRs produced by this method for this election if required.
 					1. Collect the fraction of Voters for Whom this method resulted in the least IBR for this election if required.
@@ -144,36 +149,44 @@ Application Algorithm Outline
 	1. Analyze collected statistics if required:
 		1. For each voting method:
 			1. Collect Bayesian Regret statistics for this method from all elections if required.
+				1. Collect arithmetic mean of Bayesian Regret per Voter from all elections for this method if required.
+				1. Collect standard deviation of Bayesian Regret per Voter from all elections for this method if required.
 			1. Collect IBR statistics for this method from all elections if required.
+				1. For Each Voter:
+					1. Collect the arithmetic mean of the IBRs from all elections if required.
+					1. Collect the standard deviation of the IBRs if required.
+				1. Collect the fraction of elections the particular method results in the least IBR for the largest fraction of Voters if required.
+				1. Collect the fraction of Voters for Whom the particular voting method resulted in the least IBR if required.
 			1. Collect Condorcet agreement rates for this method from all elections if required:
 				1. Collect the fraction of elections in which this method elects the Condorcet Candidate if required.
 				1. Collect the fraction of elections in which this method elects the True Condorcet Candidate if required.
-1. Compare generated data with serialized data if required.
-	1. Compare simulation data.
+1. Compare generated data with serialized data if required, reporting any difference.
+	1. Compare simulation data, reporting any difference.
 		1. For each election:
-			1. Compare each election scenario's data.
-			1. Compare each voting method's information.
-	1. Compare statistical data.
+			1. Compare each election scenario's data, reporting any difference.
+			1. Compare each voting method's information, reporting any difference.
+	1. Compare election statistics, reporting any difference.
 		1. For each election:
 			1. For each voting method:
 				1. Compare Bayesian Regret statistics:
-					1. Compare the method’s Bayesian Regret for the particular election.
-					1. Compare the method’s Bayesian Regret per Voter for the particular election.
+					1. Compare the method’s Bayesian Regret for the particular election, reporting any difference.
+					1. Compare the method’s Bayesian Regret per Voter for the particular election, reporting any difference.
 				1. Compare IBR statistics:
-					1. Compare the IBR of Each Voter produced by this method for this election.
-					1. Compare the arithmetic mean of the IBRs produced by this method for this election.
-					1. Compare the standard deviation of the IBRs produced by this method for this election.
-					1. Compare the fraction of Voters for Whom this method resulted in the least IBR for this election.
+					1. For Each Voter:
+						1. Compare the IBR produced by this method for this election, reporting any difference.
+					1. Compare the arithmetic mean of the IBRs produced by this method for this election, reporting any difference.
+					1. Compare the standard deviation of the IBRs produced by this method for this election, reporting any difference.
+					1. Compare the fraction of Voters for Whom this method resulted in the least IBR for this election, reporting any difference.
 				1. Compare Condorcet agreements:
-					1. Compare Condorecet Candidate agreement of this method for this election.
-					1. Compare True Condorecet Candidate agreement of this method for this election.
+					1. Compare Condorecet Candidate agreement of this method for this election, reporting any difference.
+					1. Compare True Condorecet Candidate agreement of this method for this election, reporting any difference.
 	1. Compare analysis statistics:
 		1. For each voting method:
-			1. Compare Bayesian Regret statistics for this method from all elections.
-			1. Compare IBR statistics for this method from all elections.
+			1. Compare Bayesian Regret statistics for this method from all elections, reporting any difference.
+			1. Compare IBR statistics for this method from all elections, reporting any difference.
 			1. Compare Condorcet agreement rates for this method from all elections:
-				1. Compare the fraction of elections in which this method elects the Condorcet Candidate.
-				1. Compare the fraction of elections in which this method elects the True Condorcet Candidate.
+				1. Compare the fraction of elections in which this method elects the Condorcet Candidate, reporting any difference.
+				1. Compare the fraction of elections in which this method elects the True Condorcet Candidate, reporting any difference.
 1. Serialize data if required.
 1. Output requested results:
 	1. Collect requested results from the simulation(s) and/or associated statistics.
