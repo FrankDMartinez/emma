@@ -108,6 +108,7 @@ Application Algorithm Outline
 1. Display the title and license information.
 1. Determine what is requested from simulations.
 	1. Parse given options.
+	1. Display usage information and exit, if required.
 	1. Determine the mode to run in based on such parsing.
 	1. Determine what statistics to collect based on such parsing.
 1. Load serialized data if required.
