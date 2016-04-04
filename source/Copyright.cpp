@@ -15,9 +15,10 @@
 
 #include <iostream>
 #include "Copyright.h"
+#include "Printing.h"
 
 namespace Copyright {
   void display() {
-    std::cout << "display copyright information" << std::endl;
+    Printing::printLines({ "Copyright (c) 2015 - 2016 Frank D. Martinez and the EMMA project authors" });
   }
 }
