@@ -15,9 +15,11 @@
 
 #include <iostream>
 #include "License.h"
+#include "Printing.h"
 
 namespace License {
   void display() {
-    std::cout << "display license information" << std::endl;
+    Printing::printLines({ "You may distribute/use this application only in accordance with the GNU Affero General",
+                           "Public License, version 3.0." });
   }
 }
