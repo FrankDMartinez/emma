@@ -1,13 +1,14 @@
 # The compiled
 CXX=clang++
 # Compiler flags
-CXX_FLAGS=-c -Wall -O3 -std=c++11
+CXX_FLAGS=-pedantic -c -Wall -O3 -std=c++11
 # Sources
 SOURCES=EMMA.cpp \
         Copyright.cpp \
         Data.cpp \
         Introduction.cpp \
         License.cpp \
+        Printing.cpp \
         RequestedInformation.cpp \
         Results.cpp \
         Title.cpp

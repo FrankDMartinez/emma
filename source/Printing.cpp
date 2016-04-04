@@ -1,4 +1,4 @@
-//===--- Title.cpp - Title Related Functionality ---===//
+//===--- Printing.h - Print Related Functionality ---===//
 //
 // This file is part of the Election Method Mathematics Application (EMMA) project.
 //
@@ -9,16 +9,17 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// Functionality relating to the copyright of the application.
+// Functionality relating to general output.
 //
 //===----------------------------------------------------------------------===//
 
 #include <iostream>
-#include "Title.h"
 #include "Printing.h"
 
-namespace Title {
-  void display() {
-    Printing::printLines({ "The Election Method Mathematics Application (EMMA)" });
+namespace Printing {
+  void printLines(std::vector<std::string> strings) {
+    for (auto each : strings) {
+      std::cout << each << std::endl;
+    }
   }
 }
