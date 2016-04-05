@@ -56,9 +56,9 @@ When run in either test mode, all data the program can create is generated.
 Each simulated election will be represented by an object indicating:
 
 * The number of Candidates in the election, an integer
-* The number of Voters in the election, an integer
-* The actual utility of Each Candidate to Each Voter, a floating point value ranging from -1 to 1
-* The degree of Voter ignorance, a floating point value ranging from 0 to 1
+* The number of Voters in the election, an integer no less than the number of Candidates
+* The actual utility of Each Candidate to Each Voter, a floating point value from a Gaussian distribution of mean 0 and variance 1
+* The degree of Voter ignorance, a floating point value from a Gaussian distribution of mean 0 and variance 1
 * The fraction of Voters voting honestly versus voting strategically, a floating point value ranging from 0 to 1
 * A collection of statistics for each voting method with respect to this simulated election
 * The Condorcet Candidate in that election
