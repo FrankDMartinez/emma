@@ -17,19 +17,18 @@
 
 #include <iostream>
 #include "RequestedInformation.h"
+#include "docopt/docopt.h"
 
 namespace RequestedInformation {
   // Parses given options; `argc` and `argv` are the arguments
   // from `main()`.
   void parseOptions(int argc, char **argv);
-  void displayUsageInformation();
   void determineMode();
   void determineStatisticsToCollect();
 
   void determine(int argc, char **argv) {
     std::cout << "determine what is requested from simulations" << std::endl;
     parseOptions(argc, argv);
-    displayUsageInformation();
     determineMode();
     determineStatisticsToCollect();
   }
@@ -42,11 +41,25 @@ namespace RequestedInformation {
     std::cout << "\tdetermine what statistics to collect based on such parsing" << std::endl;
   }
 
-  void displayUsageInformation() {
-    std::cout << "\tdisplay usage information and exit, if required" << std::endl;
-  }
-
   void parseOptions(int argc, char **argv) {
-    std::cout << "\tparse given options" << std::endl;
+    const std::string usage =
+    R"(Usage:
+        emma (-h | --help)
+        emma options...
+
+        Options:
+          -h --help                                   Show this screen.
+          --use-seed=<#>                              The seed to pass to the PRNG function [default: a number representing the current time].
+          --number-of-elections=<#>                   Number of elections to simulate [default: 1].
+          --number-of-candidates=<#>                  Number of Candidates in each election [default: 3].
+          --number-of-voters=<#>                      Number of Voters in each election [default: 64].
+          --check-condorcet-agreement=yes|no          Check each method for agreement with the Condorcet Candidate [default: yes].
+          --check-true-condorcet-agreement=<yes|no>   Check each method for agreement with the True Condorcet Candidate [default: yes].
+          --test                                      Perform diagnostic testing.
+          --verbose                                   Activate verbosity.
+    )";
+    std::map<std::string, docopt::value> args =
+      docopt::docopt(usage, { argv + 1, argv + argc }, true);
+    std::cout << "\tparse given options: FINISHED" << std::endl;
   }
 }
