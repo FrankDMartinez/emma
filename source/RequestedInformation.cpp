@@ -19,7 +19,34 @@
 #include "RequestedInformation.h"
 
 namespace RequestedInformation {
+  // Parses given options; `argc` and `argv` are the arguments
+  // from `main()`.
+  void parseOptions(int argc, char **argv);
+  void displayUsageInformation();
+  void determineMode();
+  void determineStatisticsToCollect();
+
   void determine(int argc, char **argv) {
     std::cout << "determine what is requested from simulations" << std::endl;
+    parseOptions(argc, argv);
+    displayUsageInformation();
+    determineMode();
+    determineStatisticsToCollect();
+  }
+
+  void determineMode() {
+    std::cout << "\tdetermine the mode to run in based on such parsing" << std::endl;
+  }
+
+  void determineStatisticsToCollect() {
+    std::cout << "\tdetermine what statistics to collect based on such parsing" << std::endl;
+  }
+
+  void displayUsageInformation() {
+    std::cout << "\tdisplay usage information and exit, if required" << std::endl;
+  }
+
+  void parseOptions(int argc, char **argv) {
+    std::cout << "\tparse given options" << std::endl;
   }
 }
