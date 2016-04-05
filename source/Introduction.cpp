@@ -19,11 +19,13 @@
 #include "Copyright.h"
 #include "License.h"
 #include "Title.h"
+#include "Printing.h"
 
 namespace Introduction {
   void display() {
     Title::display();
     Copyright::display();
     License::display();
+    Printing::printLines({ "" });
   }
 }
