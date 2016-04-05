@@ -26,23 +26,23 @@ namespace RequestedInformation {
   RawParsedOptions parseOptions(int argc, char **argv);
   // Determines the mode in which to run based on the parsed
   // options
-  void determineMode();
+  void determineMode(RawParsedOptions raw_parsed_options);
   // Determines the statistics to collect based on the parsed
   // options
-  void determineStatisticsToCollect();
+  void determineStatisticsToCollect(RawParsedOptions raw_parsed_options);
 
   void determine(int argc, char **argv) {
     std::cout << "determine what is requested from simulations" << std::endl;
-    parseOptions(argc, argv);
-    determineMode();
+    RawParsedOptions raw_options = parseOptions(argc, argv);
+    determineMode(raw_options);
     determineStatisticsToCollect();
   }
 
-  void determineMode() {
+  void determineMode(RawParsedOptions raw_parsed_options) {
     std::cout << "\tdetermine the mode to run in based on such parsing" << std::endl;
   }
 
-  void determineStatisticsToCollect() {
+  void determineStatisticsToCollect(RawParsedOptions raw_parsed_options) {
     std::cout << "\tdetermine what statistics to collect based on such parsing" << std::endl;
   }
 
