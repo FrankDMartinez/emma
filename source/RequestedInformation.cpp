@@ -20,10 +20,15 @@
 #include "docopt/docopt.h"
 
 namespace RequestedInformation {
+  typedef std::map<std::string, docopt::value> RawParsedOptions;
   // Parses given options; `argc` and `argv` are the arguments
   // from `main()`.
-  void parseOptions(int argc, char **argv);
+  RawParsedOptions parseOptions(int argc, char **argv);
+  // Determines the mode in which to run based on the parsed
+  // options
   void determineMode();
+  // Determines the statistics to collect based on the parsed
+  // options
   void determineStatisticsToCollect();
 
   void determine(int argc, char **argv) {
@@ -41,7 +46,7 @@ namespace RequestedInformation {
     std::cout << "\tdetermine what statistics to collect based on such parsing" << std::endl;
   }
 
-  void parseOptions(int argc, char **argv) {
+  RawParsedOptions parseOptions(int argc, char **argv) {
     const std::string usage =
     R"(Usage:
         emma (-h | --help)
@@ -58,8 +63,12 @@ namespace RequestedInformation {
           --test                                      Perform diagnostic testing.
           --verbose                                   Activate verbosity.
     )";
-    std::map<std::string, docopt::value> args =
-      docopt::docopt(usage, { argv + 1, argv + argc }, true);
-    std::cout << "\tparse given options: FINISHED" << std::endl;
+    RawParsedOptions raw_options = docopt::docopt(usage,
+                                              { argv + 1, argv + argc },
+                                              true);
+    if (raw_options["--verbose"].asLong() == 1) {
+      std::cout << "parsing given options: success" << std::endl;
+    }
+    return raw_options;
   }
 }
