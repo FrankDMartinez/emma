@@ -35,7 +35,7 @@ namespace RequestedInformation {
     std::cout << "determine what is requested from simulations" << std::endl;
     RawParsedOptions raw_options = parseOptions(argc, argv);
     determineMode(raw_options);
-    determineStatisticsToCollect();
+    determineStatisticsToCollect(raw_options);
   }
 
   void determineMode(RawParsedOptions raw_parsed_options) {
