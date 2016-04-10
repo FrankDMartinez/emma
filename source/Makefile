@@ -7,11 +7,17 @@ SOURCES=EMMA.cpp \
         Copyright.cpp \
         Data.cpp \
         docopt/docopt.cpp \
+        GivenData.cpp \
+        IndividualElectionStatistics.cpp \
         Introduction.cpp \
         License.cpp \
+        OverviewStatistics.cpp \
         Printing.cpp \
         RequestedInformation.cpp \
         Results.cpp \
+        RunMode.cpp \
+        RunState.cpp \
+        StatisticsRequired.cpp \
         Title.cpp
 # Object files
 OBJECTS=$(SOURCES:.cpp=.o)

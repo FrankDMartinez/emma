@@ -18,23 +18,26 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "BasicData.h"
-#include "CondorcetData.h"
+#include "GivenData.h"
 #include "RunMode.h"
-#include "StatisticRequired.h"
+#include "StatisticsRequired.h"
 
 namespace Emma {
   // Tracks the mode in which the application runs and the
   // statistics to collect
   class RunState {
-    BasicData basic_data;
-    CondorcetData the_Condorcet_data;
+    // The data passed to the application
+    GivenData basic_data;
+    // The mode(s) in which the application runs
     RunMode mode;
-    StatisticRequired statistics;
+    // A record of what statistics to collect
+    StatisticsRequired statistics;
+  public:
+    // Returns the data passed to the application
+    GivenData getGivenData() const;
+    // Returns the mode(s) in which the application runs
+    RunMode getMode() const;
+    // Returns a record of what statistics to collect
+    StatisticsRequired getRequiredStatistics() const;
   };
 }
-    // Whether or not the application is running in diagnostic
-    // testing mode
-    bool testing = false;
-    // Whether or not the application is running in verbose mode
-    bool verbose = false;
