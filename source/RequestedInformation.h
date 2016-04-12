@@ -15,8 +15,10 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include "RunState.h"
+
 namespace RequestedInformation {
-  // Analyzes arguments passed to the application, deciding how
-  // to act based on those options
-  void determine(int argc, char **argv);
+  // Analyzes arguments passed to the application, returning
+  // information on how to act based on those options
+  Emma::RunState determine(int argc, char **argv);
 }

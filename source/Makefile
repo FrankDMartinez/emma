@@ -18,7 +18,8 @@ SOURCES=EMMA.cpp \
         RunMode.cpp \
         RunState.cpp \
         StatisticsRequired.cpp \
-        Title.cpp
+        Title.cpp \
+        TranslateOption.cpp
 # Object files
 OBJECTS=$(SOURCES:.cpp=.o)
 # Resultant binary

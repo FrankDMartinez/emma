@@ -17,6 +17,7 @@
 //===----------------------------------------------------------------------===//
 
 #include <ctime>
+#include "RawParsedOptions.h"
 
 namespace Emma {
   // Tracks the basic data needed for the application run
@@ -31,8 +32,7 @@ namespace Emma {
     unsigned prng_seed = std::time(nullptr);
   public:
     GivenData();
-    GivenData(unsigned elections, unsigned candidates,
-              unsigned voters, unsigned seed);
+    GivenData(RawParsedOptions rpo);
     // Returns the number of Candidates per simulated election
     // run
     unsigned numberOfCandidates() const;

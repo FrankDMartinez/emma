@@ -17,36 +17,33 @@
 
 #include <iostream>
 #include "RequestedInformation.h"
-#include "docopt/docopt.h"
 
 namespace RequestedInformation {
-  typedef std::map<std::string, docopt::value> RawParsedOptions;
   // Parses given options; `argc` and `argv` are the arguments
   // from `main()`.
-  RawParsedOptions parseOptions(int argc, char **argv);
+  Emma::RawParsedOptions parseOptions(int argc, char **argv);
   // Determines the mode in which to run based on the parsed
   // options
-  void determineMode(RawParsedOptions raw_parsed_options);
+  void determineMode(Emma::RawParsedOptions raw_parsed_options);
   // Determines the statistics to collect based on the parsed
   // options
-  void determineStatisticsToCollect(RawParsedOptions raw_parsed_options);
+  void determineStatisticsToCollect(Emma::RawParsedOptions raw_parsed_options);
 
-  void determine(int argc, char **argv) {
+  Emma::RunState determine(int argc, char **argv) {
     std::cout << "determine what is requested from simulations" << std::endl;
-    RawParsedOptions raw_options = parseOptions(argc, argv);
-    determineMode(raw_options);
-    determineStatisticsToCollect(raw_options);
+    Emma::RawParsedOptions raw_options = parseOptions(argc, argv);
+    return Emma::RunState(raw_options);
   }
 
-  void determineMode(RawParsedOptions raw_parsed_options) {
+  void determineMode(Emma::RawParsedOptions raw_parsed_options) {
     std::cout << "\tdetermine the mode to run in based on such parsing" << std::endl;
   }
 
-  void determineStatisticsToCollect(RawParsedOptions raw_parsed_options) {
+  void determineStatisticsToCollect(Emma::RawParsedOptions raw_parsed_options) {
     std::cout << "\tdetermine what statistics to collect based on such parsing" << std::endl;
   }
 
-  RawParsedOptions parseOptions(int argc, char **argv) {
+  Emma::RawParsedOptions parseOptions(int argc, char **argv) {
     const std::string usage =
     R"(Usage:
         emma (-h | --help)
@@ -63,7 +60,7 @@ namespace RequestedInformation {
           --test                                      Perform diagnostic testing.
           --verbose                                   Activate verbosity.
     )";
-    RawParsedOptions raw_options = docopt::docopt(usage,
+    Emma::RawParsedOptions raw_options = docopt::docopt(usage,
                                               { argv + 1, argv + argc },
                                               true);
     if (raw_options["--verbose"].asLong() == 1) {

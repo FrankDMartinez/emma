@@ -21,6 +21,9 @@
 #include "RunState.h"
 
 namespace Emma {
+  RunState::RunState(const RawParsedOptions rpo) {
+    basic_data = GivenData(rpo);
+  }
   GivenData RunState::getGivenData() const {
     return basic_data;
   }

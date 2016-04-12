@@ -18,6 +18,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include <map>
+#include "docopt/docopt.h"
 #include "GivenData.h"
 #include "RunMode.h"
 #include "StatisticsRequired.h"
@@ -33,6 +35,8 @@ namespace Emma {
     // A record of what statistics to collect
     StatisticsRequired statistics;
   public:
+    // Standard constructor
+    RunState(const RawParsedOptions rpo);
     // Returns the data passed to the application
     GivenData getGivenData() const;
     // Returns the mode(s) in which the application runs
