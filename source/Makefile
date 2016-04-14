@@ -24,14 +24,24 @@ SOURCES=EMMA.cpp \
 OBJECTS=$(SOURCES:.cpp=.o)
 # Resultant binary
 BINARY=emma
+MAKEDEPEND = $(CXX) -M $(CXX_FLAGS) -o $*.Tdependencies $<
+DEPDIR = .dependency.files
+$(shell mkdir -p $(DEPDIR) >/dev/null)
+POSTCOMPILE = mv -f $*.dependencies $(DEPDIR)/$*.dependencies
 
 all: $(SOURCES) $(BINARY)
 
 $(BINARY): $(OBJECTS)
-		$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-		$(CXX) $(CXX_FLAGS) $< -o $@
+	@$(MAKEDEPEND)
+	cp $*.Tdependencies $*.dependencies
+	sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+              -e '/^$$/ d' -e 's/$$/ :/' < $*.Tdependencies >> $*.dependencies
+	rm -f $*.Tdependencies
+	$(CXX) $(CXX_FLAGS) $< -o $@
+	$(POSTCOMPILE)
 
 clean:
-		rm *.o emma
+	rm *.o emma
