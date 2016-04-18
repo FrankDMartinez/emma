@@ -18,11 +18,14 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include <iostream>
 #include "RunState.h"
 
 namespace Emma {
   RunState::RunState(const RawParsedOptions rpo) {
     basic_data = GivenData(rpo);
+    std::cout << "\tget mode" << std::endl;
+    std::cout << "\tget required statistics" << std::endl;
   }
   GivenData RunState::getGivenData() const {
     return basic_data;
