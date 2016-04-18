@@ -17,6 +17,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include "RawParsedOptions.h"
+
 namespace Emma {
   // Tracks the basic data needed for the application run
   class RunMode  {
@@ -26,6 +28,8 @@ namespace Emma {
     // Whether or not the application is running in verbose mode
     bool verbose = false;
   public:
+    RunMode();
+    RunMode(RawParsedOptions rpo);
     // Returns whether or not the application is running in
     // diagnostic testing mode
     bool isTesting() const;

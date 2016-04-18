@@ -22,8 +22,23 @@
 namespace Emma {
   unsigned translateOption(RawParsedOptions rpo, const std::string option, unsigned default_value) {
     unsigned value;
-    if (rpo[option].isLong()) {
+    if (rpo[option].isLong() == true) {
       value = rpo[option].asLong();
+    } else {
+      value = default_value;
+    }
+    if (rpo["--verbose"].asLong() == 1) {
+      std::cout << "translating option " << option << ": success" << std::endl;
+    }
+    return value;
+  }
+
+  unsigned translateOption(RawParsedOptions rpo, const std::string option, bool default_value) {
+    bool value;
+    if (rpo[option].isBool() == true) {
+      value = rpo[option].asBool();
+    } else if (rpo[option].isLong() == true) {
+      value = !!(rpo[option].asLong());
     } else {
       value = default_value;
     }

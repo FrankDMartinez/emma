@@ -17,9 +17,19 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include <iostream>
 #include "RunMode.h"
+#include "TranslateOption.h"
 
 namespace Emma {
+  RunMode::RunMode() {}
+  RunMode::RunMode(RawParsedOptions rpo) {
+    testing = translateOption(rpo, "--test", testing);
+    verbose = translateOption(rpo, "--verbose", verbose);
+    if (verbose == true) {
+      std::cout << "parsing mode options: success" << std::endl;
+    }
+  }
   bool RunMode::isTesting() const { return testing; }
   bool RunMode::beVerbose() const { return verbose; }
 }

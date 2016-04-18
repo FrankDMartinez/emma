@@ -26,4 +26,10 @@ namespace Emma {
   // point in time, if the given option is valid, it associated
   // value will be a single integer represented by a string
   unsigned translateOption(RawParsedOptions rpo, const std::string option, unsigned default_value);
+  // Translates the named `option` as recorded in the
+  // `RawParsedOptions` into a useful value, returning it if
+  // practical, or returning the `default_value` if not; at this
+  // point in time, if the given option is valid, it associated
+  // value will be a single integer represented by a string
+  unsigned translateOption(RawParsedOptions rpo, const std::string option, bool default_value);
 }
