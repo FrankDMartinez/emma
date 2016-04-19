@@ -20,6 +20,8 @@
 #include "StatisticsRequired.h"
 
 namespace Emma {
+  StatisticsRequired::StatisticsRequired() {}
+  StatisticsRequired::StatisticsRequired(const RawParsedOptions rpo) {}
   IndividualElectionStatistics StatisticsRequired::getIndividualElectionStatistics() const {
     return each_election;
   }

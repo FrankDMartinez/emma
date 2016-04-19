@@ -19,6 +19,7 @@
 
 #include "IndividualElectionStatistics.h"
 #include "OverviewStatistics.h"
+#include "RawParsedOptions.h"
 
 namespace Emma {
   // Tracks what information the application should collect
@@ -30,6 +31,8 @@ namespace Emma {
     // overall set of election simulations
     OverviewStatistics simulation_wide;
   public:
+    StatisticsRequired();
+    StatisticsRequired(const RawParsedOptions rpo);
     // Returns the statistics for each method to collect in each
     // individual election simulation
     IndividualElectionStatistics getIndividualElectionStatistics() const;

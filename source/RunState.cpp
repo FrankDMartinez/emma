@@ -25,6 +25,7 @@ namespace Emma {
   RunState::RunState(const RawParsedOptions rpo) {
     basic_data = GivenData(rpo);
     mode = RunMode(rpo);
+    statistics = StatisticsRequired(rpo);
     std::cout << "\tget required statistics" << std::endl;
   }
   GivenData RunState::getGivenData() const {
