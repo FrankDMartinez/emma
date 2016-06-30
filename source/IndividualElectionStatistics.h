@@ -26,26 +26,26 @@ namespace Emma {
     bool _BayesianRegret = true;
     // collect the method’s Bayesian Regret per Voter for each
     // election
-    bool _BayesianRegretPerVoter = true;
+    bool _BayesianRegretPerVoter = false;
     // collect Condorecet Candidate agreement of each method for
     // each election
-    bool _CondorcetCandidate = true;
+    bool _CondorcetCandidate = false;
     // collect the Individual Bayesian Regret produced by each
     // method for each election
-    bool _IBR = true;
+    bool _IBR = false;
     // collect the arithmetic mean of the IBRs produced by each
     // method for each election
-    bool meanIBR = true;
+    bool meanIBR = false;
     // collect the fraction of Voters for Whom each method
     // resulted in the least Individual Bayesian Regret for each
     // election
-    bool leastIBRFraction = true;
+    bool leastIBRFraction = false;
     // collect the standard deviation of the IBRs produced by
     // each method for each election
-    bool standardDeviationOfIBR = true;
+    bool standardDeviationOfIBR = false;
     // collect True Condorecet Candidate agreement of each
     // method for each election
-    bool trueCondorcetCandidate = true;
+    bool trueCondorcetCandidate = false;
   public:
     // whether to collect the method’s Bayesian Regret for each
     // election
