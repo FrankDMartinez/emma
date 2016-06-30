@@ -24,36 +24,36 @@ namespace Emma {
   class OverviewStatistics {
     // collect Bayesian Regret statistics for this method from
     // all elections
-    bool _BayesianRegret = true;
+    bool _BayesianRegret = false;
     // collect standard deviation of Bayesian Regret per Voter
     // from all elections for this method
-    bool _BayesianRegretStandardDeviation = true;
+    bool _BayesianRegretStandardDeviation = false;
     // collect Condorcet agreement rates for this method from
     // all elections
-    bool _CondorcetAgreementRates = true;
+    bool _CondorcetAgreementRates = false;
     // collect the fraction of elections in which this method
     // elects the Condorcet Candidate
-    bool _CondorcetCandidateFraction = true;
+    bool _CondorcetCandidateFraction = false;
     // collect IBR statistics for this method from all elections
-    bool _IBR = true;
+    bool _IBR = false;
     // collect the standard deviation of the IBRs
-    bool _IBRStandardDeviation = true;
+    bool _IBRStandardDeviation = false;
     // collect the fraction of elections the particular method
     // results in the least IBR for the largest fraction of
     // Voters
-    bool leastIBRFractionForLargestFraction = true;
+    bool leastIBRFractionForLargestFraction = false;
     // collect the fraction of Voters for Whom the particular
     // voting method resulted in the least IBR
-    bool leastIBRFractionOfVoters = true;
+    bool leastIBRFractionOfVoters = false;
     // collect arithmetic mean of Bayesian Regret per Voter from
     // all elections for this method
-    bool meanBayesianRegret = true;
+    bool meanBayesianRegret = false;
     // collect the arithmetic mean of the IBRs from all
     // elections
-    bool meanIBR = true;
+    bool meanIBR = false;
     // collect the fraction of elections in which this method
     // elects the True Condorcet Candidate
-    bool trueCondorcetCandidateFraction = true;
+    bool trueCondorcetCandidateFraction = false;
   public:
     // whether to collect Bayesian Regret statistics for this
     // method from all elections

@@ -18,10 +18,13 @@
 //===----------------------------------------------------------------------===//
 
 #include "StatisticsRequired.h"
+#include <iostream>
 
 namespace Emma {
   StatisticsRequired::StatisticsRequired() {}
-  StatisticsRequired::StatisticsRequired(const RawParsedOptions rpo) {}
+  StatisticsRequired::StatisticsRequired(const RawParsedOptions rpo) {
+    std::cout << "only collecting the default baseline statistics for now" << std::endl;
+  }
   IndividualElectionStatistics StatisticsRequired::getIndividualElectionStatistics() const {
     return each_election;
   }

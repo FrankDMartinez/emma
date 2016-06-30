@@ -22,7 +22,8 @@ namespace Emma {
   // Tracks what information about each method for each election
   // the application should collect
   class IndividualElectionStatistics {
-    // collect the method’s Bayesian Regret for each election
+    // collect the method’s Bayesian Regret for each election;
+    // is this ever actually going to be false?
     bool _BayesianRegret = true;
     // collect the method’s Bayesian Regret per Voter for each
     // election
