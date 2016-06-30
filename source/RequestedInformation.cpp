@@ -19,30 +19,14 @@
 #include "RequestedInformation.h"
 
 namespace RequestedInformation {
-  // Parses given options; `argc` and `argv` are the arguments
-  // from `main()`.
-  Emma::RawParsedOptions parseOptions(int argc, char **argv);
-  // Determines the mode in which to run based on the parsed
-  // options
-  void determineMode(Emma::RawParsedOptions raw_parsed_options);
-  // Determines the statistics to collect based on the parsed
-  // options
-  void determineStatisticsToCollect(Emma::RawParsedOptions raw_parsed_options);
-
   Emma::RunState determine(int argc, char **argv) {
     std::cout << "determine what is requested from simulations" << std::endl;
     Emma::RawParsedOptions raw_options = parseOptions(argc, argv);
     return Emma::RunState(raw_options);
   }
 
-  void determineMode(Emma::RawParsedOptions raw_parsed_options) {
-    std::cout << "\tdetermine the mode to run in based on such parsing" << std::endl;
-  }
-
-  void determineStatisticsToCollect(Emma::RawParsedOptions raw_parsed_options) {
-    std::cout << "\tdetermine what statistics to collect based on such parsing" << std::endl;
-  }
-
+  // Parses given options; `argc` and `argv` are the arguments
+  // from `main()`.
   Emma::RawParsedOptions parseOptions(int argc, char **argv) {
     const std::string usage =
     R"(Usage:
