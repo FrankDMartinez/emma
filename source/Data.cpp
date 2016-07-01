@@ -24,10 +24,10 @@ namespace Data {
       std::cout << "compare generated data with serialized data if required, reporting any difference" << std::endl;
     }
     void load(const Emma::RunState* state) {
-      std::cout << "load serialized data if required" << std::endl;
+      std::cout << "Note: Deserialization of data is not available in this release" << std::endl;
     }
     void unload() {
-      std::cout << "serialize data if required" << std::endl;
+      std::cout << "Note: Serialization of data is not available in this release" << std::endl;
     }
   }
   namespace Generated {
