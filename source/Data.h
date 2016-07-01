@@ -30,6 +30,6 @@ namespace Data {
   }
   namespace Generated {
     // Generates election data
-    void generate();
+    void generate(const Emma::RunState*);
   }
 }

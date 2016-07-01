@@ -31,7 +31,7 @@ namespace Data {
     }
   }
   namespace Generated {
-    void generate() {
+    void generate(const Emma::RunState* state) {
       std::cout << "generate data" << std::endl;
     }
   }
