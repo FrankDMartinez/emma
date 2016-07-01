@@ -24,7 +24,6 @@ namespace RequestedInformation {
   Emma::RawParsedOptions parseOptions(int argc, char **argv);
 
   Emma::RunState determine(int argc, char **argv) {
-    std::cout << "determine what is requested from simulations" << std::endl;
     Emma::RawParsedOptions raw_options = parseOptions(argc, argv);
     return Emma::RunState(raw_options);
   }

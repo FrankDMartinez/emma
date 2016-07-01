@@ -17,6 +17,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_STATISTICSREQUIRED_H
+#define EMMA_STATISTICSREQUIRED_H
+
 #include "IndividualElectionStatistics.h"
 #include "OverviewStatistics.h"
 #include "RawParsedOptions.h"
@@ -41,3 +44,5 @@ namespace Emma {
     OverviewStatistics getOverviewStatistics() const;
   };
 }
+
+#endif

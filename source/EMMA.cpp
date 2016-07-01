@@ -25,7 +25,7 @@
 int main(int argc, char **argv) {
   Introduction::display();
   Emma::RunState state = RequestedInformation::determine(argc, argv);
-  Data::Serialized::load();
+  Data::Serialized::load(&state);
   Data::Generated::generate();
   Data::Serialized::compareGeneratedData();
   Data::Serialized::unload();

@@ -17,6 +17,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_RUNMODE_H
+#define EMMA_RUNMODE_H
+
 #include "RawParsedOptions.h"
 
 namespace Emma {
@@ -38,3 +41,5 @@ namespace Emma {
     bool beVerbose() const;
   };
 }
+
+#endif

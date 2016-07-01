@@ -18,6 +18,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_RUNSTATE_H
+#define EMMA_RUNSTATE_H
+
 #include <map>
 #include "docopt/docopt.h"
 #include "GivenData.h"
@@ -45,3 +48,5 @@ namespace Emma {
     StatisticsRequired getRequiredStatistics() const;
   };
 }
+
+#endif

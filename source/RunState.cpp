@@ -26,7 +26,6 @@ namespace Emma {
     basic_data = GivenData(rpo);
     mode = RunMode(rpo);
     statistics = StatisticsRequired(rpo);
-    std::cout << "\tget required statistics" << std::endl;
   }
   GivenData RunState::getGivenData() const {
     return basic_data;

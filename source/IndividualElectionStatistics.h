@@ -18,6 +18,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_INDIVIDUALELECTIONSTATISTICS_H
+#define EMMA_INDIVIDUALELECTIONSTATISTICS_H
+
 namespace Emma {
   // Tracks what information about each method for each election
   // the application should collect
@@ -75,3 +78,5 @@ namespace Emma {
     bool collectTrueCondorcetCandidate() const;
   };
 }
+
+#endif

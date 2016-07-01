@@ -18,6 +18,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_OVERVIEWSTATISTICS_H
+#define EMMA_OVERVIEWSTATISTICS_H
+
 namespace Emma {
   // Track what information about each method overall the
   // application should collect
@@ -90,3 +93,5 @@ namespace Emma {
     bool collectTrueCondorcetCandidateFraction() const;
   };
 }
+
+#endif

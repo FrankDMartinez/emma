@@ -23,7 +23,7 @@ namespace Data {
     void compareGeneratedData() {
       std::cout << "compare generated data with serialized data if required, reporting any difference" << std::endl;
     }
-    void load() {
+    void load(const Emma::RunState* state) {
       std::cout << "load serialized data if required" << std::endl;
     }
     void unload() {

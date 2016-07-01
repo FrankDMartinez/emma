@@ -16,6 +16,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_GIVENDATA_H
+#define EMMA_GIVENDATA_H
+
 #include <ctime>
 #include "RawParsedOptions.h"
 
@@ -45,3 +48,5 @@ namespace Emma {
     unsigned seedForPRNG() const;
   };
 }
+
+#endif
