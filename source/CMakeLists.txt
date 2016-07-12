@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.3.1)
 project (EMMA)
 add_executable(emma
+  CandidateUtilities.cpp
+  CandidateUtilities.h
   Copyright.cpp
   Copyright.h
   Data.cpp
