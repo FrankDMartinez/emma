@@ -12,7 +12,8 @@
 //===----------------------------------------------------------------------===//
 //
 // A collection of utilities, actual and perceived, of a
-// particular Candidate to a particular Voter
+// particular Candidate to a particular Voter; used to help
+// guide votes in simulations.
 //
 //===----------------------------------------------------------------------===//
 
