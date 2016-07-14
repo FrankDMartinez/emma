@@ -25,10 +25,11 @@ namespace Simulation {
     // this Voter
     std::vector<CandidateUtilities> relationToCandidates;
 
-    // The "honest"-versus-strategic voting nature of the Voter
+    // The "honest"-versus-"strategic" voting nature of the
+    // Voter
     enum VotingNature { Honest, Strategic };
 
-    // If this Voter is an "honest" Voter or a strategic Voter
+    // If this Voter is an "honest" Voter or a "strategic" Voter
     VotingNature voting_nature = VotingNature::Honest;
 
     // Create the Candidates and Their utilities to this Voter
@@ -36,7 +37,7 @@ namespace Simulation {
 
     // Sets the voting nature of the Voter with the given
     // probability this Voter votes "honestly" and not
-    // strategically
+    // "strategically"
     void setVotingNature(const double honesty_probability);
   public:
     Voter(const unsigned number_of_Candidates,

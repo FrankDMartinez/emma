@@ -7,6 +7,8 @@ add_executable(emma
   Copyright.h
   Data.cpp
   Data.h
+  Election.cpp
+  Election.h
   EMMA.cpp
   EMMA.h
   GivenData.cpp
