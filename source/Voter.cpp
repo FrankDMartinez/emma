@@ -27,7 +27,12 @@ namespace Simulation {
   }
 
   void Voter::initializeRelations(const unsigned numberOfCandidates) {
-    std::cout << __func__ << " is not yet implemented" << std::endl;
+    for (unsigned Candidate_number = 0;
+         Candidate_number < numberOfCandidates;
+         Candidate_number++) {
+      CandidateUtilities a_Candidate;
+      relationToCandidates.push_back(a_Candidate);
+    }
   }
 
   CandidateUtilities& Voter::operator[](const int index) {
