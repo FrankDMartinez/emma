@@ -18,8 +18,12 @@
 
 #include <iostream>
 #include "CandidateUtilities.h"
+#include <random>
 
 namespace Simulation {
+  std::default_random_engine prn_generator;
+  std::normal_distribution<> distribution;
+
   CandidateUtilities::CandidateUtilities() {
     initializeActualUtility();
     initializePerceivedUtility();
@@ -34,10 +38,10 @@ namespace Simulation {
   }
 
   void CandidateUtilities::initializeActualUtility() {
-    std::cout << "initialize actual utility" << std::endl;
+    actual = distribution(prn_generator);
   }
 
   void CandidateUtilities::initializePerceivedUtility() {
-    std::cout << "initialize perceived utility" << std::endl;
+    perceived = distribution(prn_generator);
   }
 }
