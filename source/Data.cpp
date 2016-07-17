@@ -32,7 +32,9 @@ namespace Data {
   }
   namespace Generated {
     void generate(const Emma::RunState* state) {
-      std::cout << "generate data" << std::endl;
+      std::cout << "generate data:" << std::endl;
+      std::cout << "\tgenerate election scenarios" << std::endl;
+      std::cout << "\tapply each voting method to each election scenario" << std::endl;
     }
   }
 }
