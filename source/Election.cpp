@@ -27,7 +27,7 @@ namespace Simulation {
       honesty_fraction(honest_Voters) {
     for (unsigned index = 0; index < count_of_Voters; index++) {
         Voter a_Voter(count_of_Candidates, honesty_fraction);
-        the_electorate[index] = a_Voter;
+        the_electorate.push_back(a_Voter);
     }
   }
   Voter* Election::getVoter(unsigned index) {

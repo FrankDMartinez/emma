@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include "Data.h"
+#include "Election.h"
 
 namespace Data {
   namespace Serialized {
@@ -31,9 +32,25 @@ namespace Data {
     }
   }
   namespace Generated {
+    typedef std::vector<Simulation::Election> Scenarios;
+    static Scenarios createElectionScenarios(const Emma::RunState* state) {
+      auto given_data = state->getGivenData();
+      Scenarios all_scenarios;
+      for (unsigned election_number = 0;
+           state->getGivenData().numberOfElections() > election_number;
+           election_number++) {
+        const double honesty_fraction = 1;
+        Simulation::Election election = Simulation::Election(state->getGivenData().numberOfVoters(),
+                                                             state->getGivenData().numberOfCandidates(),
+                                                             honesty_fraction);
+        all_scenarios.push_back(election);
+      }
+      return all_scenarios;
+    }
+
     void generate(const Emma::RunState* state) {
       std::cout << "generate data:" << std::endl;
-      std::cout << "\tgenerate election scenarios" << std::endl;
+      auto all_scenarios = createElectionScenarios(state);
       std::cout << "\tapply each voting method to each election scenario" << std::endl;
     }
   }
