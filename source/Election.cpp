@@ -25,7 +25,9 @@ namespace Simulation {
     : number_of_Voters(count_of_Voters),
       number_of_Candidates(count_of_Candidates),
       honesty_fraction(honest_Voters) {
-    for (unsigned index = 0; index < count_of_Voters; index++) {
+    for (unsigned Voter_number = 0;
+         Voter_number < count_of_Voters;
+         Voter_number++) {
         Voter a_Voter(count_of_Candidates, honesty_fraction);
         the_electorate.push_back(a_Voter);
     }
