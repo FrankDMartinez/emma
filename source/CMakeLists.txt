@@ -23,6 +23,8 @@ add_executable(emma
   OverviewStatistics.h
   Printing.cpp
   Printing.h
+  Pseudorandom.cpp
+  Pseudorandom.h
   RawParsedOptions.h
   RequestedInformation.cpp
   RequestedInformation.h
