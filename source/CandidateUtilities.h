@@ -24,12 +24,14 @@ namespace Simulation {
     Utility actual = 0;
     // The perceived utility of the Candidate by the Voter
     Utility perceived = 0;
+    // The designation number of the Candidate
+    unsigned number = 0;
     // Initialize the actual utility
     void initializeActualUtility();
     // Initialize the perceived utility
     void initializePerceivedUtility();
   public:
-    CandidateUtilities();
+    CandidateUtilities(unsigned);
     Utility getActualUtility() const;
     Utility getPerceivedUtility() const;
   };

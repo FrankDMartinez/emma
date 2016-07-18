@@ -30,7 +30,7 @@ namespace Simulation {
     for (unsigned Candidate_number = 0;
          Candidate_number < numberOfCandidates;
          Candidate_number++) {
-      CandidateUtilities a_Candidate;
+      CandidateUtilities a_Candidate(Candidate_number);
       relationToCandidates.push_back(a_Candidate);
     }
   }

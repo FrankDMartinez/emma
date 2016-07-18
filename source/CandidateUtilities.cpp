@@ -20,9 +20,10 @@
 #include "Pseudorandom.h"
 
 namespace Simulation {
-  CandidateUtilities::CandidateUtilities() {
-    initializeActualUtility();
-    initializePerceivedUtility();
+  CandidateUtilities::CandidateUtilities(unsigned Candidate_number)
+    : number(Candidate_number) {
+      initializeActualUtility();
+      initializePerceivedUtility();
   }
 
   Utility CandidateUtilities::getActualUtility() const {
