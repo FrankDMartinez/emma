@@ -21,7 +21,7 @@
 #include <random>
 
 namespace Pseudorandom {
-  std::default_random_engine prn_generator;
+  std::mt19937_64            prn_generator;
   std::normal_distribution<> the_normal_distribution;
 
   double normallyDistributedDouble() {
