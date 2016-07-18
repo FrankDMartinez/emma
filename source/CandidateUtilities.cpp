@@ -16,7 +16,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "CandidateUtilities.h"
 #include "Pseudorandom.h"
 
