@@ -17,6 +17,9 @@
 //===----------------------------------------------------------------------===//
 
 #include "Election.h"
+#include <cfenv>
+#include <vector>
+#include "Pseudorandom.h"
 
 namespace Simulation {
   Election::Election(const unsigned count_of_Voters,
@@ -25,14 +28,47 @@ namespace Simulation {
     : number_of_Voters(count_of_Voters),
       number_of_Candidates(count_of_Candidates),
       honesty_fraction(honest_Voters) {
+    createElectorate();
+    setElectorateHonesty();
+  }
+
+  void Election::createElectorate() {
     for (unsigned Voter_number = 0;
-         Voter_number < count_of_Voters;
+         Voter_number < number_of_Voters;
          Voter_number++) {
-        Voter a_Voter(count_of_Candidates, honesty_fraction);
+        Voter a_Voter(number_of_Candidates);
         the_electorate.push_back(a_Voter);
     }
   }
+
   Voter* Election::getVoter(unsigned index) {
     return &(the_electorate[index]);
+  }
+
+  unsigned Election::numberOfStrategicVotersNeeded() const {
+    unsigned number_of_honest_Voters =
+      (unsigned) std::rint(number_of_Voters * honesty_fraction);
+    return number_of_Voters - number_of_honest_Voters;
+  }
+
+  void Election::setElectorateHonesty() {
+    const unsigned number_of_strategic_Voters =
+      numberOfStrategicVotersNeeded();
+    const std::vector<unsigned> strategic_Voter_indicies =
+      strategicVoterIndices(number_of_strategic_Voters);
+    for (auto each : strategic_Voter_indicies) {
+      getVoter(each)->makeStrategic();
+    }
+  }
+
+  std::vector<unsigned> Election::strategicVoterIndices(const unsigned strategic_count) {
+    std::vector<unsigned> indices;
+    for (unsigned count = 0; count < number_of_Voters; count++) {
+      indices.push_back(count);
+    }
+    std::shuffle(indices.begin(),
+                 indices.end(),
+                 Pseudorandom::prn_generator);
+    return std::vector<unsigned>(indices.begin(), indices.begin() + strategic_count);
   }
 }

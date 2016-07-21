@@ -20,10 +20,8 @@
 #include "Voter.h"
 
 namespace Simulation {
-  Voter::Voter(const unsigned number_of_Candidates,
-               const double honesty_probability) {
+  Voter::Voter(const unsigned number_of_Candidates) {
     initializeRelations(number_of_Candidates);
-    setVotingNature(honesty_probability);
   }
 
   void Voter::initializeRelations(const unsigned numberOfCandidates) {
@@ -35,16 +33,16 @@ namespace Simulation {
     }
   }
 
+  void Voter::makeStrategic() {
+    voting_nature = VotingNature::Strategic;
+  }
+
   CandidateUtilities& Voter::operator[](const int index) {
     return relationToCandidates[index];
   }
 
   const CandidateUtilities& Voter::operator[](const int index) const {
     return relationToCandidates[index];
-  }
-
-  void Voter::setVotingNature(const double honesty_probability) {
-    std::cout << __func__ << " is not yet implemented" << std::endl;
   }
 
   bool Voter::votesHonestly() const {

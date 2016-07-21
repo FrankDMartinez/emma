@@ -34,14 +34,11 @@ namespace Simulation {
 
     // Create the Candidates and Their utilities to this Voter
     void initializeRelations(const unsigned numberOfCandidates);
-
-    // Sets the voting nature of the Voter with the given
-    // probability this Voter votes "honestly" and not
-    // "strategically"
-    void setVotingNature(const double honesty_probability);
   public:
-    Voter(const unsigned number_of_Candidates,
-          const double honesty_probability);
+    Voter(const unsigned number_of_Candidates);
+    // Records the voting nature of the Voter as "strategic" as
+    // opposed to "honest"
+    void makeStrategic();
     CandidateUtilities& operator[](const int index);
     const CandidateUtilities& operator[](const int index) const;
     bool votesHonestly() const;

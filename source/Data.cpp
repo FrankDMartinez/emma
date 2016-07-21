@@ -51,6 +51,8 @@ namespace Data {
     void generate(const Emma::RunState* state) {
       std::cout << "generate data:" << std::endl;
       auto all_scenarios = createElectionScenarios(state);
+      std::cout << "\tdetermine All Condorcet Candidates" << std::endl;
+      std::cout << "\tdetermine All True Condorcet Candidates" << std::endl;
       std::cout << "\tapply each voting method to each election scenario" << std::endl;
     }
   }
