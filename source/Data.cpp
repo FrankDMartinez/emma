@@ -33,27 +33,30 @@ namespace Data {
   }
   namespace Generated {
     typedef std::vector<Simulation::Election> Scenarios;
-    static Scenarios createElectionScenarios(const Emma::RunState* state) {
-      auto given_data = state->getGivenData();
-      Scenarios all_scenarios;
-      for (unsigned election_number = 0;
-           state->getGivenData().numberOfElections() > election_number;
-           election_number++) {
-        const double honesty_fraction = 1;
-        Simulation::Election election = Simulation::Election(state->getGivenData().numberOfVoters(),
-                                                             state->getGivenData().numberOfCandidates(),
-                                                             honesty_fraction);
-        all_scenarios.push_back(election);
-      }
-      return all_scenarios;
-    }
+
+    static Scenarios runSimulations(const Emma::RunState* state);
 
     void generate(const Emma::RunState* state) {
       std::cout << "generate data:" << std::endl;
-      auto all_scenarios = createElectionScenarios(state);
-      std::cout << "\tdetermine All Condorcet Candidates" << std::endl;
-      std::cout << "\tdetermine All True Condorcet Candidates" << std::endl;
-      std::cout << "\tapply each voting method to each election scenario" << std::endl;
+      auto simulations = runSimulations(state);
+      std::cout << "\tcollect statistics from simulations" << std::endl;
+    }
+
+    static Scenarios runSimulations(const Emma::RunState* state) {
+      Scenarios all_scenarios;
+      const double honesty_fraction = 1;
+      for (unsigned election_number = 0;
+           state->getGivenData().numberOfElections() > election_number;
+           election_number++) {
+        Simulation::Election election = Simulation::Election(state->getGivenData().numberOfVoters(),
+                                                             state->getGivenData().numberOfCandidates(),
+                                                             honesty_fraction);
+        std::cout << "\tdetermine the Condorcet Candidate" << std::endl;
+        std::cout << "\tdetermine the True Condorcet Candidate" << std::endl;
+        std::cout << "\tapply each voting method to the current election scenario" << std::endl;
+        all_scenarios.push_back(election);
+      }
+      return all_scenarios;
     }
   }
 }
