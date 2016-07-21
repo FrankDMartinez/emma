@@ -34,12 +34,52 @@ namespace Data {
   namespace Generated {
     typedef std::vector<Simulation::Election> Scenarios;
 
+    // Returns election scenarios, complete with Voters,
+    // Candidate utilities, and elected Candidates according to
+    // various electoral methods
     static Scenarios runSimulations(const Emma::RunState* state);
 
     void generate(const Emma::RunState* state) {
       std::cout << "generate data:" << std::endl;
       auto simulations = runSimulations(state);
       std::cout << "\tcollect statistics from simulations" << std::endl;
+    }
+
+    // Identifies the Condorcet Candidate based on Each Voter's
+    // perceived utilities of the Candidates and stores this
+    // information as a characteristic of the given election
+    static void identifyTraditionalCondorcetCandidate(Simulation::Election* election);
+
+    // Identifies the Condorcet Candidate based on Each Voter's
+    // actual utilities of the Candidates and stores this
+    // information as a characteristic of the given election
+    static void identifyTrueCondorcetCandidate(Simulation::Election* election);
+
+    // Identifies the Condorcet and True Condorcet Candidates in
+    // the given election and stores this information therein
+    static void identifyCondorcetCandidates(Simulation::Election* election) {
+        std::cout << "\tdetermine the Condorcet Candidate" << std::endl;
+        identifyTraditionalCondorcetCandidate(election);
+        std::cout << "\tdetermine the True Condorcet Candidate" << std::endl;
+        identifyTrueCondorcetCandidate(election);
+    }
+
+    static void identifyTraditionalCondorcetCandidate(Simulation::Election* election) {
+        std::cout << "\t\tfor Each Voter:" << std::endl;
+        std::cout << "\t\t\tobtain Their relationships to the Candidates" << std::endl;
+        std::cout << "\t\t\tsort the Candidates according to Their perceived utilities" << std::endl;
+        std::cout << "\t\t\trun C*(C+1)/2 1-on-1 elections, tallying these comparisons" << std::endl;
+        std::cout << "\t\tif there is a Candidate winning C-1 1-on-1 comparisons:" << std::endl;
+        std::cout << "\t\t\tstore that Candidate's identifier in the `Election` as the Condorcet Candidate" << std::endl;
+    }
+
+    static void identifyTrueCondorcetCandidate(Simulation::Election* election) {
+        std::cout << "\t\tfor Each Voter:" << std::endl;
+        std::cout << "\t\t\tobtain Their relationships to the Candidates" << std::endl;
+        std::cout << "\t\t\tsort the Candidates according to Their actual utilities" << std::endl;
+        std::cout << "\t\t\trun C*(C+1)/2 1-on-1 elections, tallying these comparisons" << std::endl;
+        std::cout << "\t\tif there is a Candidate winning C-1 1-on-1 comparisons:" << std::endl;
+        std::cout << "\t\t\tstore that Candidate's identifier in the `Election` as the True Condorcet Candidate" << std::endl;
     }
 
     static Scenarios runSimulations(const Emma::RunState* state) {
@@ -51,8 +91,7 @@ namespace Data {
         Simulation::Election election = Simulation::Election(state->getGivenData().numberOfVoters(),
                                                              state->getGivenData().numberOfCandidates(),
                                                              honesty_fraction);
-        std::cout << "\tdetermine the Condorcet Candidate" << std::endl;
-        std::cout << "\tdetermine the True Condorcet Candidate" << std::endl;
+        identifyCondorcetCandidates(&election);
         std::cout << "\tapply each voting method to the current election scenario" << std::endl;
         all_scenarios.push_back(election);
       }
