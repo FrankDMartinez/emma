@@ -31,6 +31,13 @@ To-do list:
 							1. ~~Determine what ratio of honest Voters and of strategic Voters from the election's entire electorate most closely matches that ratio.~~ DONE!!!
 						1. ~~Randomly select Voters to vote honestly or strategically in accordance with those numbers.~~ DONE!!!
 					1. Determine the Candidate with the "optimum societal utility".
+						1. For each Candidate:
+							1. Sum the actual utilities of that Candidate to the Voters.
+						1. If exactly 1 Candidate has the highest actual utility sum:
+							1. Record that Candidate as the 1 with the "optimum societal utility".
+						1. If more than 1 Candidate has the highest actual utility sum:
+							1. Choose 1 of the Candidates with the highest actual utility sum.
+							1. Record that randomly chosen Candidate as the 1 with the "optimum societal utility".
 					1. Determine the True Condorcet Candidate.
 						1. Sort Each Voter's preferences of Candidates by actual utilities.
 						1. For Each Candidate, A:
@@ -46,8 +53,9 @@ To-do list:
 									1. If B has more votes recorded than A, record B as elected over A.
 									1. If A and B have the same number of votes recorded, one of the two is randomly selected and considered elected over the Other. (Note: other methods use other tie breaking means.)
 							1. If A would be elected over All Other Candidates in these 1-on-1 plurality elections:
-								1. A is the True Condorcet Candidate.
-						1. If there is no Candidate selected as the True Condorcet Candidate, there is no True Condorcet Candidate.
+								1. Record A as the True Condorcet Candidate.
+						1. If there is no Candidate selected as the True Condorcet Candidate:
+							1. Record the fact the election has no True Condorcet Candidate.
 				1. For each voting method:
 					1. Determine the Candidate elected by this method in this election.
 						1. Determine the Condorcet Candidate. ("CW wins 1-on-1 versus X, for all rivals X.")
