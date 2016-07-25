@@ -36,6 +36,7 @@ namespace Simulation {
     createElectorate();
     setElectorateHonesty();
     determineOptimumCandidate();
+    determineTrueCondorcetCandidate();
   }
 
   unsigned Election::ballotSize() const {
@@ -111,6 +112,12 @@ namespace Simulation {
     }
   }
 
+  void Election::determineTrueCondorcetCandidate() {
+    sortVoterPreferencesByActualUtilities();
+    performOneToOneComparisonsOfCandidates();
+    recordTheOneTrueCondorcetCandidate();
+  }
+
   unsigned Election::electorateSize() const {
     return number_of_Voters;
   }
@@ -137,6 +144,18 @@ namespace Simulation {
 
   void Election::setSocietallyOptimumCandidate(const unsigned identifier) {
     societally_optimum_Candidate = identifier;
+  }
+
+  void Election::sortVoterPreferencesByActualUtilities() {
+    std::cout << __func__ << " is not yet implemented" << std::endl;
+  }
+
+  void Election::performOneToOneComparisonsOfCandidates() {
+    std::cout << __func__ << " is not yet implemented" << std::endl;
+  }
+
+  void Election::recordTheOneTrueCondorcetCandidate() {
+    std::cout << __func__ << " is not yet implemented" << std::endl;
   }
 
   std::vector<unsigned> Election::strategicVoterIndices(const unsigned strategic_count) {

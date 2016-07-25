@@ -46,6 +46,11 @@ namespace Simulation {
     // with the optimum societal utility
     void determineOptimumCandidate();
 
+    // Identifies and records the Candidate, when compared with
+    // every other Candidate, having greater actual utility for
+    // more Voters
+    void determineTrueCondorcetCandidate();
+
     // Returns the number of Voters
     unsigned electorateSize() const;
 
@@ -67,6 +72,21 @@ namespace Simulation {
     // as the Candidate which has the highest summed actual
     // utility across Voters
     void setSocietallyOptimumCandidate(const unsigned identifier);
+
+    // For Each Voter, sorts the Candidates in accordance with
+    // Their actual utilities to the Voter
+    void sortVoterPreferencesByActualUtilities();
+
+    // For each Candidate, performs a 1-on-1 comparison to
+    // determine which Candidate in each such comparison is
+    // ranked as prefered by more Voters; ties are broken by
+    // randomly selecting from the 2 Candidates in such
+    // situations
+    void performOneToOneComparisonsOfCandidates();
+
+    // Records the True Condorcet Candidate, if any, noting
+    // whether or not there is such a Candidate
+    void recordTheOneTrueCondorcetCandidate();
 
     // Returns the indices Voters voting "strategically" as
     // opposed to "honestly"; the value passed is in the number
