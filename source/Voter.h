@@ -36,9 +36,15 @@ namespace Simulation {
     void initializeRelations(const unsigned numberOfCandidates);
   public:
     Voter(const unsigned number_of_Candidates);
+
     // Records the voting nature of the Voter as "strategic" as
     // opposed to "honest"
     void makeStrategic();
+
+    // Returns the information with respect to the current Voter
+    // about a Candidate identified by the given identifier
+    CandidateUtilities getCandidate(const int identifier) const;
+
     CandidateUtilities& operator[](const int index);
     const CandidateUtilities& operator[](const int index) const;
     bool votesHonestly() const;

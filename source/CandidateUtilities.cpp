@@ -30,6 +30,10 @@ namespace Simulation {
     return actual;
   }
 
+  unsigned CandidateUtilities::getDesignation() const {
+    return number;
+  }
+
   Utility CandidateUtilities::getPerceivedUtility() const {
     return perceived;
   }

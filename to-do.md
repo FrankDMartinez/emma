@@ -30,14 +30,14 @@ To-do list:
 							1. ~~Determine the ideal ratio of Voters voting honestly to Voters voting strategically.~~ DONE!!!
 							1. ~~Determine what ratio of honest Voters and of strategic Voters from the election's entire electorate most closely matches that ratio.~~ DONE!!!
 						1. ~~Randomly select Voters to vote honestly or strategically in accordance with those numbers.~~ DONE!!!
-					1. Determine the Candidate with the "optimum societal utility".
-						1. For each Candidate:
-							1. Sum the actual utilities of that Candidate to the Voters.
-						1. If exactly 1 Candidate has the highest actual utility sum:
-							1. Record that Candidate as the 1 with the "optimum societal utility".
-						1. If more than 1 Candidate has the highest actual utility sum:
-							1. Choose 1 of the Candidates with the highest actual utility sum.
-							1. Record that randomly chosen Candidate as the 1 with the "optimum societal utility".
+					1. ~~Determine the Candidate with the "optimum societal utility".~~ DONE!!!
+						1. ~~For each Candidate:~~ DONE!!!
+							1. ~~Sum the actual utilities of that Candidate to the Voters.~~ DONE!!!
+						1. ~~If exactly 1 Candidate has the highest actual utility sum:~~ DONE!!!
+							1. ~~Record that Candidate as the 1 with the "optimum societal utility".~~ DONE!!!
+						1. ~~If more than 1 Candidate has the highest actual utility sum:~~ DONE!!!
+							1. ~~Choose 1 of the Candidates with the highest actual utility sum.~~ DONE!!!
+							1. ~~Record that randomly chosen Candidate as the 1 with the "optimum societal utility".~~ DONE!!!
 					1. Determine the True Condorcet Candidate.
 						1. Sort Each Voter's preferences of Candidates by actual utilities.
 						1. For Each Candidate, A:

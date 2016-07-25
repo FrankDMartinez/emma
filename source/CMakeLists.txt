@@ -40,6 +40,7 @@ add_executable(emma
   Title.h
   TranslateOption.cpp
   TranslateOption.h
+  Verify.h
   Voter.cpp
   Voter.h
   # from the docopt project

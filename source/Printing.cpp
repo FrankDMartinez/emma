@@ -17,9 +17,20 @@
 #include "Printing.h"
 
 namespace Printing {
+  static void print(std::string string) {
+    std::cout << string;
+  }
+
+  void printAsOneLine(std::vector<std::string> strings) {
+    for (auto each : strings) {
+      print(each);
+    }
+    print({"\n"});
+  }
+
   void printLines(std::vector<std::string> strings) {
     for (auto each : strings) {
-      std::cout << each << std::endl;
+      printAsOneLine({each, "\n"});
     }
   }
 }

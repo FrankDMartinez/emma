@@ -17,6 +17,11 @@
 #include <vector>
 
 namespace Printing {
+  // Prints the given strings in the given order as one line,
+  // moving the printing position to the start of the next line
+  // when finished
+  void printAsOneLine(std::vector<std::string> strings);
+
   // Prints each of the given strings on a separate line in the
   // given order
   void printLines(std::vector<std::string> strings);

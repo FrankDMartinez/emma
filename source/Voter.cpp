@@ -16,12 +16,37 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Voter.h"
+#include <iostream>
+#include "Verify.h"
 
 namespace Simulation {
   Voter::Voter(const unsigned number_of_Candidates) {
     initializeRelations(number_of_Candidates);
+  }
+
+  CandidateUtilities Voter::getCandidate(const int identifier) const {
+    auto predicate = [identifier](const CandidateUtilities cu) {
+      return cu.getDesignation() == identifier;
+    };
+    auto the_Candidate = std::find_if(relationToCandidates.begin(),
+                                      relationToCandidates.end(),
+                                      predicate);
+    auto lambda = [the_Candidate, identifier, this] () {
+      std::string identifier_string = std::to_string(identifier);
+      Printing::printAsOneLine({"searching for ",
+                                identifier_string});
+      Printing::printAsOneLine({"instead found:"});
+      for (auto each : relationToCandidates) {
+        auto designation = each.getDesignation();
+        std::string designation_string =
+          std::to_string(designation);
+        Printing::printAsOneLine({"\t",
+                                  designation_string});
+      }
+    };
+    Verify::ensure(the_Candidate != relationToCandidates.end(), 1, &lambda);
+    return *the_Candidate;
   }
 
   void Voter::initializeRelations(const unsigned numberOfCandidates) {

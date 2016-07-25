@@ -22,17 +22,29 @@ namespace Simulation {
   class CandidateUtilities {
     // The actual utility of the Candidate to the Voter
     Utility actual = 0;
+
     // The perceived utility of the Candidate by the Voter
     Utility perceived = 0;
+
     // The designation number of the Candidate
     unsigned number = 0;
+
     // Initialize the actual utility
     void initializeActualUtility();
+
     // Initialize the perceived utility
     void initializePerceivedUtility();
   public:
     CandidateUtilities(unsigned);
+
+    // Returns the actual utility of the Candidate to the Voter
     Utility getActualUtility() const;
+
+    // Returns the Candidate's designation number
+    unsigned getDesignation() const;
+
+    // Returns the perceived utility of the Candidate to the
+    // Voter
     Utility getPerceivedUtility() const;
   };
 }
