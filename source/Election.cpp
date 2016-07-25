@@ -51,19 +51,6 @@ namespace Simulation {
     }
   }
 
-  double Election::sumActualUtilitiesOfCandidate(const unsigned identifier) {
-    double sum = 0.;
-    for (unsigned Voter_index = 0;
-         electorateSize() > Voter_index;
-         Voter_index++) {
-      const Voter* single_Voter = getVoter(Voter_index);
-      CandidateUtilities the_Candidate =
-        single_Voter->getCandidate(identifier);
-      sum += the_Candidate.getActualUtility();
-    }
-    return sum;
-  }
-
   // Returns the maximum value in the given `std::unordered_map`
   template <class Key, class Value>
   static Value findMaxValue(std::unordered_map<Key,Value> um) {
@@ -161,5 +148,18 @@ namespace Simulation {
                  indices.end(),
                  Pseudorandom::prn_generator);
     return std::vector<unsigned>(indices.begin(), indices.begin() + strategic_count);
+  }
+
+  double Election::sumActualUtilitiesOfCandidate(const unsigned identifier) {
+    double sum = 0.;
+    for (unsigned Voter_index = 0;
+         electorateSize() > Voter_index;
+         Voter_index++) {
+      const Voter* single_Voter = getVoter(Voter_index);
+      CandidateUtilities the_Candidate =
+        single_Voter->getCandidate(identifier);
+      sum += the_Candidate.getActualUtility();
+    }
+    return sum;
   }
 }
