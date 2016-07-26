@@ -17,13 +17,13 @@
 //===----------------------------------------------------------------------===//
 
 #include <vector>
-#include "CandidateUtilities.h"
+#include "Candidate.h"
 
 namespace Simulation {
   class Voter {
     // The perceived and actual utilities of the Candidates to
     // this Voter
-    std::vector<CandidateUtilities> relationToCandidates;
+    std::vector<Candidate> relationToCandidates;
 
     // The "honest"-versus-"strategic" voting nature of the
     // Voter
@@ -43,10 +43,10 @@ namespace Simulation {
 
     // Returns the information with respect to the current Voter
     // about a Candidate identified by the given identifier
-    CandidateUtilities getCandidate(const int identifier) const;
+    Candidate getCandidate(const int identifier) const;
 
-    CandidateUtilities& operator[](const int index);
-    const CandidateUtilities& operator[](const int index) const;
+    Candidate& operator[](const int index);
+    const Candidate& operator[](const int index) const;
     bool votesHonestly() const;
   };
 }

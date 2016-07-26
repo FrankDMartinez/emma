@@ -25,9 +25,9 @@ namespace Simulation {
     initializeRelations(number_of_Candidates);
   }
 
-  CandidateUtilities Voter::getCandidate(const int identifier) const {
-    auto predicate = [identifier](const CandidateUtilities cu) {
-      return cu.getDesignation() == identifier;
+  Candidate Voter::getCandidate(const int identifier) const {
+    auto predicate = [identifier](const Candidate cu) {
+      return cu.designation() == identifier;
     };
     auto the_Candidate = std::find_if(relationToCandidates.begin(),
                                       relationToCandidates.end(),
@@ -38,7 +38,7 @@ namespace Simulation {
                                 identifier_string});
       Printing::printAsOneLine({"instead found:"});
       for (auto each : relationToCandidates) {
-        auto designation = each.getDesignation();
+        auto designation = each.designation();
         std::string designation_string =
           std::to_string(designation);
         Printing::printAsOneLine({"\t",
@@ -53,7 +53,7 @@ namespace Simulation {
     for (unsigned Candidate_number = 0;
          Candidate_number < numberOfCandidates;
          Candidate_number++) {
-      CandidateUtilities a_Candidate(Candidate_number);
+      Candidate a_Candidate(Candidate_number);
       relationToCandidates.push_back(a_Candidate);
     }
   }
@@ -62,11 +62,11 @@ namespace Simulation {
     voting_nature = VotingNature::Strategic;
   }
 
-  CandidateUtilities& Voter::operator[](const int index) {
+  Candidate& Voter::operator[](const int index) {
     return relationToCandidates[index];
   }
 
-  const CandidateUtilities& Voter::operator[](const int index) const {
+  const Candidate& Voter::operator[](const int index) const {
     return relationToCandidates[index];
   }
 

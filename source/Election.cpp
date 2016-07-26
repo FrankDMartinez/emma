@@ -175,9 +175,9 @@ namespace Simulation {
          electorateSize() > Voter_index;
          Voter_index++) {
       const Voter* single_Voter = getVoter(Voter_index);
-      CandidateUtilities the_Candidate =
+      Candidate the_Candidate =
         single_Voter->getCandidate(identifier);
-      sum += the_Candidate.getActualUtility();
+      sum += the_Candidate.utilities()->actualUtility();
     }
     return sum;
   }
