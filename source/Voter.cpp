@@ -73,4 +73,8 @@ namespace Simulation {
   bool Voter::votesHonestly() const {
     return voting_nature == VotingNature::Honest;
   }
+
+  unsigned Voter::weight() const {
+    return _weight;
+  }
 }

@@ -32,6 +32,9 @@ namespace Simulation {
     // If this Voter is an "honest" Voter or a "strategic" Voter
     VotingNature voting_nature = VotingNature::Honest;
 
+    // the relative weight of the Voter's votes; traditionally, 1
+    unsigned _weight = 1;
+
     // Create the Candidates and Their utilities to this Voter
     void initializeRelations(const unsigned numberOfCandidates);
   public:
@@ -48,5 +51,8 @@ namespace Simulation {
     Candidate& operator[](const int index);
     const Candidate& operator[](const int index) const;
     bool votesHonestly() const;
+
+    // returns the relative weight of the Voter's votes
+    unsigned weight() const;
   };
 }
