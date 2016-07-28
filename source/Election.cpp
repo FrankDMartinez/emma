@@ -35,7 +35,8 @@ namespace Simulation {
       honesty_fraction(honest_Voters) {
     createElectorate();
     setElectorateHonesty();
-    determineOptimumCandidate();
+    determineWeightedUtilities();
+    determineUnweightedUtilities();
     determineTrueCondorcetCandidate();
   }
 
@@ -52,64 +53,28 @@ namespace Simulation {
     }
   }
 
-  // Returns the maximum value in the given `std::unordered_map`
-  template <class Key, class Value>
-  static Value findMaxValue(std::unordered_map<Key,Value> um) {
-    using pair_type = typename decltype(um)::value_type;
-    auto pr = std::max_element
-      (
-        std::begin(um),
-        std::end(um),
-        [] (const pair_type & p1, const pair_type & p2) {
-          return p1.second < p2.second;
-        }
-      );
-    return pr->second;
-  }
-
-  // Returns a collection of `Key` objects with the given `Value`
-  template <class Key, class Value>
-  static std::set<Key>
-  findKeysSorted(std::unordered_map<Key,Value> um,
-                 const Value v) {
-    std::set<Key> the_set;
-    for (const auto each : um ) {
-      if (v == each.second) {
-        auto lambda = [the_set, each] () {
-          std::string key_string = std::to_string(each.first);
-          std::string value_string = std::to_string(each.second);
-          Printing::printAsOneLine({"duplicate entry for: ",
-                                    key_string,
-                                    ", ",
-                                    value_string});
-          Printing::printLines({"existing entries:"});
-          for (auto each_key : the_set) {
-            std::string entry_string = std::to_string(each_key);
-            Printing::printAsOneLine({"\t", entry_string});
-          }
-        };
-        Verify::ensure(the_set.insert(each.first).second == true,
-                       2,
-                       &lambda);
-      }
-    }
-    return the_set;
-  }
-
-  void Election::determineOptimumCandidate() {
-    std::unordered_map<unsigned, double> utilities;
+  void Election::determineUnweightedUtilities() {
+    std::vector<Candidate> unweighted_utilities;
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
          Candidate_identifier++) {
-      utilities[Candidate_identifier] =
-        sumActualUtilitiesOfCandidate(Candidate_identifier);
+      Candidate each =
+        sumCandidatesUnweightedUtilities(Candidate_identifier);
+      unweighted_utilities.push_back(each);
     }
-    double max_value = findMaxValue(utilities);
-    std::set<unsigned> the_Candidates =
-      findKeysSorted(utilities, max_value);
-    if (the_Candidates.size() == 1) {
-      setSocietallyOptimumCandidate(*(the_Candidates.begin()));
+    _unweighted_societal_utility_values = unweighted_utilities;
+  }
+
+  void Election::determineWeightedUtilities() {
+    std::vector<Candidate> weighted_utilities;
+    for (unsigned Candidate_identifier = 0;
+         ballotSize() > Candidate_identifier;
+         Candidate_identifier++) {
+      Candidate each =
+        sumCandidatesWeightedUtilities(Candidate_identifier);
+      weighted_utilities.push_back(each);
     }
+    _weighted_societal_utility_values = weighted_utilities;
   }
 
   void Election::determineTrueCondorcetCandidate() {
@@ -140,10 +105,6 @@ namespace Simulation {
     for (auto each : strategic_Voter_indicies) {
       getVoter(each)->makeStrategic();
     }
-  }
-
-  void Election::setSocietallyOptimumCandidate(const unsigned identifier) {
-    societally_optimum_Candidate = identifier;
   }
 
   void Election::sortVoterPreferencesByActualUtilities() {
@@ -180,5 +141,40 @@ namespace Simulation {
       sum += the_Candidate.utilities()->actualUtility();
     }
     return sum;
+  }
+
+  Candidate Election::sumCandidatesUnweightedUtilities(const unsigned identifier) {
+    double actual_sum = 0.;
+    double perceived_sum = 0.;
+    for (unsigned Voter_index = 0;
+         electorateSize() > Voter_index;
+         Voter_index++) {
+      const Voter* single_Voter = getVoter(Voter_index);
+      Candidate the_Candidate =
+        single_Voter->getCandidate(identifier);
+      actual_sum += the_Candidate.utilities()->actualUtility() * 1;
+      perceived_sum += the_Candidate.utilities()->perceivedUtility() *
+                         single_Voter->weight();
+    }
+    Utilities summed_utilities = { actual_sum, perceived_sum };
+    return Candidate(identifier, &summed_utilities);
+  }
+
+  Candidate Election::sumCandidatesWeightedUtilities(const unsigned identifier) {
+    double actual_sum = 0.;
+    double perceived_sum = 0.;
+    for (unsigned Voter_index = 0;
+         electorateSize() > Voter_index;
+         Voter_index++) {
+      const Voter* single_Voter = getVoter(Voter_index);
+      Candidate the_Candidate =
+        single_Voter->getCandidate(identifier);
+      actual_sum += the_Candidate.utilities()->actualUtility() *
+                      single_Voter->weight();
+      perceived_sum += the_Candidate.utilities()->perceivedUtility() *
+                         single_Voter->weight();
+    }
+    Utilities summed_utilities = { actual_sum, perceived_sum };
+    return Candidate(identifier, &summed_utilities);
   }
 }

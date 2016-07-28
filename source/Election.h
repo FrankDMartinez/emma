@@ -42,10 +42,6 @@ namespace Simulation {
     // values
     void createElectorate();
 
-    // Identifies and records the identifier of the Candidate
-    // with the optimum societal utility
-    void determineOptimumCandidate();
-
     // Identifies and records the Candidate, when compared with
     // every other Candidate, having greater actual utility for
     // more Voters
@@ -58,20 +54,41 @@ namespace Simulation {
     // this election
     unsigned numberOfStrategicVotersNeeded() const;
 
-    // the Candidate which has the highest summed actual utility
-    // across Voters
-    unsigned societally_optimum_Candidate;
+    // the utility values of Each Candidate, weighted by Each
+    // Voter's relative voting weights
+    std::vector<Candidate> _weighted_societal_utility_values;
+
+    // the utility values of Each Candidate, calculated without
+    // regard to weighting by Each Voter's relative voting
+    // weight
+    std::vector<Candidate> _unweighted_societal_utility_values;
+
+    // calculates the utility values of Each Candidate without
+    // regard to weighting by Each Voter's relative voting
+    // weights
+    void determineUnweightedUtilities();
+
+    // calculates the utility values of Each Candidate, weighted
+    // by Each Voter's relative voting weights
+    void determineWeightedUtilities();
+
+    // calculates the sum of the utility values (without regard
+    // to weighting by Each Voter's relative voting weights) of
+    // the indicated Candidate and returns that information
+    // combined with the given Candidate identifier
+    Candidate sumCandidatesUnweightedUtilities(const unsigned);
+
+    // calculates the sum of the utility values (as weighted by
+    // Each Voter's relative voting weight) of the indicated
+    // Candidate and returns that information combined with the
+    // given Candidate identifier
+    Candidate sumCandidatesWeightedUtilities(const unsigned);
 
     // Choose Voters at random and sets Their voting nature
     // until the fraction of Voters voting "honestly" instead of
     // "strategically" most closely approximates the
     // `honesty_fraction`
     void setElectorateHonesty();
-
-    // Records the Candidate indicated by the given identifier
-    // as the Candidate which has the highest summed actual
-    // utility across Voters
-    void setSocietallyOptimumCandidate(const unsigned identifier);
 
     // For Each Voter, sorts the Candidates in accordance with
     // Their actual utilities to the Voter

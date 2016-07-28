@@ -20,6 +20,13 @@
 #include "Utilities.h"
 
 namespace Simulation {
+  Utilities::Utilities() {}
+
+  Utilities::Utilities(UtilityValue actual, UtilityValue perceived) {
+    actualUtility(actual);
+    perceivedUtility(perceived);
+  }
+
   void Utilities::actualUtility(UtilityValue value) {
     _actual = value;
   }

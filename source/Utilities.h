@@ -26,6 +26,9 @@ namespace Simulation {
     // The perceived utility of the Candidate by the Voter
     UtilityValue _perceived = 0;
   public:
+    Utilities();
+    Utilities(UtilityValue actual, UtilityValue perceived);
+
     // sets the actual utility of the Candidate to the Voter
     void actualUtility(UtilityValue);
 
