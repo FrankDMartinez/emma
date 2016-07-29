@@ -18,6 +18,7 @@
 
 #include "Voter.h"
 #include <iostream>
+#include "Pseudorandom.h"
 #include "Verify.h"
 
 namespace Simulation {
@@ -72,6 +73,23 @@ namespace Simulation {
 
   bool Voter::votesHonestly() const {
     return voting_nature == VotingNature::Honest;
+  }
+
+  void Voter::sortCandidatesByActualUtility() {
+    auto comparison = [](Candidate one, Candidate two) {
+      if (one.utilities()->actualUtility() >
+          two.utilities()->actualUtility()) {
+        return true;
+      } else if (one.utilities()->actualUtility() <
+                 two.utilities()->actualUtility()) {
+        return false;
+      } else {
+        return Pseudorandom::normalCoinFlip();
+      }
+    };
+    std::stable_sort(relationToCandidates.begin(),
+                     relationToCandidates.end(),
+                     comparison);
   }
 
   unsigned Voter::weight() const {

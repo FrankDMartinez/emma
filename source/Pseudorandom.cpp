@@ -22,6 +22,11 @@
 namespace Pseudorandom {
   std::mt19937_64            prn_generator;
   std::normal_distribution<> the_normal_distribution;
+  std::normal_distribution<bool> the_normal_booelean_distribution;
+
+  bool normalCoinFlip() {
+    return the_normal_booelean_distribution(prn_generator);
+  }
 
   double normallyDistributedDouble() {
     return the_normal_distribution(prn_generator);

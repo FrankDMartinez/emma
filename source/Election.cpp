@@ -108,7 +108,12 @@ namespace Simulation {
   }
 
   void Election::sortVoterPreferencesByActualUtilities() {
-    std::cout << __func__ << " is not yet implemented" << std::endl;
+    for (unsigned Voter_index = 0;
+         electorateSize() > Voter_index;
+         Voter_index++) {
+      Voter* single_Voter = getVoter(Voter_index);
+      single_Voter->sortCandidatesByActualUtility();
+    }
   }
 
   void Election::performOneToOneComparisonsOfCandidates() {

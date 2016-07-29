@@ -20,6 +20,7 @@
 #include <random>
 
 namespace Pseudorandom {
+  bool normalCoinFlip();
   double normallyDistributedDouble();
   extern std::mt19937_64 prn_generator;
 }

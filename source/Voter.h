@@ -52,6 +52,10 @@ namespace Simulation {
     const Candidate& operator[](const int index) const;
     bool votesHonestly() const;
 
+    // sorts the collection of Candidate information based on
+    // Each Candidate's actual utility to this Voter
+    void sortCandidatesByActualUtility();
+
     // returns the relative weight of the Voter's votes
     unsigned weight() const;
   };
