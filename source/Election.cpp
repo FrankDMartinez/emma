@@ -116,8 +116,64 @@ namespace Simulation {
     }
   }
 
+  void Election::compare1to1(OneToOneComparison comparison) {
+    unsigned votes_for_A = 0;
+    unsigned votes_for_B = 0;
+    for (unsigned Voter_index = 0;
+         electorateSize() > Voter_index;
+         Voter_index++) {
+      unsigned position_of_A =
+        getVoter(Voter_index)->numberRankingHigher(comparison.first);
+      unsigned position_of_B =
+        getVoter(Voter_index)->numberRankingHigher(comparison.second);
+      if (position_of_A < position_of_B) { votes_for_A++; }
+      else { votes_for_B++; }
+    }
+    if (votes_for_A == votes_for_B) {
+      if (Pseudorandom::normalCoinFlip() == true) {
+        votes_for_A++;
+      } else {
+        votes_for_B++;
+      }
+    }
+    unsigned elected;
+    if (votes_for_A > votes_for_B) {
+      elected = comparison.first;
+    } else {
+      elected = comparison.second;
+    }
+    _Condorcet_comparisons[comparison] = elected;
+  }
+
+  void Election::compareWithEachOtherCandidate(const unsigned identifier) {
+    std::cout << __func__ << " is not yet fully implemented" << std::endl;
+    for (unsigned Candidate_identifier = 0;
+         ballotSize() > Candidate_identifier;
+         Candidate_identifier++) {
+      if (identifier == Candidate_identifier) {
+        continue;
+      }
+      unsigned maximum_identifier = std::max(identifier,
+                                             Candidate_identifier);
+      unsigned minimum_identifier = std::min(identifier,
+                                             Candidate_identifier);
+      OneToOneComparison comparison(minimum_identifier,
+                                    maximum_identifier);
+      if (_Condorcet_comparisons.find(comparison) !=
+          _Condorcet_comparisons.end()) {
+        continue;
+      }
+      compare1to1(comparison);
+    }
+  }
+
   void Election::performOneToOneComparisonsOfCandidates() {
-    std::cout << __func__ << " is not yet implemented" << std::endl;
+    std::cout << __func__ << " is not yet fully implemented" << std::endl;
+    for (unsigned Candidate_identifier = 0;
+         ballotSize() > Candidate_identifier;
+         Candidate_identifier++) {
+      compareWithEachOtherCandidate(Candidate_identifier);
+    }
   }
 
   void Election::recordTheOneTrueCondorcetCandidate() {

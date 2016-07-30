@@ -39,19 +39,19 @@ To-do list:
 							1. ~~Choose 1 of the Candidates with the highest actual utility sum.~~ DONE!!!
 							1. ~~Record that randomly chosen Candidate as the 1 with the "optimum societal utility".~~ DONE!!!
 					1. Determine the True Condorcet Candidate.
-						1. Sort Each Voter's preferences of Candidates by actual utilities.
+						1. ~~Sort Each Voter's preferences of Candidates by actual utilities.~~ DONE!!!
 						1. For Each Candidate, A:
-							1. For Each OTHER Candidate, B:
-								1. Determine Who is elected in a 1-on-1 plurality election based on actual utilities.
-									1. Start with 0 votes for both A and B.
-									1. For Each Voter:
-										1. Get ranking of A.
-										1. Get ranking of B.
-										1. If A is ranked higher than B, record a vote for A.
-										1. If B is ranked higher than A, record a vote for B.
-									1. If A has more votes recorded than B, record A as elected over B.
-									1. If B has more votes recorded than A, record B as elected over A.
-									1. If A and B have the same number of votes recorded, one of the two is randomly selected and considered elected over the Other. (Note: other methods use other tie breaking means.)
+							1. ~~For Each OTHER Candidate, B:~~ DONE!!!
+								1. ~~Determine Who is elected in a 1-on-1 plurality election based on actual utilities.~~ DONE!!!
+									1. ~~Start with 0 votes for both A and B.~~ DONE!!!
+									1. ~~For Each Voter:~~ DONE!!!
+										1. ~~Get ranking of A.~~ DONE!!!
+										1. ~~Get ranking of B.~~ DONE!!!
+										1. ~~If A is ranked higher than B, record a vote for A.~~ DONE!!!
+										1. ~~If B is ranked higher than A, record a vote for B.~~ DONE!!!
+									1. ~~If A has more votes recorded than B, record A as elected over B.~~ DONE!!!
+									1. ~~If B has more votes recorded than A, record B as elected over A.~~ DONE!!!
+									1. ~~If A and B have the same number of votes recorded, one of the two is randomly selected and considered elected over the Other.~~ DONE!!! (Note: other methods use other tie breaking means.)
 							1. If A would be elected over All Other Candidates in these 1-on-1 plurality elections:
 								1. Record A as the True Condorcet Candidate.
 						1. If there is no Candidate selected as the True Condorcet Candidate:

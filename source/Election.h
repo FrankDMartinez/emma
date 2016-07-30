@@ -16,11 +16,17 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include <map>
 #include <vector>
 #include "Voter.h"
 
 namespace Simulation {
+  using OneToOneComparison = std::pair<unsigned, unsigned>;
+  using ElectedCandidate = unsigned;
   class Election {
+    // 1-to-1 comparison results
+    std::map<OneToOneComparison, ElectedCandidate> _Condorcet_comparisons;
+
     // The Voters
     std::vector<Voter> the_electorate;
 
@@ -41,6 +47,17 @@ namespace Simulation {
     // relationship with the Candidates in terms of utility
     // values
     void createElectorate();
+
+    // compares the rankings of the Candidates referenced in the
+    // `comparison`, determining which Candidate is ranked
+    // higher by a larger number of Voters; ties are decided
+    // with a `coin flip`
+    void compare1to1(OneToOneComparison comparison);
+
+    // compares the ranking of the referenced Candidate to Each
+    // Other Candidate across All Voters, recording the relative
+    // number of votes in favor of Each Candidate
+    void compareWithEachOtherCandidate(const unsigned);
 
     // Identifies and records the Candidate, when compared with
     // every other Candidate, having greater actual utility for

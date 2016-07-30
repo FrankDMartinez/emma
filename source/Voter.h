@@ -48,6 +48,10 @@ namespace Simulation {
     // about a Candidate identified by the given identifier
     Candidate getCandidate(const int identifier) const;
 
+    // returns the number of Candidate this Voter ranks higher
+    // than the Candidate indicated by the given designation
+    unsigned numberRankingHigher(unsigned) const;
+
     Candidate& operator[](const int index);
     const Candidate& operator[](const int index) const;
     bool votesHonestly() const;

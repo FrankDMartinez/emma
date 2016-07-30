@@ -63,6 +63,16 @@ namespace Simulation {
     voting_nature = VotingNature::Strategic;
   }
 
+  unsigned Voter::numberRankingHigher(unsigned identifier) const {
+    auto lambda = [identifier](const Candidate the_Candidate) {
+      return the_Candidate.designation() == identifier;
+    };
+    auto it = std::find_if(relationToCandidates.begin(),
+                           relationToCandidates.end(),
+                           lambda);
+    return std::distance(relationToCandidates.begin(), it);
+  }
+
   Candidate& Voter::operator[](const int index) {
     return relationToCandidates[index];
   }
