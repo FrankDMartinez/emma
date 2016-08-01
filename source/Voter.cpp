@@ -26,27 +26,19 @@ namespace Simulation {
     initializeRelations(number_of_Candidates);
   }
 
-  Candidate Voter::getCandidate(const int identifier) const {
+  Candidate Voter::getCandidate(const unsigned identifier) const {
     auto predicate = [identifier](const Candidate cu) {
       return cu.designation() == identifier;
     };
     auto the_Candidate = std::find_if(relationToCandidates.begin(),
                                       relationToCandidates.end(),
                                       predicate);
-    auto lambda = [the_Candidate, identifier, this] () {
-      std::string identifier_string = std::to_string(identifier);
-      Printing::printAsOneLine({"searching for ",
-                                identifier_string});
-      Printing::printAsOneLine({"instead found:"});
-      for (auto each : relationToCandidates) {
-        auto designation = each.designation();
-        std::string designation_string =
-          std::to_string(designation);
-        Printing::printAsOneLine({"\t",
-                                  designation_string});
-      }
-    };
-    Verify::ensure(the_Candidate != relationToCandidates.end(), 1, &lambda);
+    Verify::ensure(the_Candidate != relationToCandidates.end(),
+                   1,
+                   "searching for identifier:",
+                   identifier,
+                   "instead found:",
+                   relationToCandidates);
     return *the_Candidate;
   }
 

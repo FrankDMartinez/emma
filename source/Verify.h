@@ -19,15 +19,56 @@
 #include "Printing.h"
 
 namespace Verify {
-  template <class T>
+  template <class... Others>
+  static void outputForEnsure(const unsigned first, Others... others);
+
+  template <class... Others>
+  static void outputForEnsure(std::vector<Simulation::Candidate>, Others... others);
+
+  static void outputForEnsure() {}
+
+  static void outputForEnsure(Simulation::Candidate the_Candidate) {
+    std::cout << "Candidate: { _designation = "
+              << the_Candidate.designation()
+              << ", _utilities = { _actual = "
+              << the_Candidate.utilities()->actualUtility()
+              << ", _perceived = "
+              << the_Candidate.utilities()->perceivedUtility()
+              << " } }"
+              << std::endl;
+  }
+
+  template <class... Others>
+  static void outputForEnsure(const std::string first, Others... others) {
+    std::cout << first;
+    outputForEnsure(others...);
+  }
+
+  template <class... Others>
+  static void outputForEnsure(std::vector<Simulation::Candidate> Candidates, Others... others) {
+    std::cout << "All Candidates:" << std::endl;
+    for (auto each : Candidates) {
+      outputForEnsure(each);
+    }
+    outputForEnsure(others...);
+  }
+
+  template <class... Others>
+  static void outputForEnsure(const unsigned first, Others... others) {
+    std::string text = std::to_string(first);
+    std::cout << text;
+    outputForEnsure(others...);
+  }
+
+  template <class... Arguments>
   static void ensure(const bool condition_met,
                      const int error_number,
-                     T* callable = nullptr) {
+                     Arguments... arguments) {
     if (condition_met == false) {
       std::string error_string = std::to_string(error_number);
       Printing::printAsOneLine({"internal error #",
                                 error_string});
-      if (callable) { (*callable)(); }
+      outputForEnsure(arguments...);
       Printing::printAsOneLine({"'EMMA' will shut down now"});
       std::exit(0);
     }

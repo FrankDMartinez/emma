@@ -46,7 +46,7 @@ namespace Simulation {
 
     // Returns the information with respect to the current Voter
     // about a Candidate identified by the given identifier
-    Candidate getCandidate(const int identifier) const;
+    Candidate getCandidate(const unsigned identifier) const;
 
     // returns the number of Candidate this Voter ranks higher
     // than the Candidate indicated by the given designation
