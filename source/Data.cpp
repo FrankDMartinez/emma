@@ -50,18 +50,11 @@ namespace Data {
     // information as a characteristic of the given election
     static void identifyTraditionalCondorcetCandidate(Simulation::Election* election);
 
-    // Identifies the Condorcet Candidate based on Each Voter's
-    // actual utilities of the Candidates and stores this
-    // information as a characteristic of the given election
-    static void identifyTrueCondorcetCandidate(Simulation::Election* election);
-
     // Identifies the Condorcet and True Condorcet Candidates in
     // the given election and stores this information therein
     static void identifyCondorcetCandidates(Simulation::Election* election) {
         std::cout << "\tdetermine the Condorcet Candidate" << std::endl;
         identifyTraditionalCondorcetCandidate(election);
-        std::cout << "\tdetermine the True Condorcet Candidate" << std::endl;
-        identifyTrueCondorcetCandidate(election);
     }
 
     static void identifyTraditionalCondorcetCandidate(Simulation::Election* election) {
@@ -71,15 +64,6 @@ namespace Data {
         std::cout << "\t\t\trun C*(C+1)/2 1-on-1 elections, tallying these comparisons" << std::endl;
         std::cout << "\t\tif there is a Candidate winning C-1 1-on-1 comparisons:" << std::endl;
         std::cout << "\t\t\tstore that Candidate's identifier in the `Election` as the Condorcet Candidate" << std::endl;
-    }
-
-    static void identifyTrueCondorcetCandidate(Simulation::Election* election) {
-        std::cout << "\t\tfor Each Voter:" << std::endl;
-        std::cout << "\t\t\tobtain Their relationships to the Candidates" << std::endl;
-        std::cout << "\t\t\tsort the Candidates according to Their actual utilities" << std::endl;
-        std::cout << "\t\t\trun C*(C+1)/2 1-on-1 elections, tallying these comparisons" << std::endl;
-        std::cout << "\t\tif there is a Candidate winning C-1 1-on-1 comparisons:" << std::endl;
-        std::cout << "\t\t\tstore that Candidate's identifier in the `Election` as the True Condorcet Candidate" << std::endl;
     }
 
     static Scenarios runSimulations(const Emma::RunState* state) {

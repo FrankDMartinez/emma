@@ -18,14 +18,19 @@
 
 #include <map>
 #include <vector>
+#include "CondorcetCandidate.h"
 #include "Voter.h"
 
 namespace Simulation {
-  using OneToOneComparison = std::pair<unsigned, unsigned>;
   using ElectedCandidate = unsigned;
+  using OneToOneComparison = std::pair<unsigned, unsigned>;
+  using OneToOneResult = std::pair<OneToOneComparison, ElectedCandidate>;
   class Election {
     // 1-to-1 comparison results
     std::map<OneToOneComparison, ElectedCandidate> _Condorcet_comparisons;
+
+    // information about the True Condorcet Candidate
+    CondorcetCandidate _True_Condorcet_Candidate;
 
     // The Voters
     std::vector<Voter> the_electorate;
@@ -63,6 +68,15 @@ namespace Simulation {
     // every other Candidate, having greater actual utility for
     // more Voters
     void determineTrueCondorcetCandidate();
+
+    // returns `true` if the Candidate indicated by the given
+    // identifier is elected over All Other Candidates in the
+    // most recently calculated Condorcet results and `false`
+    // otherwise
+    bool electedOverAllOthers(const unsigned identifier);
+
+    // records the identifier of the True Condorcet Candidate
+    void theTrueCondorcetCandidate(const unsigned identifier);
 
     // Returns the number of Voters
     unsigned electorateSize() const;

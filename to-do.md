@@ -38,9 +38,9 @@ To-do list:
 						1. ~~If more than 1 Candidate has the highest actual utility sum:~~ DONE!!!
 							1. ~~Choose 1 of the Candidates with the highest actual utility sum.~~ DONE!!!
 							1. ~~Record that randomly chosen Candidate as the 1 with the "optimum societal utility".~~ DONE!!!
-					1. Determine the True Condorcet Candidate.
+					1. ~~Determine the True Condorcet Candidate.~~ DONE!!!
 						1. ~~Sort Each Voter's preferences of Candidates by actual utilities.~~ DONE!!!
-						1. For Each Candidate, A:
+						1. ~~For Each Candidate, A:~~ DONE!!!
 							1. ~~For Each OTHER Candidate, B:~~ DONE!!!
 								1. ~~Determine Who is elected in a 1-on-1 plurality election based on actual utilities.~~ DONE!!!
 									1. ~~Start with 0 votes for both A and B.~~ DONE!!!
@@ -52,10 +52,10 @@ To-do list:
 									1. ~~If A has more votes recorded than B, record A as elected over B.~~ DONE!!!
 									1. ~~If B has more votes recorded than A, record B as elected over A.~~ DONE!!!
 									1. ~~If A and B have the same number of votes recorded, one of the two is randomly selected and considered elected over the Other.~~ DONE!!! (Note: other methods use other tie breaking means.)
-							1. If A would be elected over All Other Candidates in these 1-on-1 plurality elections:
-								1. Record A as the True Condorcet Candidate.
-						1. If there is no Candidate selected as the True Condorcet Candidate:
-							1. Record the fact the election has no True Condorcet Candidate.
+							1. ~~If A would be elected over All Other Candidates in these 1-on-1 plurality elections:~~ DONE!!!
+								1. ~~Record A as the True Condorcet Candidate.~~ DONE!!!
+						1. ~~If there is no Candidate selected as the True Condorcet Candidate:~~ DONE!!!
+							1. ~~Record the fact the election has no True Condorcet Candidate.~~ DONE!!!
 				1. For each voting method:
 					1. Determine the Candidate elected by this method in this election.
 						1. Determine the Condorcet Candidate. ("CW wins 1-on-1 versus X, for all rivals X.")

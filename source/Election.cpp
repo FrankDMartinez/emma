@@ -146,7 +146,6 @@ namespace Simulation {
   }
 
   void Election::compareWithEachOtherCandidate(const unsigned identifier) {
-    std::cout << __func__ << " is not yet fully implemented" << std::endl;
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
          Candidate_identifier++) {
@@ -167,8 +166,17 @@ namespace Simulation {
     }
   }
 
+  bool Election::electedOverAllOthers(const unsigned identifier) {
+    auto lambda = [identifier](const OneToOneResult result) {
+      return identifier == result.second;
+    };
+    const auto count = std::count_if(_Condorcet_comparisons.begin(),
+                                     _Condorcet_comparisons.end(),
+                                     lambda);
+    return count == (ballotSize() - 1);
+  }
+
   void Election::performOneToOneComparisonsOfCandidates() {
-    std::cout << __func__ << " is not yet fully implemented" << std::endl;
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
          Candidate_identifier++) {
@@ -177,7 +185,22 @@ namespace Simulation {
   }
 
   void Election::recordTheOneTrueCondorcetCandidate() {
-    std::cout << __func__ << " is not yet implemented" << std::endl;
+    unsigned count = 0;
+    for (unsigned Candidate_identifier = 0;
+         ballotSize() > Candidate_identifier;
+         Candidate_identifier++) {
+      if (electedOverAllOthers(Candidate_identifier)) {
+        theTrueCondorcetCandidate(Candidate_identifier);
+        count++;
+        Verify::ensure(1 == count,
+                       2,
+                       "multiple True Condorcet Candidates");
+      }
+    }
+  }
+
+  void Election::theTrueCondorcetCandidate(const unsigned the_identifier) {
+    _True_Condorcet_Candidate = CondorcetCandidate(the_identifier);
   }
 
   std::vector<unsigned> Election::strategicVoterIndices(const unsigned strategic_count) {

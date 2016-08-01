@@ -3,6 +3,8 @@ project (EMMA)
 add_executable(emma
   Candidate.cpp
   Candidate.h
+  CondorcetCandidate.cpp
+  CondorcetCandidate.h
   Copyright.cpp
   Copyright.h
   Data.cpp
