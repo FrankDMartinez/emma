@@ -18,10 +18,17 @@
 //===----------------------------------------------------------------------===//
 
 #include "Candidate.h"
+#include "Logging.h"
 #include "Pseudorandom.h"
 
 namespace Simulation {
-  Candidate::Candidate(unsigned the_designation, Utilities* the_utilities) {
+  Candidate::Candidate(unsigned the_designation,
+                       bool be_verbose,
+                       Utilities* the_utilities)
+    : _verbose(be_verbose) {
+    Logging::log(this,
+                 "creating `Candidate` with designation #",
+                 the_designation);
     designation(the_designation);
     utilities(the_utilities);
   }
@@ -31,6 +38,9 @@ namespace Simulation {
   }
 
   void Candidate::utilities(Utilities* the_utilities) {
+    Logging::log(this,
+                 "initializing utilities of `Candidate` #",
+                 designation());
     if (the_utilities) {
       _utilities = *the_utilities;
     } else {
@@ -48,5 +58,9 @@ namespace Simulation {
 
   unsigned Candidate::designation() const {
     return _designation;
+  }
+
+  bool Candidate::verbose() const {
+    return _verbose;
   }
 }

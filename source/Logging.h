@@ -13,6 +13,7 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include "Candidate.h"
 #include "Election.h"
 #include "Printing.h"
 #include "RunState.h"
@@ -29,6 +30,13 @@ namespace Logging {
   void log(const Emma::RunState* state, Others... others) {
     if (state->mode().beVerbose() == true) {
       log(others...);
+    }
+  }
+
+  template <class... Others>
+  void log(const Simulation::Candidate* e, Others... others) {
+    if (e->verbose() == true) {
+      log(tab_string, tab_string, tab_string, others...);
     }
   }
 

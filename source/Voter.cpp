@@ -53,7 +53,7 @@ namespace Simulation {
          Candidate_number < numberOfCandidates;
          Candidate_number++) {
       Logging::log(this, "initializing relation #", Candidate_number);
-      Candidate a_Candidate(Candidate_number);
+      Candidate a_Candidate(Candidate_number, verbose());
       relationToCandidates.push_back(a_Candidate);
     }
   }

@@ -271,7 +271,7 @@ namespace Simulation {
                          single_Voter->weight();
     }
     Utilities summed_utilities = { actual_sum, perceived_sum };
-    return Candidate(identifier, &summed_utilities);
+    return Candidate(identifier, verbose(), &summed_utilities);
   }
 
   Candidate Election::sumCandidatesWeightedUtilities(const unsigned identifier) {
@@ -297,7 +297,7 @@ namespace Simulation {
                          single_Voter->weight();
     }
     Utilities summed_utilities = { actual_sum, perceived_sum };
-    return Candidate(identifier, &summed_utilities);
+    return Candidate(identifier, verbose(), &summed_utilities);
   }
 
   bool Election::verbose() const {

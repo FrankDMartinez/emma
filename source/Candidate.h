@@ -30,11 +30,16 @@ namespace Simulation {
     // designation number
     unsigned _designation;
 
+    // whether to be verbose in actions or not
+    bool _verbose = false;
+
     // initializes utility values with randomly generated
     // numbers
     void initializeUtilities();
 public:
-    Candidate(unsigned, Utilities* = nullptr);
+    Candidate(unsigned the_designation,
+              bool be_verbose,
+              Utilities* = nullptr);
 
     // sets the utility information to the given value if
     // non-null or to random normally distributed values if null
@@ -48,6 +53,12 @@ public:
 
     // returns the Candidate's designation
     unsigned designation() const;
+
+    // returns `true` if this object should be verbose in its
+    // actions or `false` otherwise; note: even if this function
+    // returns `true`, this method itself is not verbose by
+    // design
+    bool verbose() const;
   };
 }
 
