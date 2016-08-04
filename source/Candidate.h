@@ -17,6 +17,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_CANDIDATE_H
+#define EMMA_CANDIDATE_H
+
 #include "Utilities.h"
 
 namespace Simulation {
@@ -47,3 +50,5 @@ public:
     unsigned designation() const;
   };
 }
+
+#endif

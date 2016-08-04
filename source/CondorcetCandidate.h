@@ -15,6 +15,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_CONDORCETCANDIDATE_H
+#define EMMA_CONDORCETCANDIDATE_H
+
 namespace Simulation {
   class CondorcetCandidate {
     // whether or not this Condorcet Candidate exists
@@ -36,3 +39,5 @@ namespace Simulation {
     unsigned identifier() const;
   };
 }
+
+#endif

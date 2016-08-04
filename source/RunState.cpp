@@ -24,14 +24,14 @@
 namespace Emma {
   RunState::RunState(const RawParsedOptions rpo) {
     basic_data = GivenData(rpo);
-    mode = RunMode(rpo);
+    _mode = RunMode(rpo);
     statistics = StatisticsRequired(rpo);
   }
   GivenData RunState::getGivenData() const {
     return basic_data;
   }
-  RunMode RunState::getMode() const {
-    return mode;
+  RunMode RunState::mode() const {
+    return _mode;
   }
   StatisticsRequired RunState::getRequiredStatistics() const {
     return statistics;

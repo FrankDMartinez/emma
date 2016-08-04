@@ -21,6 +21,7 @@ add_executable(emma
   Introduction.h
   License.cpp
   License.h
+  Logging.h
   OverviewStatistics.cpp
   OverviewStatistics.h
   Printing.cpp

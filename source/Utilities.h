@@ -17,6 +17,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_UTILITIES_H
+#define EMMA_UTILITIES_H
+
 namespace Simulation {
   typedef double UtilityValue;
   class Utilities {
@@ -43,3 +46,5 @@ namespace Simulation {
     UtilityValue perceivedUtility() const;
   };
 }
+
+#endif

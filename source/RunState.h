@@ -34,7 +34,7 @@ namespace Emma {
     // The data passed to the application
     GivenData basic_data;
     // The mode(s) in which the application runs
-    RunMode mode;
+    RunMode _mode;
     // A record of what statistics to collect
     StatisticsRequired statistics;
   public:
@@ -43,7 +43,7 @@ namespace Emma {
     // Returns the data passed to the application
     GivenData getGivenData() const;
     // Returns the mode(s) in which the application runs
-    RunMode getMode() const;
+    RunMode mode() const;
     // Returns a record of what statistics to collect
     StatisticsRequired getRequiredStatistics() const;
   };

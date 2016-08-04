@@ -16,6 +16,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_VOTER_H
+#define EMMA_VOTER_H
+
 #include <vector>
 #include "Candidate.h"
 
@@ -24,6 +27,9 @@ namespace Simulation {
     // The perceived and actual utilities of the Candidates to
     // this Voter
     std::vector<Candidate> relationToCandidates;
+
+    // whether to be verbose in actions or not
+    bool _verbose = false;
 
     // The "honest"-versus-"strategic" voting nature of the
     // Voter
@@ -38,7 +44,7 @@ namespace Simulation {
     // Create the Candidates and Their utilities to this Voter
     void initializeRelations(const unsigned numberOfCandidates);
   public:
-    Voter(const unsigned number_of_Candidates);
+    Voter(const unsigned number_of_Candidates, bool be_verbose);
 
     // Records the voting nature of the Voter as "strategic" as
     // opposed to "honest"
@@ -60,7 +66,15 @@ namespace Simulation {
     // Each Candidate's actual utility to this Voter
     void sortCandidatesByActualUtility();
 
+    // returns `true` if this object should be verbose in its
+    // actions or `false` otherwise; note: even if this function
+    // returns `true`, this method itself is not verbose by
+    // design
+    bool verbose() const;
+
     // returns the relative weight of the Voter's votes
     unsigned weight() const;
   };
 }
+
+#endif

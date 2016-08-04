@@ -18,15 +18,20 @@
 
 #include "Voter.h"
 #include <iostream>
+#include "Logging.h"
 #include "Pseudorandom.h"
 #include "Verify.h"
 
 namespace Simulation {
-  Voter::Voter(const unsigned number_of_Candidates) {
+  Voter::Voter(const unsigned number_of_Candidates,
+               const bool be_verbose)
+    : _verbose(be_verbose) {
+    Logging::log(this, "creating `Voter` object");
     initializeRelations(number_of_Candidates);
   }
 
   Candidate Voter::getCandidate(const unsigned identifier) const {
+    Logging::log(this, "getting `Candidate` #", identifier);
     auto predicate = [identifier](const Candidate cu) {
       return cu.designation() == identifier;
     };
@@ -43,9 +48,11 @@ namespace Simulation {
   }
 
   void Voter::initializeRelations(const unsigned numberOfCandidates) {
+    Logging::log(this, "initializing relations to `Candidate`s");
     for (unsigned Candidate_number = 0;
          Candidate_number < numberOfCandidates;
          Candidate_number++) {
+      Logging::log(this, "initializing relation #", Candidate_number);
       Candidate a_Candidate(Candidate_number);
       relationToCandidates.push_back(a_Candidate);
     }
@@ -92,6 +99,10 @@ namespace Simulation {
     std::stable_sort(relationToCandidates.begin(),
                      relationToCandidates.end(),
                      comparison);
+  }
+
+  bool Voter::verbose() const {
+    return _verbose;
   }
 
   unsigned Voter::weight() const {

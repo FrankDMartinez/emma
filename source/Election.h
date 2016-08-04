@@ -16,6 +16,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_ELECTION_H
+#define EMMA_ELECTION_H
+
 #include <map>
 #include <vector>
 #include "CondorcetCandidate.h"
@@ -44,6 +47,9 @@ namespace Simulation {
     // The probability a Voter is an "honest" Voter and not a
     // "strategic" Voter
     double honesty_fraction = 1.0;
+
+    // whether to be verbose in actions or not
+    bool _verbose = false;
 
     // Returns the number of Candidates
     unsigned ballotSize() const;
@@ -148,9 +154,18 @@ namespace Simulation {
   public:
     Election(const unsigned count_of_Voters,
              const unsigned count_of_Candidates,
-             const double honest_Voters);
+             const double honest_Voters,
+             const bool be_verbose);
 
     // Returns a pointer to the requested Voter
     Voter* getVoter(const unsigned index);
+
+    // returns `true` if this object should be verbose in its
+    // actions or `false` otherwise; note: even if this function
+    // returns `true`, this method itself is not verbose by
+    // design
+    bool verbose() const;
   };
 }
+
+#endif

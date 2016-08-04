@@ -22,6 +22,7 @@
 #include <set>
 #include <unordered_map>
 #include <vector>
+#include "Logging.h"
 #include "Printing.h"
 #include "Pseudorandom.h"
 #include "Verify.h"
@@ -29,10 +30,13 @@
 namespace Simulation {
   Election::Election(const unsigned count_of_Voters,
                      const unsigned count_of_Candidates,
-                     const double honest_Voters)
+                     const double honest_Voters,
+                     const bool be_verbose)
     : number_of_Voters(count_of_Voters),
       number_of_Candidates(count_of_Candidates),
-      honesty_fraction(honest_Voters) {
+      honesty_fraction(honest_Voters),
+      _verbose(be_verbose) {
+    Logging::log(this, "creating `Election` object");
     createElectorate();
     setElectorateHonesty();
     determineWeightedUtilities();
@@ -45,15 +49,18 @@ namespace Simulation {
   }
 
   void Election::createElectorate() {
+    Logging::log(this, "creating electorate");
     for (unsigned Voter_number = 0;
          Voter_number < electorateSize();
          Voter_number++) {
-        Voter a_Voter(number_of_Candidates);
+        Logging::log(this, "creating `Voter` #", Voter_number);
+        Voter a_Voter(number_of_Candidates, verbose());
         the_electorate.push_back(a_Voter);
     }
   }
 
   void Election::determineUnweightedUtilities() {
+    Logging::log(this, "determining unweighted utilities");
     std::vector<Candidate> unweighted_utilities;
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
@@ -66,6 +73,7 @@ namespace Simulation {
   }
 
   void Election::determineWeightedUtilities() {
+    Logging::log(this, "determining weighted utilities");
     std::vector<Candidate> weighted_utilities;
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
@@ -78,6 +86,7 @@ namespace Simulation {
   }
 
   void Election::determineTrueCondorcetCandidate() {
+    Logging::log(this, "determining True Condorcet Candidate");
     sortVoterPreferencesByActualUtilities();
     performOneToOneComparisonsOfCandidates();
     recordTheOneTrueCondorcetCandidate();
@@ -98,6 +107,7 @@ namespace Simulation {
   }
 
   void Election::setElectorateHonesty() {
+    Logging::log(this, "setting electorate honesty");
     const unsigned number_of_strategic_Voters =
       numberOfStrategicVotersNeeded();
     const std::vector<unsigned> strategic_Voter_indicies =
@@ -108,15 +118,25 @@ namespace Simulation {
   }
 
   void Election::sortVoterPreferencesByActualUtilities() {
+    Logging::log(this, "sorting `Voter` preferences by actual utility");
     for (unsigned Voter_index = 0;
          electorateSize() > Voter_index;
          Voter_index++) {
+      Logging::log(this,
+                   "sorting `Voter` #",
+                   Voter_index,
+                   "'s preferences by actual utility");
       Voter* single_Voter = getVoter(Voter_index);
       single_Voter->sortCandidatesByActualUtility();
     }
   }
 
   void Election::compare1to1(OneToOneComparison comparison) {
+    Logging::log(this,
+                 "comparing `Candidate` #",
+                 comparison.first,
+                 " to `Candidate` #",
+                 comparison.second);
     unsigned votes_for_A = 0;
     unsigned votes_for_B = 0;
     for (unsigned Voter_index = 0;
@@ -177,6 +197,7 @@ namespace Simulation {
   }
 
   void Election::performOneToOneComparisonsOfCandidates() {
+    Logging::log(this, "performing 1-to-1 comparisons");
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
          Candidate_identifier++) {
@@ -185,6 +206,7 @@ namespace Simulation {
   }
 
   void Election::recordTheOneTrueCondorcetCandidate() {
+    Logging::log(this, "recording the True Condorcet Candidate");
     unsigned count = 0;
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
@@ -228,11 +250,19 @@ namespace Simulation {
   }
 
   Candidate Election::sumCandidatesUnweightedUtilities(const unsigned identifier) {
+    Logging::log(this,
+                 "determining unweighted utilities of `Candidate` #",
+                 identifier);
     double actual_sum = 0.;
     double perceived_sum = 0.;
     for (unsigned Voter_index = 0;
          electorateSize() > Voter_index;
          Voter_index++) {
+      Logging::log(this,
+                   "determining unweighted utilities of `Candidate` #",
+                   identifier,
+                   " to `Voter` #",
+                   Voter_index);
       const Voter* single_Voter = getVoter(Voter_index);
       Candidate the_Candidate =
         single_Voter->getCandidate(identifier);
@@ -245,11 +275,19 @@ namespace Simulation {
   }
 
   Candidate Election::sumCandidatesWeightedUtilities(const unsigned identifier) {
+    Logging::log(this,
+                 "determining weighted utilities of `Candidate` #",
+                 identifier);
     double actual_sum = 0.;
     double perceived_sum = 0.;
     for (unsigned Voter_index = 0;
          electorateSize() > Voter_index;
          Voter_index++) {
+      Logging::log(this,
+                   "determining weighted utilities of `Candidate` #",
+                   identifier,
+                   " to `Voter` #",
+                   Voter_index);
       const Voter* single_Voter = getVoter(Voter_index);
       Candidate the_Candidate =
         single_Voter->getCandidate(identifier);
@@ -260,5 +298,9 @@ namespace Simulation {
     }
     Utilities summed_utilities = { actual_sum, perceived_sum };
     return Candidate(identifier, &summed_utilities);
+  }
+
+  bool Election::verbose() const {
+    return _verbose;
   }
 }

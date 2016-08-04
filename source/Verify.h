@@ -66,10 +66,10 @@ namespace Verify {
                      Arguments... arguments) {
     if (condition_met == false) {
       std::string error_string = std::to_string(error_number);
-      Printing::printAsOneLine({"internal error #",
-                                error_string});
+      Printing::printAsOneLine("internal error #",
+                               error_string);
       outputForEnsure(arguments...);
-      Printing::printAsOneLine({"'EMMA' will shut down now"});
+      Printing::printAsOneLine("'EMMA' will shut down now");
       std::exit(0);
     }
   }

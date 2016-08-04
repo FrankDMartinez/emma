@@ -17,8 +17,14 @@
 #include "Printing.h"
 
 namespace Printing {
-  static void print(std::string string) {
-    std::cout << string;
+  void print() { }
+
+  void print(std::string the_string) {
+    std::cout << the_string;
+  }
+
+  void print(const unsigned u) {
+    std::cout << u;
   }
 
   void printAsOneLine(std::vector<std::string> strings) {
@@ -30,7 +36,7 @@ namespace Printing {
 
   void printLines(std::vector<std::string> strings) {
     for (auto each : strings) {
-      printAsOneLine({each, "\n"});
+      printAsOneLine({each});
     }
   }
 }

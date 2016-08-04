@@ -18,6 +18,8 @@
 #include <iostream>
 #include "Data.h"
 #include "Election.h"
+#include "Logging.h"
+#include "Printing.h"
 
 namespace Data {
   namespace Serialized {
@@ -40,7 +42,7 @@ namespace Data {
     static Scenarios runSimulations(const Emma::RunState* state);
 
     void generate(const Emma::RunState* state) {
-      std::cout << "generate data:" << std::endl;
+      Logging::log(state, "generating data");
       auto simulations = runSimulations(state);
       std::cout << "\tcollect statistics from simulations" << std::endl;
     }
@@ -67,14 +69,17 @@ namespace Data {
     }
 
     static Scenarios runSimulations(const Emma::RunState* state) {
+      Logging::log(state, "running simulations");
       Scenarios all_scenarios;
       const double honesty_fraction = 1;
       for (unsigned election_number = 0;
            state->getGivenData().numberOfElections() > election_number;
            election_number++) {
+        Logging::log(state, "running simulation #", election_number);
         Simulation::Election election = Simulation::Election(state->getGivenData().numberOfVoters(),
                                                              state->getGivenData().numberOfCandidates(),
-                                                             honesty_fraction);
+                                                             honesty_fraction,
+                                                             state->mode().beVerbose());
         identifyCondorcetCandidates(&election);
         std::cout << "\tapply each voting method to the current election scenario" << std::endl;
         all_scenarios.push_back(election);
