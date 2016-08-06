@@ -15,6 +15,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include <vector>
+#include "Election.h"
 #include "RunState.h"
 
 namespace Data {
@@ -29,7 +31,9 @@ namespace Data {
     void unload();
   }
   namespace Generated {
+    using Scenarios = std::vector<Simulation::Election>;
+
     // Generates election data
-    void generate(const Emma::RunState*);
+    Scenarios generate(const Emma::RunState*);
   }
 }

@@ -15,7 +15,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#include "Data.h"
+
 namespace Results {
-  // Outputs requested results
-  void output();
+  // Outputs requested results stored in the given scenarios
+  void output(const Data::Generated::Scenarios*);
 }

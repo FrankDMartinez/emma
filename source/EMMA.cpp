@@ -21,14 +21,18 @@
 //===------------------------------------------------------===//
 
 #include "EMMA.h"
+#include "Data.h"
+#include "Results.h"
 
 int main(int argc, char **argv) {
   Introduction::display();
-  Emma::RunState state = RequestedInformation::determine(argc, argv);
+  Emma::RunState state =
+    RequestedInformation::determine(argc, argv);
   Data::Serialized::load(&state);
-  Data::Generated::generate(&state);
+  Data::Generated::Scenarios scenarios =
+    Data::Generated::generate(&state);
   Data::Serialized::compareGeneratedData();
   Data::Serialized::unload();
-  Results::output();
+  Results::output(&scenarios);
   return 0;
 }

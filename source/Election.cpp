@@ -100,6 +100,10 @@ namespace Simulation {
     return &(the_electorate[index]);
   }
 
+  double Election::honestyFraction() const {
+    return honesty_fraction;
+  }
+
   unsigned Election::numberOfStrategicVotersNeeded() const {
     unsigned number_of_honest_Voters =
       (unsigned) std::rint(electorateSize() * honesty_fraction);
@@ -219,6 +223,10 @@ namespace Simulation {
                        "multiple True Condorcet Candidates");
       }
     }
+  }
+
+  CondorcetCandidate Election::theTrueCondorcetCandidate() const {
+    return _True_Condorcet_Candidate;
   }
 
   void Election::theTrueCondorcetCandidate(const unsigned the_identifier) {

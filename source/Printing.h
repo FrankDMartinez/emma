@@ -38,12 +38,24 @@ namespace Printing {
   // given order
   void printLines(std::vector<std::string> strings);
 
+  // prints the given double value in textual form, as opposite
+  // to binary form
+  void print(const double);
+
   // prints the given unsigned value in textual form, as
   // opposite to binary form
   void print(const unsigned);
 
   // prints nothing
   void print();
+
+  // prints the given double value and subsequent arguments in
+  // textual form, as opposite to binary form
+  template<class... Others>
+  static void print(const double d, Others... others) {
+    print(d);
+    print(others...);
+  }
 
   // prints the given unsigned value and subsequent arguments in
   // textual form, as opposite to binary form

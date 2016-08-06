@@ -51,9 +51,6 @@ namespace Simulation {
     // whether to be verbose in actions or not
     bool _verbose = false;
 
-    // Returns the number of Candidates
-    unsigned ballotSize() const;
-
     // Creates the collection of Voters, initializing Their
     // relationship with the Candidates in terms of utility
     // values
@@ -83,9 +80,6 @@ namespace Simulation {
 
     // records the identifier of the True Condorcet Candidate
     void theTrueCondorcetCandidate(const unsigned identifier);
-
-    // Returns the number of Voters
-    unsigned electorateSize() const;
 
     // Returns the number of Voters voting "strategically" in
     // this election
@@ -157,8 +151,21 @@ namespace Simulation {
              const double honest_Voters,
              const bool be_verbose);
 
+    // Returns the number of Candidates
+    unsigned ballotSize() const;
+
+    // Returns the number of Voters
+    unsigned electorateSize() const;
+
     // Returns a pointer to the requested Voter
     Voter* getVoter(const unsigned index);
+
+    // returns the probability a `Voter` is an "honest" `Voter`
+    // and not a "strategic" `Voter`
+    double honestyFraction() const;
+
+    // returns the identifier of the True Condorcet Candidate
+    CondorcetCandidate theTrueCondorcetCandidate() const;
 
     // returns `true` if this object should be verbose in its
     // actions or `false` otherwise; note: even if this function

@@ -17,7 +17,6 @@
 
 #include <iostream>
 #include "Data.h"
-#include "Election.h"
 #include "Logging.h"
 #include "Printing.h"
 
@@ -34,17 +33,16 @@ namespace Data {
     }
   }
   namespace Generated {
-    typedef std::vector<Simulation::Election> Scenarios;
-
     // Returns election scenarios, complete with Voters,
     // Candidate utilities, and elected Candidates according to
     // various electoral methods
     static Scenarios runSimulations(const Emma::RunState* state);
 
-    void generate(const Emma::RunState* state) {
+    Scenarios generate(const Emma::RunState* state) {
       Logging::log(state, "generating data");
-      auto simulations = runSimulations(state);
+      Scenarios simulations = runSimulations(state);
       std::cout << "\tcollect statistics from simulations" << std::endl;
+      return simulations;
     }
 
     // Identifies the Condorcet Candidate based on Each Voter's

@@ -23,6 +23,10 @@ namespace Printing {
     std::cout << the_string;
   }
 
+  void print(const double d) {
+    std::cout << d;
+  }
+
   void print(const unsigned u) {
     std::cout << u;
   }
