@@ -21,11 +21,10 @@
 #include "Printing.h"
 
 namespace Results {
-  static void outputElectionNumber(const unsigned election_index);
-  static void outputHonestyFraction(const Simulation::Election election);
-  static void outputNumberOfCandidates(const Simulation::Election election);
-  static void outputNumberOfVoters(const Simulation::Election election);
-  static void outputTrueCondorcetData(const Simulation::Election election);
+  static void outputGeneralInformation(const unsigned election_index,
+                                       const Simulation::Election election);
+  static void outputResults(const Simulation::Election election,
+                            const bool weighted = true);
 
   void output(const Data::Generated::Scenarios* scenarios) {
     std::cout << __func__ << " is not fully implemented yet" << std::endl;
@@ -33,12 +32,23 @@ namespace Results {
     for (unsigned election_index = 0;
          scenarios->size() > election_index;
          election_index++) {
-      outputElectionNumber(election_index);
-      outputNumberOfVoters(scenarios->at(election_index));
-      outputNumberOfCandidates(scenarios->at(election_index));
-      outputHonestyFraction(scenarios->at(election_index));
-      outputTrueCondorcetData(scenarios->at(election_index));
+      outputGeneralInformation(election_index,
+                               scenarios->at(election_index));
+      outputResults(scenarios->at(election_index));
+      outputResults(scenarios->at(election_index), false);
     }
+  }
+
+  static void outputElectionNumber(const unsigned election_index);
+  static void outputHonestyFraction(const Simulation::Election election);
+  static void outputNumberOfCandidates(const Simulation::Election election);
+  static void outputNumberOfVoters(const Simulation::Election election);
+  static void outputGeneralInformation(const unsigned election_index,
+                                       const Simulation::Election election) {
+      outputElectionNumber(election_index);
+      outputNumberOfVoters(election);
+      outputNumberOfCandidates(election);
+      outputHonestyFraction(election);
   }
 
   static void outputElectionNumber(const unsigned election_index) {
@@ -57,7 +67,18 @@ namespace Results {
     Printing::printAsOneLine("# of Voters: ", election.electorateSize());
   }
 
-  static void outputTrueCondorcetData(const Simulation::Election election) {
+  static void outputTrueCondorcetData(const Simulation::Election election,
+                                      const bool weighted);
+  static void outputWeightingDescription(const bool weighted);
+
+  static void outputResults(const Simulation::Election election,
+                            const bool weighted) {
+    outputWeightingDescription(weighted);
+    outputTrueCondorcetData(election, weighted);
+  }
+
+  static void outputTrueCondorcetData(const Simulation::Election election,
+                                      const bool weighted) {
     Simulation::CondorcetCandidate the_Candidate =
       election.theTrueCondorcetCandidate();
     std::string identification_string;
@@ -69,5 +90,16 @@ namespace Results {
     }
     Printing::printAsOneLine("True Condorcet Candidate: ",
                              identification_string);
+  }
+
+  static void outputWeightingDescription(const bool weighted) {
+    std::string text;
+    if (weighted) {
+      text = "Weighted Results";
+    } else {
+      text = "Unweighted Results";
+    }
+    text += ":";
+    Printing::printAsOneLine(text);
   }
 }
