@@ -140,11 +140,6 @@ namespace Simulation {
     // opposed to "honestly"; the value passed is in the number
     // of indices to return, selected at random
     std::vector<unsigned> strategicVoterIndices(const unsigned);
-
-    // Returns the sum of the actual utilities of the Candidate
-    // designated by the given identifier to the Voters in this
-    // election
-    double sumActualUtilitiesOfCandidate(const unsigned identifier);
   public:
     Election(const unsigned count_of_Voters,
              const unsigned count_of_Candidates,

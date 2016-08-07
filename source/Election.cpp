@@ -244,19 +244,6 @@ namespace Simulation {
     return std::vector<unsigned>(indices.begin(), indices.begin() + strategic_count);
   }
 
-  double Election::sumActualUtilitiesOfCandidate(const unsigned identifier) {
-    double sum = 0.;
-    for (unsigned Voter_index = 0;
-         electorateSize() > Voter_index;
-         Voter_index++) {
-      const Voter* single_Voter = getVoter(Voter_index);
-      Candidate the_Candidate =
-        single_Voter->getCandidate(identifier);
-      sum += the_Candidate.utilities()->actualUtility();
-    }
-    return sum;
-  }
-
   Candidate Election::sumCandidatesUnweightedUtilities(const unsigned identifier) {
     Logging::log(this,
                  "determining unweighted utilities of `Candidate` #",
