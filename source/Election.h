@@ -28,12 +28,15 @@ namespace Simulation {
   using ElectedCandidate = unsigned;
   using OneToOneComparison = std::pair<unsigned, unsigned>;
   using OneToOneResult = std::pair<OneToOneComparison, ElectedCandidate>;
+
   class Election {
     // 1-to-1 comparison results
-    std::map<OneToOneComparison, ElectedCandidate> _Condorcet_comparisons;
+    std::map<OneToOneComparison, ElectedCandidate> _Condorcet_1_to_1_elections;
 
-    // information about the True Condorcet Candidate
-    CondorcetCandidate _True_Condorcet_Candidate;
+    // information about the True Condorcet Candidate as
+    // determined by weighted and unweighted votes, respectively
+    CondorcetCandidate _weighted_True_Condorcet_Candidate;
+    CondorcetCandidate _unweighted_True_Condorcet_Candidate;
 
     // The Voters
     std::vector<Voter> the_electorate;
@@ -58,19 +61,36 @@ namespace Simulation {
 
     // compares the rankings of the Candidates referenced in the
     // `comparison`, determining which Candidate is ranked
-    // higher by a larger number of Voters; ties are decided
-    // with a `coin flip`
-    void compare1to1(OneToOneComparison comparison);
+    // higher by a larger number of either weighted or
+    // unweighted votes, depending upon the given argument; ties
+    // are decided with a `coin flip`
+    void compare1to1(OneToOneComparison comparison,
+                     VoteWeighting w);
 
     // compares the ranking of the referenced Candidate to Each
     // Other Candidate across All Voters, recording the relative
-    // number of votes in favor of Each Candidate
-    void compareWithEachOtherCandidate(const unsigned);
+    // number of votes in favor of Each Candidate; votes are
+    // either weighted or unweighted, depending upon the
+    // `VoteWeighting` argument given
+    void compareWithEachOtherCandidate(const unsigned,
+                                       VoteWeighting);
 
-    // Identifies and records the Candidate, when compared with
+    // identifies and records the Candidates, when compared with
     // every other Candidate, having greater actual utility for
-    // more Voters
-    void determineTrueCondorcetCandidate();
+    // more Voters; 1 Candidate is identified by using weighted
+    // votes and 1 Candidate is identifier by using unweighted
+    // votes
+    void determineBothTrueCondorcetCandidates();
+
+    // identifies and records the Candidate, when compared with
+    // every other Candidate, having greater actual utility for
+    // more Voters; the Candidate is identified by using either
+    // weighted votes or unweighted votes as indicated by the
+    // given argument
+    void determineTrueCondorcetCandidate(VoteWeighting);
+
+    // resets the collection of Condorcet election comparisons
+    void clearCondorcetSlate();
 
     // returns `true` if the Candidate indicated by the given
     // identifier is elected over All Other Candidates in the
@@ -78,8 +98,11 @@ namespace Simulation {
     // otherwise
     bool electedOverAllOthers(const unsigned identifier);
 
-    // records the identifier of the True Condorcet Candidate
-    void theTrueCondorcetCandidate(const unsigned identifier);
+    // records the given identifier of the True Condorcet
+    // Candidate as determined by either weighted votes or
+    // unweighted votes as indicated by the given argument
+    void theTrueCondorcetCandidate(const unsigned identifier,
+                                   const VoteWeighting w);
 
     // Returns the number of Voters voting "strategically" in
     // this election
@@ -129,12 +152,17 @@ namespace Simulation {
     // determine which Candidate in each such comparison is
     // ranked as prefered by more Voters; ties are broken by
     // randomly selecting from the 2 Candidates in such
-    // situations
-    void performOneToOneComparisonsOfCandidates();
+    // situations comparisons are performed by using either
+    // weighted votes or unweighted votes as indicated by the
+    // given argument
+    void performOneToOneComparisonsOfCandidates(VoteWeighting);
 
     // Records the True Condorcet Candidate, if any, noting
-    // whether or not there is such a Candidate
-    void recordTheOneTrueCondorcetCandidate();
+    // whether or not there is such a Candidate; separate
+    // records are kept for Candidates determined by using
+    // either weighted votes or unweighted votes as indicated by
+    // the given argument
+    void recordTheOneTrueCondorcetCandidate(VoteWeighting);
 
     // Returns the indices Voters voting "strategically" as
     // opposed to "honestly"; the value passed is in the number
@@ -159,8 +187,10 @@ namespace Simulation {
     // and not a "strategic" `Voter`
     double honestyFraction() const;
 
-    // returns the identifier of the True Condorcet Candidate
-    CondorcetCandidate theTrueCondorcetCandidate() const;
+    // returns the identifier of the True Condorcet Candidate as
+    // determined by either weighted votes or unweighted votes
+    // as indicated by the given argument
+    CondorcetCandidate theTrueCondorcetCandidate(VoteWeighting) const;
 
     // returns `true` if this object should be verbose in its
     // actions or `false` otherwise; note: even if this function

@@ -41,7 +41,7 @@ namespace Simulation {
     setElectorateHonesty();
     determineWeightedUtilities();
     determineUnweightedUtilities();
-    determineTrueCondorcetCandidate();
+    determineBothTrueCondorcetCandidates();
   }
 
   unsigned Election::ballotSize() const {
@@ -85,11 +85,21 @@ namespace Simulation {
     _weighted_societal_utility_values = weighted_utilities;
   }
 
-  void Election::determineTrueCondorcetCandidate() {
-    Logging::log(this, "determining True Condorcet Candidate");
+  void Election::determineBothTrueCondorcetCandidates() {
+    Logging::log(this, "determining True Condorcet Candidates");
+    determineTrueCondorcetCandidate(VoteWeighting::Weighted);
+    determineTrueCondorcetCandidate(VoteWeighting::Unweighted);
+  }
+
+  void Election::determineTrueCondorcetCandidate(const VoteWeighting w) {
+    clearCondorcetSlate();
     sortVoterPreferencesByActualUtilities();
-    performOneToOneComparisonsOfCandidates();
-    recordTheOneTrueCondorcetCandidate();
+    performOneToOneComparisonsOfCandidates(w);
+    recordTheOneTrueCondorcetCandidate(w);
+  }
+
+  void Election::clearCondorcetSlate() {
+    _Condorcet_1_to_1_elections.clear();
   }
 
   unsigned Election::electorateSize() const {
@@ -135,7 +145,8 @@ namespace Simulation {
     }
   }
 
-  void Election::compare1to1(OneToOneComparison comparison) {
+  void Election::compare1to1(OneToOneComparison comparison,
+                             const VoteWeighting w) {
     Logging::log(this,
                  "comparing `Candidate` #",
                  comparison.first,
@@ -150,8 +161,11 @@ namespace Simulation {
         getVoter(Voter_index)->numberRankingHigher(comparison.first);
       unsigned position_of_B =
         getVoter(Voter_index)->numberRankingHigher(comparison.second);
-      if (position_of_A < position_of_B) { votes_for_A++; }
-      else { votes_for_B++; }
+      if (position_of_A < position_of_B) {
+        votes_for_A += getVoter(Voter_index)->votes(w);
+      } else {
+        votes_for_B += getVoter(Voter_index)->votes(w);
+      }
     }
     if (votes_for_A == votes_for_B) {
       if (Pseudorandom::normalCoinFlip() == true) {
@@ -166,10 +180,11 @@ namespace Simulation {
     } else {
       elected = comparison.second;
     }
-    _Condorcet_comparisons[comparison] = elected;
+    _Condorcet_1_to_1_elections[comparison] = elected;
   }
 
-  void Election::compareWithEachOtherCandidate(const unsigned identifier) {
+  void Election::compareWithEachOtherCandidate(const unsigned identifier,
+                                               const VoteWeighting w) {
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
          Candidate_identifier++) {
@@ -182,11 +197,11 @@ namespace Simulation {
                                              Candidate_identifier);
       OneToOneComparison comparison(minimum_identifier,
                                     maximum_identifier);
-      if (_Condorcet_comparisons.find(comparison) !=
-          _Condorcet_comparisons.end()) {
+      if (_Condorcet_1_to_1_elections.find(comparison) !=
+          _Condorcet_1_to_1_elections.end()) {
         continue;
       }
-      compare1to1(comparison);
+      compare1to1(comparison, w);
     }
   }
 
@@ -194,29 +209,29 @@ namespace Simulation {
     auto lambda = [identifier](const OneToOneResult result) {
       return identifier == result.second;
     };
-    const auto count = std::count_if(_Condorcet_comparisons.begin(),
-                                     _Condorcet_comparisons.end(),
+    const auto count = std::count_if(_Condorcet_1_to_1_elections.begin(),
+                                     _Condorcet_1_to_1_elections.end(),
                                      lambda);
     return count == (ballotSize() - 1);
   }
 
-  void Election::performOneToOneComparisonsOfCandidates() {
+  void Election::performOneToOneComparisonsOfCandidates(const VoteWeighting w) {
     Logging::log(this, "performing 1-to-1 comparisons");
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
          Candidate_identifier++) {
-      compareWithEachOtherCandidate(Candidate_identifier);
+      compareWithEachOtherCandidate(Candidate_identifier, w);
     }
   }
 
-  void Election::recordTheOneTrueCondorcetCandidate() {
+  void Election::recordTheOneTrueCondorcetCandidate(const VoteWeighting w) {
     Logging::log(this, "recording the True Condorcet Candidate");
     unsigned count = 0;
     for (unsigned Candidate_identifier = 0;
          ballotSize() > Candidate_identifier;
          Candidate_identifier++) {
       if (electedOverAllOthers(Candidate_identifier)) {
-        theTrueCondorcetCandidate(Candidate_identifier);
+        theTrueCondorcetCandidate(Candidate_identifier, w);
         count++;
         Verify::ensure(1 == count,
                        2,
@@ -225,12 +240,21 @@ namespace Simulation {
     }
   }
 
-  CondorcetCandidate Election::theTrueCondorcetCandidate() const {
-    return _True_Condorcet_Candidate;
+  CondorcetCandidate Election::theTrueCondorcetCandidate(const VoteWeighting w) const {
+    if (w == VoteWeighting::Weighted) {
+      return _weighted_True_Condorcet_Candidate;
+    } else {
+      return _unweighted_True_Condorcet_Candidate;
+    }
   }
 
-  void Election::theTrueCondorcetCandidate(const unsigned the_identifier) {
-    _True_Condorcet_Candidate = CondorcetCandidate(the_identifier);
+  void Election::theTrueCondorcetCandidate(const unsigned the_identifier,
+                                           const VoteWeighting w) {
+    if (w == VoteWeighting::Weighted) {
+      _weighted_True_Condorcet_Candidate = CondorcetCandidate(the_identifier);
+    } else {
+      _unweighted_True_Condorcet_Candidate = CondorcetCandidate(the_identifier);
+    }
   }
 
   std::vector<unsigned> Election::strategicVoterIndices(const unsigned strategic_count) {

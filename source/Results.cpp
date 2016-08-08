@@ -24,7 +24,7 @@ namespace Results {
   static void outputGeneralInformation(const unsigned election_index,
                                        const Simulation::Election election);
   static void outputResults(const Simulation::Election election,
-                            const bool weighted = true);
+                            const Simulation::VoteWeighting weighting);
 
   void output(const Data::Generated::Scenarios* scenarios) {
     std::cout << __func__ << " is not fully implemented yet" << std::endl;
@@ -34,8 +34,8 @@ namespace Results {
          election_index++) {
       outputGeneralInformation(election_index,
                                scenarios->at(election_index));
-      outputResults(scenarios->at(election_index));
-      outputResults(scenarios->at(election_index), false);
+      outputResults(scenarios->at(election_index), Simulation::VoteWeighting::Weighted);
+      outputResults(scenarios->at(election_index), Simulation::VoteWeighting::Unweighted);
     }
   }
 
@@ -68,19 +68,19 @@ namespace Results {
   }
 
   static void outputTrueCondorcetData(const Simulation::Election election,
-                                      const bool weighted);
-  static void outputWeightingDescription(const bool weighted);
+                                      const Simulation::VoteWeighting weighting);
+  static void outputWeightingDescription(const Simulation::VoteWeighting weighting);
 
   static void outputResults(const Simulation::Election election,
-                            const bool weighted) {
-    outputWeightingDescription(weighted);
-    outputTrueCondorcetData(election, weighted);
+                            const Simulation::VoteWeighting weighting) {
+    outputWeightingDescription(weighting);
+    outputTrueCondorcetData(election, weighting);
   }
 
   static void outputTrueCondorcetData(const Simulation::Election election,
-                                      const bool weighted) {
+                                      const Simulation::VoteWeighting weighting) {
     Simulation::CondorcetCandidate the_Candidate =
-      election.theTrueCondorcetCandidate();
+      election.theTrueCondorcetCandidate(weighting);
     std::string identification_string;
     if (the_Candidate.exists() == true) {
       identification_string = "#";
@@ -92,9 +92,9 @@ namespace Results {
                              identification_string);
   }
 
-  static void outputWeightingDescription(const bool weighted) {
+  static void outputWeightingDescription(const Simulation::VoteWeighting weighting) {
     std::string text;
-    if (weighted) {
+    if (weighting == Simulation::VoteWeighting::Weighted) {
       text = "Weighted Results";
     } else {
       text = "Unweighted Results";

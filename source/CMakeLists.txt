@@ -48,6 +48,7 @@ add_executable(emma
   Verify.h
   Voter.cpp
   Voter.h
+  VoteWeighting.h
   # from the docopt project
   docopt/docopt.cpp
   docopt/docopt.h

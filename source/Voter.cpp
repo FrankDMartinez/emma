@@ -105,6 +105,14 @@ namespace Simulation {
     return _verbose;
   }
 
+  unsigned Voter::votes(const VoteWeighting w) const {
+    if (w == VoteWeighting::Weighted) {
+      return _weight;
+    } else {
+      return 1;
+    }
+  }
+
   unsigned Voter::weight() const {
     return _weight;
   }

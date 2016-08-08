@@ -21,6 +21,7 @@
 
 #include <vector>
 #include "Candidate.h"
+#include "VoteWeighting.h"
 
 namespace Simulation {
   class Voter {
@@ -71,6 +72,13 @@ namespace Simulation {
     // returns `true`, this method itself is not verbose by
     // design
     bool verbose() const;
+
+    // returns the number of votes this `Voter` has based on the
+    // given argument; if weighted votes are requested, the
+    // relative weight of number of votes by this `Voter` is
+    // returned; if unweighted votes are requested, 1 is
+    // returned
+    unsigned votes(const VoteWeighting) const;
 
     // returns the relative weight of the Voter's votes
     unsigned weight() const;
