@@ -117,26 +117,23 @@ namespace Simulation {
     // weight
     std::vector<Candidate> _unweighted_societal_utility_values;
 
-    // calculates the utility values of Each Candidate without
-    // regard to weighting by Each Voter's relative voting
-    // weights
-    void determineUnweightedUtilities();
+    // calculates the utility values of Each Candidate both with
+    // and without regard to weighting by Each Voter's relative
+    // voting weights
+    void determineUtilities();
 
-    // calculates the utility values of Each Candidate, weighted
-    // by Each Voter's relative voting weights
-    void determineWeightedUtilities();
+    // calculates the utility values of Each Candidate either with
+    // or without regard to weighting by Each Voter's relative
+    // voting weights depending upon the given argument
+    void determineUtilities(const VoteWeighting);
 
-    // calculates the sum of the utility values (without regard
-    // to weighting by Each Voter's relative voting weights) of
-    // the indicated Candidate and returns that information
-    // combined with the given Candidate identifier
-    Candidate sumCandidatesUnweightedUtilities(const unsigned);
-
-    // calculates the sum of the utility values (as weighted by
-    // Each Voter's relative voting weight) of the indicated
-    // Candidate and returns that information combined with the
-    // given Candidate identifier
-    Candidate sumCandidatesWeightedUtilities(const unsigned);
+    // calculates the sum of the utility values (either with or
+    // without regard to weighting by Each Voter's relative
+    // voting weights depending upon the given argument) of the
+    // indicated Candidate and returns that information combined
+    // with the given Candidate identifier
+    Candidate sumCandidatesUtilities(const unsigned identifier,
+                                     const VoteWeighting w);
 
     // Choose Voters at random and sets Their voting nature
     // until the fraction of Voters voting "honestly" instead of
@@ -152,7 +149,7 @@ namespace Simulation {
     // determine which Candidate in each such comparison is
     // ranked as prefered by more Voters; ties are broken by
     // randomly selecting from the 2 Candidates in such
-    // situations comparisons are performed by using either
+    // situations; comparisons are performed by using either
     // weighted votes or unweighted votes as indicated by the
     // given argument
     void performOneToOneComparisonsOfCandidates(VoteWeighting);
