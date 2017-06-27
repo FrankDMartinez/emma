@@ -15,6 +15,9 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_DATA_H
+#define EMMA_DATA_H
+
 #include <vector>
 #include "Election.h"
 #include "RunState.h"
@@ -37,3 +40,5 @@ namespace Data {
     Scenarios generate(const Emma::RunState*);
   }
 }
+
+#endif

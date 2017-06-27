@@ -15,9 +15,14 @@
 //
 //===----------------------------------------------------------------------===//
 
+#ifndef EMMA_RESULTS_H
+#define EMMA_RESULTS_H
+
 #include "Data.h"
 
 namespace Results {
   // Outputs requested results stored in the given scenarios
   void output(const Data::Generated::Scenarios*);
 }
+
+#endif
