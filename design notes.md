@@ -40,16 +40,7 @@ Architectural Design
 -------------------
 ####Application Concept####
 
-This program will be a simple command line application with a text only interface. When started, the application will display the title and license information of the application. The application will enter its main loop and begin the simulations. Once simulations are complete, the data gathered from the simulations will be analyzed and the results of that analysis sent to the standard output location. The application will also have two modes in which it will produce test data and results to
-help verify all processes work as expected, one for creating and serializing the test data and the other for comparing that serialized data with results.
-
-#####Testing Mode#####
-
-When run in test creation mode, the program will serialize all generated and calculated test data.
-
-When run in test comparison mode, this program will load serialized test data, run simulations, and verify simulation results match the serialized data.
-
-When run in either test mode, all data the program can create is generated.
+This program will be a simple command line application with a text only interface. When started, the application will display the title and license information of the application. The application will enter its main loop and begin the simulations. Once simulations are complete, the data gathered from the simulations will be analyzed and the results of that analysis sent to the standard output location.
 
 ####Abstract Data Types####
 
@@ -118,7 +109,6 @@ The follow sections help to give a simplified perspective of the application and
 
 1. Parse given options.
 1. Display usage information and exit, if required.
-1. Determine the mode to run in based on such parsing.
 1. Determine what statistics to collect based on such parsing.
 
 ####Simulation Data Generation Overview####
