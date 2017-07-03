@@ -21,11 +21,10 @@
 #ifndef EMMA_RUNSTATE_H
 #define EMMA_RUNSTATE_H
 
-#include <map>
-#include "docopt/docopt.h"
 #include "GivenData.h"
 #include "RunMode.h"
 #include "StatisticsRequired.h"
+#include "docopt/docopt.h"
 
 namespace Emma {
   // Tracks the mode in which the application runs and the
