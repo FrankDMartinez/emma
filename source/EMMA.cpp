@@ -28,7 +28,6 @@ int main(int argc, char **argv) {
   Introduction::display();
   Emma::RunState state =
     RequestedInformation::determine(argc, argv);
-  Data::Serialized::load(&state);
   Data::Generated::Scenarios scenarios =
     Data::Generated::generate(&state);
   Results::output(&scenarios);
