@@ -1,4 +1,4 @@
-//===--- Data.cpp - Serialized and Generated Data Utilities ---===//
+//===--- Data.cpp - Generated Data Utilities ---===//
 //
 // This file is part of the Election Method Mathematics Application (EMMA) project.
 //
@@ -9,7 +9,7 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// Functionality related to generated and serialized data.
+// Functionality related to generated data.
 // Used for testing generation/comparison and for general
 // election simulation.
 //
@@ -21,17 +21,6 @@
 #include "Printing.h"
 
 namespace Data {
-  namespace Serialized {
-    void compareGeneratedData() {
-      std::cout << "compare generated data with serialized data if required, reporting any difference" << std::endl;
-    }
-    void load(const Emma::RunState* state) {
-      std::cout << "Note: Deserialization of data is not available in this release" << std::endl;
-    }
-    void unload() {
-      std::cout << "Note: Serialization of data is not available in this release" << std::endl;
-    }
-  }
   namespace Generated {
     // Returns election scenarios, complete with Voters,
     // Candidate utilities, and elected Candidates according to

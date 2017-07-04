@@ -31,8 +31,6 @@ int main(int argc, char **argv) {
   Data::Serialized::load(&state);
   Data::Generated::Scenarios scenarios =
     Data::Generated::generate(&state);
-  Data::Serialized::compareGeneratedData();
-  Data::Serialized::unload();
   Results::output(&scenarios);
   return 0;
 }
