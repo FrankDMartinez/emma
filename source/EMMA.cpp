@@ -22,6 +22,8 @@
 
 #include "EMMA.h"
 #include "Data.h"
+#include "Introduction.h"
+#include "RequestedInformation.h"
 #include "Results.h"
 
 int main(int argc, char **argv) {

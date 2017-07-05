@@ -15,7 +15,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "RunState.h"
+namespace Emma {
+  class RunState;
+}
 
 namespace RequestedInformation {
   // Analyzes arguments passed to the application, returning

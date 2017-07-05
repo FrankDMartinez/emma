@@ -19,6 +19,7 @@
 #include "Data.h"
 #include "Logging.h"
 #include "Printing.h"
+#include "RunState.h"
 
 namespace Data {
   namespace Generated {

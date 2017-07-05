@@ -20,7 +20,10 @@
 
 #include <vector>
 #include "Election.h"
-#include "RunState.h"
+
+namespace Emma {
+  class RunState;
+}
 
 namespace Data {
   namespace Generated {
