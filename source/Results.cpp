@@ -15,10 +15,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Results.h"
+
 #include "Logging.h"
 #include "Printing.h"
+
+#include <iostream>
 
 namespace Results {
   static void outputGeneralInformation(const unsigned election_index,

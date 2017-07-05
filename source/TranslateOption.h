@@ -16,8 +16,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <string>
 #include "RawParsedOptions.h"
+
+#include <string>
 
 namespace Emma {
   // Translates the named `option` as recorded in the

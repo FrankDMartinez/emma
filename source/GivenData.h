@@ -19,8 +19,9 @@
 #ifndef EMMA_GIVENDATA_H
 #define EMMA_GIVENDATA_H
 
-#include <ctime>
 #include "RawParsedOptions.h"
+
+#include <ctime>
 
 namespace Emma {
   // Tracks the basic data needed for the application run

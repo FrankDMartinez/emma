@@ -15,11 +15,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Data.h"
+
 #include "Logging.h"
 #include "Printing.h"
 #include "RunState.h"
+
+#include <iostream>
 
 namespace Data {
   // Returns election scenarios, complete with Voters,

@@ -15,9 +15,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "RequestedInformation.h"
+
 #include "RunState.h"
+
+#include <iostream>
 
 namespace RequestedInformation {
   // Parses given options; `argc` and `argv` are the arguments

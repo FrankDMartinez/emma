@@ -18,6 +18,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "StatisticsRequired.h"
+
 #include <iostream>
 
 namespace Emma {

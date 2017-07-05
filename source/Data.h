@@ -18,8 +18,9 @@
 #ifndef EMMA_DATA_H
 #define EMMA_DATA_H
 
-#include <vector>
 #include "Election.h"
+
+#include <vector>
 
 namespace Emma {
   class RunState;

@@ -16,10 +16,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "Introduction.h"
+
 #include "Copyright.h"
 #include "License.h"
-#include "Title.h"
 #include "Printing.h"
+#include "Title.h"
 
 namespace Introduction {
   void display() {

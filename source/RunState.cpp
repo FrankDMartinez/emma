@@ -18,8 +18,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "RunState.h"
+
+#include <iostream>
 
 namespace Emma {
   RunState::RunState(const RawParsedOptions rpo) {

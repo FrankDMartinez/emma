@@ -13,9 +13,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "License.h"
+
 #include "Printing.h"
+
+#include <iostream>
 
 namespace License {
   void display() {

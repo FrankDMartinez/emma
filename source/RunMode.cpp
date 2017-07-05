@@ -17,9 +17,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "RunMode.h"
+
 #include "TranslateOption.h"
+
+#include <iostream>
 
 namespace Emma {
   RunMode::RunMode() {}

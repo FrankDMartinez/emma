@@ -18,6 +18,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "Candidate.h"
+
 #include "Logging.h"
 #include "Pseudorandom.h"
 
