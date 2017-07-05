@@ -22,7 +22,10 @@
 
 #include "EMMA.h"
 #include "Data.h"
+#include "Introduction.h"
+#include "RequestedInformation.h"
 #include "Results.h"
+#include "RunState.h"
 
 int main(int argc, char **argv) {
   Introduction::display();

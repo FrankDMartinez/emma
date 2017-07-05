@@ -19,6 +19,3 @@
 // here.
 //
 //===------------------------------------------------------===//
-
-#include "Introduction.h"
-#include "RequestedInformation.h"
