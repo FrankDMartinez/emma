@@ -27,9 +27,9 @@ namespace Data {
   // Returns election scenarios, complete with Voters,
   // Candidate utilities, and elected Candidates according to
   // various electoral methods
-  static Scenarios runSimulations(const Emma::RunState* state);
+  static Scenarios runSimulations(const Emma::RunState& state);
 
-  Scenarios generate(const Emma::RunState* state) {
+  Scenarios generate(const Emma::RunState& state) {
     Logging::log(state, "generating data");
     Scenarios simulations = runSimulations(state);
     std::cout << "\tcollect statistics from simulations" << std::endl;
@@ -57,18 +57,18 @@ namespace Data {
       std::cout << "\t\t\tstore that Candidate's identifier in the `Election` as the Condorcet Candidate" << std::endl;
   }
 
-  static Scenarios runSimulations(const Emma::RunState* state) {
+  static Scenarios runSimulations(const Emma::RunState& state) {
     Logging::log(state, "running simulations");
     Scenarios all_scenarios;
     const double honesty_fraction = 1;
     for (unsigned election_number = 0;
-         state->getGivenData().numberOfElections() > election_number;
+         state.getGivenData().numberOfElections() > election_number;
          election_number++) {
       Logging::log(state, "running simulation #", election_number);
-      Simulation::Election election = Simulation::Election(state->getGivenData().numberOfVoters(),
-                                                           state->getGivenData().numberOfCandidates(),
+      Simulation::Election election = Simulation::Election(state.getGivenData().numberOfVoters(),
+                                                           state.getGivenData().numberOfCandidates(),
                                                            honesty_fraction,
-                                                           state->mode().beVerbose());
+                                                           state.mode().beVerbose());
       identifyCondorcetCandidates(&election);
       std::cout << "\tapply each voting method to the current election scenario" << std::endl;
       all_scenarios.push_back(election);

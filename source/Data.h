@@ -30,7 +30,7 @@ namespace Data {
   using Scenarios = std::vector<Simulation::Election>;
 
   // Generates election data
-  Scenarios generate(const Emma::RunState*);
+  Scenarios generate(const Emma::RunState&);
 }
 
 #endif
