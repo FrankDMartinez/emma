@@ -26,12 +26,10 @@ namespace Emma {
 }
 
 namespace Data {
-  namespace Generated {
-    using Scenarios = std::vector<Simulation::Election>;
+  using Scenarios = std::vector<Simulation::Election>;
 
-    // Generates election data
-    Scenarios generate(const Emma::RunState*);
-  }
+  // Generates election data
+  Scenarios generate(const Emma::RunState*);
 }
 
 #endif

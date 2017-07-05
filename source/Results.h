@@ -22,7 +22,7 @@
 
 namespace Results {
   // Outputs requested results stored in the given scenarios
-  void output(const Data::Generated::Scenarios*);
+  void output(const Data::Scenarios*);
 }
 
 #endif
