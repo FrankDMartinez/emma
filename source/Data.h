@@ -18,20 +18,19 @@
 #ifndef EMMA_DATA_H
 #define EMMA_DATA_H
 
-#include <vector>
 #include "Election.h"
+
+#include <vector>
 
 namespace Emma {
   class RunState;
 }
 
 namespace Data {
-  namespace Generated {
-    using Scenarios = std::vector<Simulation::Election>;
+  using Scenarios = std::vector<Simulation::Election>;
 
-    // Generates election data
-    Scenarios generate(const Emma::RunState*);
-  }
+  // Generates election data
+  Scenarios generate(const Emma::RunState&);
 }
 
 #endif

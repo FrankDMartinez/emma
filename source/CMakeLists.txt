@@ -12,7 +12,6 @@ add_executable(emma
   Election.cpp
   Election.h
   EMMA.cpp
-  EMMA.h
   GivenData.cpp
   GivenData.h
   IndividualElectionStatistics.cpp

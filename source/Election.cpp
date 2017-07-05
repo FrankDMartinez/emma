@@ -17,15 +17,17 @@
 //===----------------------------------------------------------------------===//
 
 #include "Election.h"
+
+#include "Logging.h"
+#include "Printing.h"
+#include "Pseudorandom.h"
+#include "Verify.h"
+
 #include <cfenv>
 #include <iostream>
 #include <set>
 #include <unordered_map>
 #include <vector>
-#include "Logging.h"
-#include "Printing.h"
-#include "Pseudorandom.h"
-#include "Verify.h"
 
 namespace Simulation {
   Election::Election(const unsigned count_of_Voters,

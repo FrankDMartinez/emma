@@ -16,8 +16,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "TranslateOption.h"
+
+#include <iostream>
 
 namespace Emma {
   unsigned translateOption(RawParsedOptions rpo, const std::string option, unsigned default_value) {

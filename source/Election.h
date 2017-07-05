@@ -19,10 +19,11 @@
 #ifndef EMMA_ELECTION_H
 #define EMMA_ELECTION_H
 
-#include <map>
-#include <vector>
 #include "CondorcetCandidate.h"
 #include "Voter.h"
+
+#include <map>
+#include <vector>
 
 namespace Simulation {
   using ElectedCandidate = unsigned;

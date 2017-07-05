@@ -17,10 +17,12 @@
 //===----------------------------------------------------------------------===//
 
 #include "Voter.h"
-#include <iostream>
+
 #include "Logging.h"
 #include "Pseudorandom.h"
 #include "Verify.h"
+
+#include <iostream>
 
 namespace Simulation {
   Voter::Voter(const unsigned number_of_Candidates,

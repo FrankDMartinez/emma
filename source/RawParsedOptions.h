@@ -20,8 +20,9 @@
 #ifndef EMMA_RAWPARSEDOPTIONS_H
 #define EMMA_RAWPARSEDOPTIONS_H
 
-#include <map>
 #include "docopt/docopt.h"
+
+#include <map>
 
 namespace Emma {
   typedef std::map<std::string, docopt::value> RawParsedOptions;

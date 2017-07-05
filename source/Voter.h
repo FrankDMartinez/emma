@@ -19,9 +19,10 @@
 #ifndef EMMA_VOTER_H
 #define EMMA_VOTER_H
 
-#include <vector>
 #include "Candidate.h"
 #include "VoteWeighting.h"
+
+#include <vector>
 
 namespace Simulation {
   class Voter {

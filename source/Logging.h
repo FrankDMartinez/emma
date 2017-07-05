@@ -27,8 +27,8 @@ namespace Logging {
   }
 
   template <class... Others>
-  void log(const Emma::RunState* state, Others... others) {
-    if (state->mode().beVerbose() == true) {
+  void log(const Emma::RunState& state, Others... others) {
+    if (state.mode().beVerbose() == true) {
       log(others...);
     }
   }

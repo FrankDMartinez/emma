@@ -13,8 +13,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Printing.h"
+
+#include <iostream>
 
 namespace Printing {
   void print() { }

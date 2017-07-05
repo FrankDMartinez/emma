@@ -13,9 +13,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Title.h"
+
 #include "Printing.h"
+
+#include <iostream>
 
 namespace Title {
   void display() {

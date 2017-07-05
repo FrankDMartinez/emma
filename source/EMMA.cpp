@@ -20,18 +20,17 @@
 //
 //===------------------------------------------------------===//
 
-#include "EMMA.h"
 #include "Data.h"
 #include "Introduction.h"
 #include "RequestedInformation.h"
 #include "Results.h"
+#include "RunState.h"
 
 int main(int argc, char **argv) {
   Introduction::display();
   Emma::RunState state =
     RequestedInformation::determine(argc, argv);
-  Data::Generated::Scenarios scenarios =
-    Data::Generated::generate(&state);
+  Data::Scenarios scenarios = Data::generate(state);
   Results::output(&scenarios);
   return 0;
 }

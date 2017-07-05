@@ -16,9 +16,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "GivenData.h"
+
 #include "TranslateOption.h"
+
+#include <iostream>
 
 namespace Emma {
   GivenData::GivenData() {}

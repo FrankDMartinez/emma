@@ -15,10 +15,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Results.h"
+
 #include "Logging.h"
 #include "Printing.h"
+
+#include <iostream>
 
 namespace Results {
   static void outputGeneralInformation(const unsigned election_index,
@@ -26,7 +28,7 @@ namespace Results {
   static void outputResults(const Simulation::Election election,
                             const Simulation::VoteWeighting weighting);
 
-  void output(const Data::Generated::Scenarios* scenarios) {
+  void output(const Data::Scenarios* scenarios) {
     std::cout << __func__ << " is not fully implemented yet" << std::endl;
     Logging::log("outputing requested results");
     for (unsigned election_index = 0;

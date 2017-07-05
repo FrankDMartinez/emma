@@ -13,9 +13,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Copyright.h"
+
 #include "Printing.h"
+
+#include <iostream>
 
 namespace Copyright {
   void display() {

@@ -15,8 +15,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include <iostream>
 #include "Printing.h"
+
+#include <iostream>
 
 namespace Verify {
   template <class... Others>

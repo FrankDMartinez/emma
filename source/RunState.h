@@ -24,6 +24,7 @@
 #include "GivenData.h"
 #include "RunMode.h"
 #include "StatisticsRequired.h"
+
 #include "docopt/docopt.h"
 
 namespace Emma {
