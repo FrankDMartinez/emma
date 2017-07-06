@@ -9,7 +9,7 @@ currently attempting to use. In no particular order:
 * Affix asterisks and ampersands to types instead of names or floating them in between.
 * No spaces inside of parenthesis.
 * Commas should be followed by a space; not preceded by one.
-* #include as little as possible; don't include a header containing a class definition when a forward declaration suffices.
+* `#include` as little as possible; don't include a header containing a class definition when a forward declaration suffices.
 * Pointers vs. references: use pointers if you want to do pointer arithmetic with them (e.g. incrementing the pointer address to step through an array) or if you ever have to pass a NULL-pointer; elsewise, use references.
 * Use the uniform initialization syntax whenever possible.
 
