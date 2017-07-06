@@ -57,21 +57,31 @@ static void identifyTraditionalCondorcetCandidate(Simulation::Election* election
     std::cout << "\t\t\tstore that Candidate's identifier in the `Election` as the Condorcet Candidate" << std::endl;
 }
 
-static Scenarios runSimulations(const Emma::RunState& state) {
-  Logging::log(state, "running simulations");
+static Scenarios prepareElections(const Emma::RunState& state) {
   Scenarios all_scenarios;
   const double honesty_fraction = 1;
   for (unsigned election_number = 0;
        state.getGivenData().numberOfElections() > election_number;
        election_number++) {
-    Logging::log(state, "running simulation #", election_number);
+    Logging::log(state, "preparing simulation #", election_number);
     Simulation::Election election{ state.getGivenData().numberOfVoters(),
                                    state.getGivenData().numberOfCandidates(),
                                    honesty_fraction,
-                                   state.mode().beVerbose()) };
-    identifyCondorcetCandidates(&election);
-    std::cout << "\tapply each voting method to the current election scenario" << std::endl;
+                                   state.mode().beVerbose() };
     all_scenarios.push_back(election);
+  }
+  return all_scenarios;
+}
+
+static Scenarios runSimulations(const Emma::RunState& state) {
+  Logging::log(state, "running simulations");
+  Scenarios all_scenarios = prepareElections(state);
+
+  for (auto& each_election : all_scenarios) {
+    // TODO: log correct simulation number
+    Logging::log(state, "running simulation #", 0U);
+    identifyCondorcetCandidates(&each_election);
+    std::cout << "\tapply each voting method to the current election scenario" << std::endl;
   }
   return all_scenarios;
 }
