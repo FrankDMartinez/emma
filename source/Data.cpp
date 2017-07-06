@@ -73,16 +73,27 @@ static Scenarios prepareElections(const Emma::RunState& state) {
   return all_scenarios;
 }
 
+template<typename T>
+void for_each_with_index(T& container,
+                         std::function<void(typename T::value_type&, unsigned)> op) {
+  unsigned idx = 0;
+  for(auto& value : container) {
+    op(value, idx);
+    ++idx;
+  }
+}
+
 static Scenarios runSimulations(const Emma::RunState& state) {
   Logging::log(state, "running simulations");
   Scenarios all_scenarios = prepareElections(state);
+  auto runOneSimulation =
+    [&state](Simulation::Election& the_election, unsigned index) {
+      Logging::log(state, "running simulation #", index);
+      identifyCondorcetCandidates(&the_election);
+      std::cout << "\tapply each voting method to the current election scenario" << std::endl;
+    };
 
-  for (auto& each_election : all_scenarios) {
-    // TODO: log correct simulation number
-    Logging::log(state, "running simulation #", 0U);
-    identifyCondorcetCandidates(&each_election);
-    std::cout << "\tapply each voting method to the current election scenario" << std::endl;
-  }
+  for_each_with_index(all_scenarios, runOneSimulation);
   return all_scenarios;
 }
 }
