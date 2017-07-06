@@ -46,6 +46,7 @@ namespace Simulation {
     // Create the Candidates and Their utilities to this Voter
     void initializeRelations(const unsigned numberOfCandidates);
   public:
+    Voter(bool be_verbose);
     Voter(const unsigned number_of_Candidates, bool be_verbose);
 
     // Records the voting nature of the Voter as "strategic" as

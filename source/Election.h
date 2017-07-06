@@ -55,11 +55,6 @@ namespace Simulation {
     // whether to be verbose in actions or not
     bool _verbose = false;
 
-    // Creates the collection of Voters, initializing Their
-    // relationship with the Candidates in terms of utility
-    // values
-    void createElectorate();
-
     // compares the rankings of the Candidates referenced in the
     // `comparison`, determining which Candidate is ranked
     // higher by a larger number of either weighted or

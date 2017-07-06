@@ -25,6 +25,11 @@
 #include <iostream>
 
 namespace Simulation {
+  Voter::Voter(const bool be_verbose)
+    : _verbose{be_verbose} {
+    Logging::log(this, "creating empty `Voter` object");
+  }
+
   Voter::Voter(const unsigned number_of_Candidates,
                const bool be_verbose)
     : _verbose(be_verbose) {

@@ -37,27 +37,19 @@ namespace Simulation {
     : number_of_Voters(count_of_Voters),
       number_of_Candidates(count_of_Candidates),
       honesty_fraction(honest_Voters),
-      _verbose(be_verbose) {
+      _verbose(be_verbose),
+      the_electorate{std::vector<Voter>(count_of_Voters,
+                                        { be_verbose })} {
     Logging::log(this, "creating `Election` object");
-    createElectorate();
     setElectorateHonesty();
+#if 0
     determineUtilities();
     determineBothTrueCondorcetCandidates();
+#endif
   }
 
   unsigned Election::ballotSize() const {
     return number_of_Candidates;
-  }
-
-  void Election::createElectorate() {
-    Logging::log(this, "creating electorate");
-    for (unsigned Voter_number = 0;
-         Voter_number < electorateSize();
-         Voter_number++) {
-        Logging::log(this, "creating `Voter` #", Voter_number);
-        Voter a_Voter(number_of_Candidates, verbose());
-        the_electorate.push_back(a_Voter);
-    }
   }
 
   void Election::determineUtilities() {
