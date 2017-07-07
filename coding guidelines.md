@@ -1,18 +1,38 @@
 The following are the coding guidelines this project is
 currently attempting to use. In no particular order:
 
+#Never ...
+* ... break the build.
+* ... throw exceptions.
+* ... use `goto`.
+* ... call `gets()`.
+* ... prematurely optimize.
+
+#Functions
+* Function definitions never appear in headers unless they are function template definitions; elsewise, unnecessary compilation may result.
+* No more than three levels of indentation in a function.
+* "Functions should be short and sweet, and do just one thing. They should fit on one or two screenfuls of text (the ISO/ANSI screen size is 80x24, as we all know), and do one thing and do that well."
+* No more than one statement per line.
+
+#Declarations
+* Pointers vs. references: use pointers if you want to do pointer arithmetic with them (e.g. incrementing the pointer address to step through an array) or if you ever have to pass a NULL-pointer; elsewise, use references.
+* Declare no more than one variable per declaration.
+* No more than one declaration per line.
+* No global variables.
+
+#Other Visual Presentation
 * Column limit: Write your code to fit within 80 columns of text, preferably 64. Doing so helps improve readability of printed out code and of code in an terminal window without resizing it.
 * Don’t indent namespaces: In general, we strive to reduce indentation wherever possible. This is useful because we want code to fit into 80 (64) columns without wrapping horribly, but also because it makes it easier to understand the code. To facilitate this and avoid some insanely deep nesting on occasion, don’t indent namespaces. If it helps readability, feel free to add a comment indicating what namespace is being closed by a `}`.
-* Exceptions: Don’t.
-* `goto`: Don’t.
-* Function definitions never appear in headers unless they are function template definitions; elsewise, unnecessary compilation may result.
-* Affix asterisks and ampersands to types instead of names or floating them in between.
-* No spaces inside of parenthesis.
 * Commas should be followed by a space; not preceded by one.
-* `#include` as little as possible; don't include a header containing a class definition when a forward declaration suffices.
-* Pointers vs. references: use pointers if you want to do pointer arithmetic with them (e.g. incrementing the pointer address to step through an array) or if you ever have to pass a NULL-pointer; elsewise, use references.
-* Use the uniform initialization syntax whenever possible.
-* "Functions should be short and sweet, and do just one thing. They should fit on one or two screenfuls of text (the ISO/ANSI screen size is 80x24, as we all know), and do one thing and do that well."
+* Affix asterisks and ampersands to types instead of names or floating them in between.
+* No spaces immediately inside of parenthesis.
+* Bracing: use the "one true brace" style unless specifically stated elsewise.
 
-No, the irony of the long lines in this file is not lost on the
-Author.
+#Miscellaneous
+* `#include` as little as possible; don't include a header containing a class definition when a forward declaration suffices.
+* Use the uniform initialization syntax whenever possible.
+* Classes should have a single purpose.
+* "Correct is better than fast. Simple is better than complex. Clear is better than cute. Safe is better than insecure."
+* Use named variables, not temporaries, as constructor/function arguments.
+
+No, the irony of the long lines in this file is not lost on the Author.
