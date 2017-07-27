@@ -13,6 +13,7 @@ currently attempting to use. In no particular order:
 #Classes
 * Classes should have a single purpose.
 * Data members should be `private`.
+* Function members should be `private` unless necessary.
 
 #Functions
 * Function definitions never appear in headers unless they are function template definitions; elsewise, unnecessary compilation may result.
