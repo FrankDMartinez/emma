@@ -43,10 +43,13 @@ currently attempting to use. In no particular order:
 * Every header shall `#include` every other header (and only every header) required to compile the contents of that file.
 * Always write internal `#include` guards and never external ones.
 
+#Statements
+* One side effect per statement; those resulting from a function call count as one combined.
+* Use prefix increment/decrement operators; not the postfix versions.
+
 #Miscellaneous
 * Use the uniform initialization syntax whenever possible.
 * "Correct is better than fast. Simple is better than complex. Clear is better than cute. Safe is better than insecure."
 * Use named variables, not temporaries, as constructor/function arguments.
-* Use prefix increment/decrement operators; not the postfix versions.
 
 No, the irony of the long lines in this file is not lost on the Author.
