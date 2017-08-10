@@ -9,6 +9,8 @@ currently attempting to use. In no particular order:
 * ... prematurely optimize.
 * ... cast away `const` except to call a `const`-incorrect function.
 * ... `#define` anything except for `#include` guards, conditional compilation, and implementing `assert`.
+* ... use C-style casts.
+* ... use `varargs`.
 
 #Classes
 * Classes should have a single purpose.
@@ -30,6 +32,7 @@ currently attempting to use. In no particular order:
 * No global variables.
 * If a variable can be declared `const`, do so.
 * Non-parameter variables shall be initialized upon declaration, except for input buffers and those declared `volatile`.
+* Use `vector` and `string` instead of arrays.
 
 #Other Visual Presentation
 * Column limit: Write your code to fit within 80 columns of text, preferably 64. Doing so helps improve readability of printed out code and of code in an terminal window without resizing it.
@@ -44,13 +47,19 @@ currently attempting to use. In no particular order:
 * Every header shall `#include` every other header (and only every header) required to compile the contents of that file.
 * Always write internal `#include` guards and never external ones.
 
-#Statements
-* One side effect per statement; those resulting from a function call count as one combined.
+#Statements/Expressions
+* One side effect per statement; those resulting from a function call (but not the arguments) count as one combined.
 * Use prefix increment/decrement operators; not the postfix versions.
+* Use algorithms instead of loops.
+* Ensure assertions don't perform side effects.
+* Use `and`, `or`, and `not` instead of `&&`, `||`, and `!`, respectively.
 
 #Miscellaneous
 * Use the uniform initialization syntax whenever possible.
 * "Correct is better than fast. Simple is better than complex. Clear is better than cute. Safe is better than insecure."
 * Use named variables, not temporaries, as constructor/function arguments.
+* Prefer iteration to indexed access.
+* If creating a collection, use `vector` by default; otherwise, choose a suitable container.
+* Make references `const` whenever feasible.
 
 No, the irony of the long lines in this file is not lost on the Author.
