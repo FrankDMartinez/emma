@@ -58,18 +58,22 @@ static void identifyTraditionalCondorcetCandidate(Simulation::Election* election
 }
 
 static Scenarios prepareElections(const Emma::RunState& state) {
-  Scenarios all_scenarios;
-  const double honesty_fraction = 1;
-  for (unsigned election_number = 0;
-       state.getGivenData().numberOfElections() > election_number;
-       election_number++) {
+  unsigned election_number = 0;
+  auto generateElections = [&]() {
+    election_number++;
     Logging::log(state, "preparing simulation #", election_number);
+    const double honesty_fraction = 1;
     Simulation::Election election{ state.getGivenData().numberOfVoters(),
                                    state.getGivenData().numberOfCandidates(),
                                    honesty_fraction,
                                    state.mode().beVerbose() };
-    all_scenarios.push_back(election);
-  }
+    return election;
+  };
+  Scenarios all_scenarios;
+  const auto number_of_elections = state.getGivenData().numberOfElections();
+
+  all_scenarios.reserve(number_of_elections);
+  std::generate_n(std::back_inserter(all_scenarios), number_of_elections, generateElections);
   return all_scenarios;
 }
 
